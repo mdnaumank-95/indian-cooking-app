@@ -102,7 +102,7 @@ main {
   line-height: 1.4;
 }
 
-#ingredientsPage {
+.page {
   display: none;
 }
 
@@ -115,32 +115,69 @@ main {
   margin-bottom: 20px;
 }
 
-.ingredient-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 12px;
+.input-box {
+  display: flex;
+  gap: 10px;
   margin-top: 20px;
 }
 
-.ingredient {
-  background: white;
-  border: 2px solid #eee;
-  border-radius: 14px;
-  padding: 16px;
-  cursor: pointer;
-  text-align: center;
+.input-box input {
+  flex: 1;
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-radius: 12px;
   font-size: 16px;
 }
 
-.ingredient.selected {
-  border-color: #d35400;
-  background: #fff0df;
+.add-button {
+  padding: 15px 20px;
+  border: none;
+  border-radius: 12px;
+  background: #d35400;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.find-button {
+.ingredients-list {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.ingredient-tag {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 10px 14px;
+}
+
+.remove {
+  color: #d35400;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 7px;
+}
+
+.suggestions {
+  margin-top: 20px;
+}
+
+.suggestion {
+  display: inline-block;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 9px 14px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.analyse-button {
   width: 100%;
   margin-top: 25px;
-  padding: 15px;
+  padding: 16px;
   border: none;
   border-radius: 12px;
   background: #d35400;
@@ -153,7 +190,7 @@ main {
   margin-top: 30px;
 }
 
-.recipe {
+.recipe-card {
   background: white;
   border-radius: 16px;
   padding: 20px;
@@ -161,17 +198,58 @@ main {
   border: 1px solid #eee;
 }
 
-.recipe h3 {
+.recipe-card h3 {
   margin-top: 0;
 }
 
 .match {
+  font-weight: bold;
+  color: #16803c;
+}
+
+.partial {
   font-weight: bold;
   color: #d35400;
 }
 
 .missing {
   color: #777;
+}
+
+.cook-button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #d35400;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.cooking-card {
+  background: white;
+  border-radius: 18px;
+  padding: 25px;
+  margin-top: 20px;
+}
+
+.step {
+  padding: 18px 0;
+  border-bottom: 1px solid #eee;
+  line-height: 1.6;
+}
+
+.step-number {
+  font-weight: bold;
+  color: #d35400;
+}
+
+.timer {
+  background: #fff0df;
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 10px;
+  font-weight: bold;
 }
 
 .notice {
@@ -218,7 +296,7 @@ Discover Indian food. Cook with what you have.
 
 <main>
 
-<!-- HOME PAGE -->
+<!-- HOME -->
 
 <section id="homePage">
 
@@ -227,8 +305,8 @@ Discover Indian food. Cook with what you have.
 <h1>What would you like to cook?</h1>
 
 <p>
-Explore Indian dishes or discover what you can cook
-using the ingredients you already have.
+Discover Indian dishes or tell us what ingredients
+you already have at home.
 </p>
 
 </div>
@@ -243,8 +321,8 @@ using the ingredients you already have.
 <h2>Cook With What I Have</h2>
 
 <p>
-Select the ingredients you already have
-and discover Indian dishes you can make.
+Tell us the ingredients you have and we will find
+Indian dishes you can prepare.
 </p>
 
 </div>
@@ -257,7 +335,7 @@ and discover Indian dishes you can make.
 <h2>Choose a Dish</h2>
 
 <p>
-Search for the Indian dish you want to prepare.
+Choose an Indian dish and learn how to prepare it.
 </p>
 
 </div>
@@ -270,8 +348,7 @@ Search for the Indian dish you want to prepare.
 <h2>Explore India</h2>
 
 <p>
-Discover dishes from different Indian states,
-cities and regions.
+Discover dishes from Indian states, cities and regions.
 </p>
 
 </div>
@@ -323,8 +400,8 @@ Search for dishes, ingredients or regions.
 <strong>🌍 Made for Indian food lovers worldwide</strong>
 
 <p>
-Recipes will use generic ingredient names rather than
-recommending particular brands.
+Recipes will use generic ingredient names.
+We will not recommend specific brands or supermarkets.
 </p>
 
 </div>
@@ -334,110 +411,126 @@ recommending particular brands.
 
 <!-- INGREDIENT PAGE -->
 
-<section id="ingredientsPage">
+<section id="ingredientsPage" class="page">
 
 <button class="back" onclick="goHome()">← Back to Home</button>
 
 <h1>🧺 Cook With What I Have</h1>
 
 <p>
-Select the ingredients you already have.
-We will find Indian dishes you can make.
+Tell us what ingredients you have at home.
+You can add as many ingredients as you want.
 </p>
 
-<p><strong>You do not need to choose the number of people here.</strong></p>
+<p>
+<strong>No number of people is needed in this feature.</strong>
+</p>
 
 
-<h2>🥕 Vegetables</h2>
+<h2>✍️ Add Your Ingredients</h2>
 
-<div class="ingredient-grid">
+<div class="input-box">
 
-<div class="ingredient" onclick="toggleIngredient(this,'potato')">
-🥔 Potato
-</div>
+<input
+id="ingredientInput"
+type="text"
+placeholder="Example: chicken"
+/>
 
-<div class="ingredient" onclick="toggleIngredient(this,'onion')">
-🧅 Onion
-</div>
-
-<div class="ingredient" onclick="toggleIngredient(this,'tomato')">
-🍅 Tomato
-</div>
-
-<div class="ingredient" onclick="toggleIngredient(this,'carrot')">
-🥕 Carrot
-</div>
-
-<div class="ingredient" onclick="toggleIngredient(this,'peas')">
-🫛 Peas
-</div>
-
-<div class="ingredient" onclick="toggleIngredient(this,'spinach')">
-🥬 Spinach
-</div>
+<button class="add-button" onclick="addIngredient()">
++ Add
+</button>
 
 </div>
 
 
-<h2>🍗 Meat & Protein</h2>
+<div class="suggestions">
 
-<div class="ingredient-grid">
+<strong>Quick Add:</strong>
 
-<div class="ingredient" onclick="toggleIngredient(this,'chicken')">
+<div
+class="suggestion"
+onclick="quickAdd('chicken')">
 🍗 Chicken
 </div>
 
-<div class="ingredient" onclick="toggleIngredient(this,'egg')">
-🥚 Egg
+<div
+class="suggestion"
+onclick="quickAdd('potato')">
+🥔 Potato
 </div>
 
-<div class="ingredient" onclick="toggleIngredient(this,'fish')">
-🐟 Fish
+<div
+class="suggestion"
+onclick="quickAdd('onion')">
+🧅 Onion
 </div>
 
+<div
+class="suggestion"
+onclick="quickAdd('tomato')">
+🍅 Tomato
 </div>
 
-
-<h2>🥛 Dairy</h2>
-
-<div class="ingredient-grid">
-
-<div class="ingredient" onclick="toggleIngredient(this,'yoghurt')">
-🥛 Plain yoghurt
-</div>
-
-<div class="ingredient" onclick="toggleIngredient(this,'paneer')">
-🧀 Paneer
-</div>
-
-</div>
-
-
-<h2>🌾 Pantry</h2>
-
-<div class="ingredient-grid">
-
-<div class="ingredient" onclick="toggleIngredient(this,'rice')">
+<div
+class="suggestion"
+onclick="quickAdd('rice')">
 🍚 Rice
 </div>
 
-<div class="ingredient" onclick="toggleIngredient(this,'flour')">
-🌾 Wheat flour
+<div
+class="suggestion"
+onclick="quickAdd('yoghurt')">
+🥛 Yoghurt
 </div>
 
-<div class="ingredient" onclick="toggleIngredient(this,'lentils')">
-🫘 Lentils
+<div
+class="suggestion"
+onclick="quickAdd('paneer')">
+🧀 Paneer
+</div>
+
+<div
+class="suggestion"
+onclick="quickAdd('egg')">
+🥚 Egg
 </div>
 
 </div>
 
 
-<button class="find-button" onclick="findRecipes()">
-🔎 Find Dishes
+<h2>🧺 Your Ingredients</h2>
+
+<div id="ingredientsList" class="ingredients-list">
+
+<p>No ingredients added yet.</p>
+
+</div>
+
+
+<button
+class="analyse-button"
+onclick="analyseIngredients()">
+
+🍛 Find What I Can Cook
+
 </button>
 
 
 <div id="results" class="results"></div>
+
+</section>
+
+
+<!-- COOKING PAGE -->
+
+<section id="cookingPage" class="page">
+
+<button class="back" onclick="backToResults()">
+← Back to Dishes
+</button>
+
+<div id="cookingContent"></div>
 
 </section>
 
@@ -456,6 +549,220 @@ Indian Kitchen — Global Indian Cooking
 let selectedIngredients = [];
 
 
+const recipes = [
+
+{
+name: "Chicken Curry",
+type: "Non-Vegetarian",
+ingredients: [
+"chicken",
+"onion",
+"tomato",
+"yoghurt"
+],
+steps: [
+"Cut the chicken into suitable pieces and keep it ready.",
+"Heat oil in a pan over medium heat.",
+"Add the onion and cook until lightly golden.",
+"Add the tomato and cook until soft.",
+"Add the spices and stir well.",
+"Add the chicken and cook until the outside changes colour.",
+"Add the yoghurt gradually while stirring.",
+"Add a little water, cover the pan and cook until the chicken is fully cooked.",
+"Check the seasoning and serve hot."
+]
+},
+
+{
+name: "Aloo Chicken",
+type: "Non-Vegetarian",
+ingredients: [
+"chicken",
+"potato",
+"onion",
+"tomato"
+],
+steps: [
+"Cut the chicken and potatoes into suitable pieces.",
+"Heat oil in a pan.",
+"Add onion and cook until golden.",
+"Add tomato and cook until soft.",
+"Add spices and mix well.",
+"Add chicken and potatoes.",
+"Add water, cover and simmer until the chicken and potatoes are fully cooked.",
+"Check seasoning and serve hot."
+]
+},
+
+{
+name: "Egg Curry",
+type: "Non-Vegetarian",
+ingredients: [
+"egg",
+"onion",
+"tomato",
+"yoghurt"
+],
+steps: [
+"Boil the eggs until cooked, then peel them.",
+"Heat oil in a pan.",
+"Add onion and cook until golden.",
+"Add tomato and cook until soft.",
+"Add spices and stir well.",
+"Add yoghurt gradually while stirring.",
+"Add the boiled eggs and simmer gently.",
+"Cook for several minutes and serve hot."
+]
+},
+
+{
+name: "Aloo Tamatar Curry",
+type: "Vegetarian",
+ingredients: [
+"potato",
+"onion",
+"tomato"
+],
+steps: [
+"Peel and cut the potatoes.",
+"Heat oil in a pan.",
+"Add onion and cook until lightly golden.",
+"Add tomato and cook until soft.",
+"Add spices and mix well.",
+"Add potatoes and stir.",
+"Add water, cover and cook until the potatoes are tender.",
+"Check seasoning and serve hot."
+]
+},
+
+{
+name: "Aloo Matar",
+type: "Vegetarian",
+ingredients: [
+"potato",
+"peas",
+"onion",
+"tomato"
+],
+steps: [
+"Peel and cut the potatoes.",
+"Heat oil in a pan.",
+"Add onion and cook until golden.",
+"Add tomato and cook until soft.",
+"Add spices and mix well.",
+"Add potatoes and peas.",
+"Add water, cover and cook until the vegetables are tender.",
+"Check seasoning and serve hot."
+]
+},
+
+{
+name: "Palak Paneer",
+type: "Vegetarian",
+ingredients: [
+"spinach",
+"paneer",
+"onion",
+"tomato"
+],
+steps: [
+"Wash and prepare the spinach.",
+"Cook the spinach until tender and blend or finely process it.",
+"Heat oil in a pan.",
+"Add onion and cook until soft.",
+"Add tomato and cook until soft.",
+"Add the spinach mixture and spices.",
+"Add paneer pieces.",
+"Simmer gently until the flavours combine.",
+"Serve hot."
+]
+},
+
+{
+name: "Dal Tadka",
+type: "Vegetarian",
+ingredients: [
+"lentils",
+"onion",
+"tomato"
+],
+steps: [
+"Wash the lentils thoroughly.",
+"Cook the lentils with water until soft.",
+"Heat oil or ghee in a separate pan.",
+"Add onion and cook until golden.",
+"Add tomato and cook until soft.",
+"Add the cooked lentils.",
+"Add seasoning and simmer for several minutes.",
+"Serve hot."
+]
+},
+
+{
+name: "Simple Fish Curry",
+type: "Non-Vegetarian",
+ingredients: [
+"fish",
+"onion",
+"tomato"
+],
+steps: [
+"Clean and prepare the fish.",
+"Heat oil in a pan.",
+"Add onion and cook until soft.",
+"Add tomato and cook until soft.",
+"Add spices and mix.",
+"Add water to create the curry.",
+"Place the fish into the curry carefully.",
+"Cook until the fish is fully cooked.",
+"Serve hot."
+]
+},
+
+{
+name: "Paneer Tomato Curry",
+type: "Vegetarian",
+ingredients: [
+"paneer",
+"tomato",
+"onion"
+],
+steps: [
+"Cut the paneer into pieces.",
+"Heat oil in a pan.",
+"Add onion and cook until soft.",
+"Add tomato and cook until soft.",
+"Add spices and mix well.",
+"Add paneer.",
+"Add a small amount of water and simmer.",
+"Serve hot."
+]
+},
+
+{
+name: "Vegetable Rice",
+type: "Vegetarian",
+ingredients: [
+"rice",
+"carrot",
+"peas",
+"onion"
+],
+steps: [
+"Wash the rice.",
+"Heat oil in a pan.",
+"Add onion and cook until soft.",
+"Add carrot and peas.",
+"Add the rice and mix gently.",
+"Add the required water and seasoning.",
+"Cover and cook until the rice is tender.",
+"Rest for a few minutes and serve."
+]
+}
+
+];
+
+
 function openIngredients() {
 
 document.getElementById("homePage").style.display = "none";
@@ -471,6 +778,8 @@ function goHome() {
 
 document.getElementById("ingredientsPage").style.display = "none";
 
+document.getElementById("cookingPage").style.display = "none";
+
 document.getElementById("homePage").style.display = "block";
 
 window.scrollTo(0,0);
@@ -478,85 +787,124 @@ window.scrollTo(0,0);
 }
 
 
-function toggleIngredient(element, ingredient) {
+function addIngredient() {
 
-element.classList.toggle("selected");
+const input =
+document.getElementById("ingredientInput");
 
-if (selectedIngredients.includes(ingredient)) {
+const value =
+input.value.trim().toLowerCase();
 
-selectedIngredients =
-selectedIngredients.filter(item => item !== ingredient);
+if (value === "") {
+return;
+}
 
-} else {
+if (!selectedIngredients.includes(value)) {
+
+selectedIngredients.push(value);
+
+}
+
+input.value = "";
+
+displayIngredients();
+
+}
+
+
+function quickAdd(ingredient) {
+
+if (!selectedIngredients.includes(ingredient)) {
 
 selectedIngredients.push(ingredient);
 
 }
 
+displayIngredients();
+
 }
 
 
-const recipes = [
+function removeIngredient(ingredient) {
 
-{
-name: "Aloo Tamatar Curry",
-ingredients: ["potato","tomato","onion"],
-type: "Vegetarian"
-},
+selectedIngredients =
+selectedIngredients.filter(
+item => item !== ingredient
+);
 
-{
-name: "Aloo Matar",
-ingredients: ["potato","peas","onion","tomato"],
-type: "Vegetarian"
-},
+displayIngredients();
 
-{
-name: "Palak Paneer",
-ingredients: ["spinach","paneer","onion","tomato"],
-type: "Vegetarian"
-},
-
-{
-name: "Dal Tadka",
-ingredients: ["lentils","onion","tomato"],
-type: "Vegetarian"
-},
-
-{
-name: "Egg Curry",
-ingredients: ["egg","onion","tomato","yoghurt"],
-type: "Non-Vegetarian"
-},
-
-{
-name: "Chicken Curry",
-ingredients: ["chicken","onion","tomato","yoghurt"],
-type: "Non-Vegetarian"
-},
-
-{
-name: "Chicken and Potato Curry",
-ingredients: ["chicken","potato","onion","tomato"],
-type: "Non-Vegetarian"
-},
-
-{
-name: "Fish Curry",
-ingredients: ["fish","onion","tomato"],
-type: "Non-Vegetarian"
 }
 
-];
 
+function displayIngredients() {
 
-function findRecipes() {
-
-const results = document.getElementById("results");
+const list =
+document.getElementById("ingredientsList");
 
 if (selectedIngredients.length === 0) {
 
-results.innerHTML =
-"<div class='recipe'><h3>Please select at least one ingredient.</h3><p>Choose the ingredients you already have.</p></div>";
+list.innerHTML =
+"<p>No ingredients added yet.</p>";
+
+return;
+
+}
+
+
+list.innerHTML = "";
+
+selectedIngredients.forEach(ingredient => {
+
+const tag =
+document.createElement("div");
+
+tag.className = "ingredient-tag";
+
+tag.innerHTML =
+ingredient +
+" <span class='remove' onclick=\"removeIngredient('" +
+ingredient +
+"')\">×</span>";
+
+list.appendChild(tag);
+
+});
+
+}
+
+
+document.getElementById("ingredientInput")
+.addEventListener("keydown", function(event) {
+
+if (event.key === "Enter") {
+
+addIngredient();
+
+}
+
+});
+
+
+function analyseIngredients() {
+
+const results =
+document.getElementById("results");
+
+if (selectedIngredients.length === 0) {
+
+results.innerHTML = `
+<div class="recipe-card">
+
+<h3>🧺 Add some ingredients first</h3>
+
+<p>
+Tell us what you have at home and we will
+find dishes you can prepare.
+</p>
+
+</div>
+`;
 
 return;
 
@@ -565,49 +913,75 @@ return;
 
 let matches = recipes.map(recipe => {
 
-let matched =
-recipe.ingredients.filter(item =>
-selectedIngredients.includes(item)
-).length;
+const matched =
+recipe.ingredients.filter(
+ingredient =>
+selectedIngredients.includes(ingredient)
+);
 
-let percentage =
-Math.round((matched / recipe.ingredients.length) * 100);
+const missing =
+recipe.ingredients.filter(
+ingredient =>
+!selectedIngredients.includes(ingredient)
+);
 
-let missing =
-recipe.ingredients.filter(item =>
-!selectedIngredients.includes(item)
+const percentage =
+Math.round(
+(matched.length / recipe.ingredients.length) * 100
 );
 
 return {
 recipe,
-percentage,
-missing
+matched,
+missing,
+percentage
 };
 
 });
 
 
-matches.sort((a,b) => b.percentage - a.percentage);
+matches =
+matches
+.filter(item => item.percentage > 0)
+.sort((a,b) =>
+b.percentage - a.percentage
+);
 
 
-results.innerHTML = "<h2>🍛 Dishes You Can Make</h2>";
+results.innerHTML = `
+
+<h2>🍛 What You Can Cook</h2>
+
+<p>
+We analysed the ingredients you entered.
+Here are dishes that match your ingredients.
+</p>
+
+`;
 
 
 matches.forEach(item => {
 
+let matchClass =
+item.percentage === 100
+? "match"
+: "partial";
+
+
 let missingText =
 item.missing.length === 0
-? "You have all the listed ingredients."
-: "Missing: " + item.missing.join(", ");
+? "✅ You have all the listed recipe ingredients."
+: "Missing: " +
+item.missing.join(", ");
 
 
 results.innerHTML += `
 
-<div class="recipe">
+<div class="recipe-card">
 
 <h3>${item.recipe.name}</h3>
 
-<p class="match">
+<p class="${matchClass}">
 ${item.percentage}% ingredient match
 </p>
 
@@ -619,11 +993,124 @@ ${missingText}
 <strong>${item.recipe.type}</strong>
 </p>
 
+<button
+class="cook-button"
+onclick="startCooking('${item.recipe.name}')">
+
+👨‍🍳 Cook This Dish
+
+</button>
+
 </div>
 
 `;
 
 });
+
+}
+
+
+function startCooking(recipeName) {
+
+const recipe =
+recipes.find(
+item => item.name === recipeName
+);
+
+if (!recipe) {
+return;
+}
+
+
+document.getElementById("ingredientsPage")
+.style.display = "none";
+
+document.getElementById("cookingPage")
+.style.display = "block";
+
+
+let html = `
+
+<button
+class="back"
+onclick="backToResults()">
+
+← Back to Dishes
+
+</button>
+
+<div class="cooking-card">
+
+<h1>🍛 ${recipe.name}</h1>
+
+<p>
+<strong>${recipe.type}</strong>
+</p>
+
+<h2>🧺 Ingredients</h2>
+
+<ul>
+`;
+
+recipe.ingredients.forEach(ingredient => {
+
+html += `<li>${ingredient}</li>`;
+
+});
+
+
+html += `
+
+</ul>
+
+<h2>👨‍🍳 Step-by-Step Cooking</h2>
+
+`;
+
+
+recipe.steps.forEach((step,index) => {
+
+html += `
+
+<div class="step">
+
+<div class="step-number">
+Step ${index + 1}
+</div>
+
+<p>${step}</p>
+
+</div>
+
+`;
+
+});
+
+
+html += `
+
+</div>
+
+`;
+
+
+document.getElementById("cookingContent")
+.innerHTML = html;
+
+window.scrollTo(0,0);
+
+}
+
+
+function backToResults() {
+
+document.getElementById("cookingPage")
+.style.display = "none";
+
+document.getElementById("ingredientsPage")
+.style.display = "block";
+
+window.scrollTo(0,0);
 
 }
 
