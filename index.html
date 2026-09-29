@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Indian Kitchen</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff8ed;
+      color: #2d241f;
+    }
+
+    header {
+      background: #ffffff;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .logo {
+      font-size: 32px;
+      font-weight: bold;
+      color: #d35400;
+    }
+
+    .tagline {
+      margin-top: 6px;
+      color: #777;
+    }
+
+    .language {
+      margin-top: 15px;
+    }
+
+    select {
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      background: white;
+      font-size: 15px;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 25px;
+    }
+
+    .welcome {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .welcome h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .welcome p {
+      color: #666;
+      font-size: 17px;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .option {
+      background: white;
+      border-radius: 18px;
+      padding: 25px;
+      border: 1px solid #eee;
+      cursor: pointer;
+      transition: 0.2s;
+      text-align: center;
+    }
+
+    .option:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .icon {
+      font-size: 45px;
+      margin-bottom: 12px;
+    }
+
+    .option h2 {
+      font-size: 20px;
+      margin: 8px 0;
+    }
+
+    .option p {
+      color: #777;
+      line-height: 1.4;
+    }
+
+    .notice {
+      margin-top: 30px;
+      background: white;
+      border-radius: 18px;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid #eee;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #888;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">🍛 Indian Kitchen</div>
+
+  <div class="tagline">
+    Discover Indian food. Cook with what you have.
+  </div>
+
+  <div class="language">
+    <label for="language">Language: </label>
+
+    <select id="language">
+      <option>English</option>
+      <option>Hindi</option>
+      <option>Urdu</option>
+      <option>Tamil</option>
+      <option>Telugu</option>
+    </select>
+  </div>
+
+</header>
+
+<main>
+
+  <section class="welcome">
+
+    <h1>What would you like to cook?</h1>
+
+    <p>
+      Explore Indian dishes or discover what you can cook
+      using the ingredients you already have.
+    </p>
+
+  </section>
+
+  <section class="options">
+
+    <div class="option" onclick="showMessage('Cook With What I Have')">
+      <div class="icon">🧺</div>
+      <h2>Cook With What I Have</h2>
+      <p>
+        Select the ingredients you already have
+        and discover Indian dishes you can make.
+      </p>
+    </div>
+
+    <div class="option" onclick="showMessage('Choose a Dish')">
+      <div class="icon">🍛</div>
+      <h2>Choose a Dish</h2>
+      <p>
+        Search for the Indian dish you want to prepare.
+      </p>
+    </div>
+
+    <div class="option" onclick="showMessage('Explore India')">
+      <div class="icon">🇮🇳</div>
+      <h2>Explore India</h2>
+      <p>
+        Discover dishes from different Indian states,
+        cities and regions.
+      </p>
+    </div>
+
+    <div class="option" onclick="showMessage('Vegetarian')">
+      <div class="icon">🥬</div>
+      <h2>Vegetarian</h2>
+      <p>
+        Explore Indian vegetarian dishes.
+      </p>
+    </div>
+
+    <div class="option" onclick="showMessage('Non-Vegetarian')">
+      <div class="icon">🍗</div>
+      <h2>Non-Vegetarian</h2>
+      <p>
+        Explore Indian chicken, meat, fish, seafood and egg dishes.
+      </p>
+    </div>
+
+    <div class="option" onclick="showMessage('Search')">
+      <div class="icon">🔎</div>
+      <h2>Search</h2>
+      <p>
+        Search for dishes, ingredients or regions.
+      </p>
+    </div>
+
+  </section>
+
+  <div class="notice">
+    <strong>🌍 Made for Indian food lovers worldwide</strong>
+    <p>
+      Recipes will use generic ingredient names rather than
+      recommending particular brands.
+    </p>
+  </div>
+
+</main>
+
+<footer>
+  Indian Kitchen — Global Indian Cooking
+</footer>
+
+<script>
+
+  function showMessage(section) {
+    alert(section + " will be built next.");
+  }
+
+</script>
+
+</body>
+</html>
