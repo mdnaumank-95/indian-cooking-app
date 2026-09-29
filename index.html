@@ -60,7 +60,6 @@ main {
 
 .welcome h1 {
   font-size: 32px;
-  margin-bottom: 10px;
 }
 
 .welcome p {
@@ -92,17 +91,87 @@ main {
 
 .icon {
   font-size: 45px;
-  margin-bottom: 10px;
 }
 
 .option h2 {
   font-size: 20px;
-  margin: 8px 0;
 }
 
 .option p {
   color: #777;
   line-height: 1.4;
+}
+
+#ingredientsPage {
+  display: none;
+}
+
+.back {
+  border: none;
+  background: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.ingredient-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.ingredient {
+  background: white;
+  border: 2px solid #eee;
+  border-radius: 14px;
+  padding: 16px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+}
+
+.ingredient.selected {
+  border-color: #d35400;
+  background: #fff0df;
+}
+
+.find-button {
+  width: 100%;
+  margin-top: 25px;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  background: #d35400;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.results {
+  margin-top: 30px;
+}
+
+.recipe {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 15px;
+  border: 1px solid #eee;
+}
+
+.recipe h3 {
+  margin-top: 0;
+}
+
+.match {
+  font-weight: bold;
+  color: #d35400;
+}
+
+.missing {
+  color: #777;
 }
 
 .notice {
@@ -114,17 +183,11 @@ main {
   border: 1px solid #eee;
 }
 
-.notice p {
-  color: #777;
-}
-
 footer {
   text-align: center;
   padding: 30px;
   color: #888;
-  font-size: 14px;
 }
-
 </style>
 </head>
 
@@ -139,7 +202,6 @@ Discover Indian food. Cook with what you have.
 </div>
 
 <div class="language">
-
 <label for="language">Language: </label>
 
 <select id="language">
@@ -149,14 +211,18 @@ Discover Indian food. Cook with what you have.
 <option>Tamil</option>
 <option>Telugu</option>
 </select>
-
 </div>
 
 </header>
 
+
 <main>
 
-<section class="welcome">
+<!-- HOME PAGE -->
+
+<section id="homePage">
+
+<div class="welcome">
 
 <h1>What would you like to cook?</h1>
 
@@ -165,11 +231,12 @@ Explore Indian dishes or discover what you can cook
 using the ingredients you already have.
 </p>
 
-</section>
+</div>
+
 
 <section class="options">
 
-<div class="option" onclick="showMessage('Cook With What I Have')">
+<div class="option" onclick="openIngredients()">
 
 <div class="icon">🧺</div>
 
@@ -183,7 +250,7 @@ and discover Indian dishes you can make.
 </div>
 
 
-<div class="option" onclick="showMessage('Choose a Dish')">
+<div class="option" onclick="comingSoon('Choose a Dish')">
 
 <div class="icon">🍛</div>
 
@@ -196,7 +263,7 @@ Search for the Indian dish you want to prepare.
 </div>
 
 
-<div class="option" onclick="showMessage('Explore India')">
+<div class="option" onclick="comingSoon('Explore India')">
 
 <div class="icon">🇮🇳</div>
 
@@ -210,7 +277,7 @@ cities and regions.
 </div>
 
 
-<div class="option" onclick="showMessage('Vegetarian')">
+<div class="option" onclick="comingSoon('Vegetarian')">
 
 <div class="icon">🥬</div>
 
@@ -223,7 +290,7 @@ Explore Indian vegetarian dishes.
 </div>
 
 
-<div class="option" onclick="showMessage('Non-Vegetarian')">
+<div class="option" onclick="comingSoon('Non-Vegetarian')">
 
 <div class="icon">🍗</div>
 
@@ -236,7 +303,7 @@ Explore chicken, meat, fish, seafood and egg dishes.
 </div>
 
 
-<div class="option" onclick="showMessage('Search')">
+<div class="option" onclick="comingSoon('Search')">
 
 <div class="icon">🔎</div>
 
@@ -262,6 +329,118 @@ recommending particular brands.
 
 </div>
 
+</section>
+
+
+<!-- INGREDIENT PAGE -->
+
+<section id="ingredientsPage">
+
+<button class="back" onclick="goHome()">← Back to Home</button>
+
+<h1>🧺 Cook With What I Have</h1>
+
+<p>
+Select the ingredients you already have.
+We will find Indian dishes you can make.
+</p>
+
+<p><strong>You do not need to choose the number of people here.</strong></p>
+
+
+<h2>🥕 Vegetables</h2>
+
+<div class="ingredient-grid">
+
+<div class="ingredient" onclick="toggleIngredient(this,'potato')">
+🥔 Potato
+</div>
+
+<div class="ingredient" onclick="toggleIngredient(this,'onion')">
+🧅 Onion
+</div>
+
+<div class="ingredient" onclick="toggleIngredient(this,'tomato')">
+🍅 Tomato
+</div>
+
+<div class="ingredient" onclick="toggleIngredient(this,'carrot')">
+🥕 Carrot
+</div>
+
+<div class="ingredient" onclick="toggleIngredient(this,'peas')">
+🫛 Peas
+</div>
+
+<div class="ingredient" onclick="toggleIngredient(this,'spinach')">
+🥬 Spinach
+</div>
+
+</div>
+
+
+<h2>🍗 Meat & Protein</h2>
+
+<div class="ingredient-grid">
+
+<div class="ingredient" onclick="toggleIngredient(this,'chicken')">
+🍗 Chicken
+</div>
+
+<div class="ingredient" onclick="toggleIngredient(this,'egg')">
+🥚 Egg
+</div>
+
+<div class="ingredient" onclick="toggleIngredient(this,'fish')">
+🐟 Fish
+</div>
+
+</div>
+
+
+<h2>🥛 Dairy</h2>
+
+<div class="ingredient-grid">
+
+<div class="ingredient" onclick="toggleIngredient(this,'yoghurt')">
+🥛 Plain yoghurt
+</div>
+
+<div class="ingredient" onclick="toggleIngredient(this,'paneer')">
+🧀 Paneer
+</div>
+
+</div>
+
+
+<h2>🌾 Pantry</h2>
+
+<div class="ingredient-grid">
+
+<div class="ingredient" onclick="toggleIngredient(this,'rice')">
+🍚 Rice
+</div>
+
+<div class="ingredient" onclick="toggleIngredient(this,'flour')">
+🌾 Wheat flour
+</div>
+
+<div class="ingredient" onclick="toggleIngredient(this,'lentils')">
+🫘 Lentils
+</div>
+
+</div>
+
+
+<button class="find-button" onclick="findRecipes()">
+🔎 Find Dishes
+</button>
+
+
+<div id="results" class="results"></div>
+
+</section>
+
 </main>
 
 
@@ -274,7 +453,182 @@ Indian Kitchen — Global Indian Cooking
 
 <script>
 
-function showMessage(section) {
+let selectedIngredients = [];
+
+
+function openIngredients() {
+
+document.getElementById("homePage").style.display = "none";
+
+document.getElementById("ingredientsPage").style.display = "block";
+
+window.scrollTo(0,0);
+
+}
+
+
+function goHome() {
+
+document.getElementById("ingredientsPage").style.display = "none";
+
+document.getElementById("homePage").style.display = "block";
+
+window.scrollTo(0,0);
+
+}
+
+
+function toggleIngredient(element, ingredient) {
+
+element.classList.toggle("selected");
+
+if (selectedIngredients.includes(ingredient)) {
+
+selectedIngredients =
+selectedIngredients.filter(item => item !== ingredient);
+
+} else {
+
+selectedIngredients.push(ingredient);
+
+}
+
+}
+
+
+const recipes = [
+
+{
+name: "Aloo Tamatar Curry",
+ingredients: ["potato","tomato","onion"],
+type: "Vegetarian"
+},
+
+{
+name: "Aloo Matar",
+ingredients: ["potato","peas","onion","tomato"],
+type: "Vegetarian"
+},
+
+{
+name: "Palak Paneer",
+ingredients: ["spinach","paneer","onion","tomato"],
+type: "Vegetarian"
+},
+
+{
+name: "Dal Tadka",
+ingredients: ["lentils","onion","tomato"],
+type: "Vegetarian"
+},
+
+{
+name: "Egg Curry",
+ingredients: ["egg","onion","tomato","yoghurt"],
+type: "Non-Vegetarian"
+},
+
+{
+name: "Chicken Curry",
+ingredients: ["chicken","onion","tomato","yoghurt"],
+type: "Non-Vegetarian"
+},
+
+{
+name: "Chicken and Potato Curry",
+ingredients: ["chicken","potato","onion","tomato"],
+type: "Non-Vegetarian"
+},
+
+{
+name: "Fish Curry",
+ingredients: ["fish","onion","tomato"],
+type: "Non-Vegetarian"
+}
+
+];
+
+
+function findRecipes() {
+
+const results = document.getElementById("results");
+
+if (selectedIngredients.length === 0) {
+
+results.innerHTML =
+"<div class='recipe'><h3>Please select at least one ingredient.</h3><p>Choose the ingredients you already have.</p></div>";
+
+return;
+
+}
+
+
+let matches = recipes.map(recipe => {
+
+let matched =
+recipe.ingredients.filter(item =>
+selectedIngredients.includes(item)
+).length;
+
+let percentage =
+Math.round((matched / recipe.ingredients.length) * 100);
+
+let missing =
+recipe.ingredients.filter(item =>
+!selectedIngredients.includes(item)
+);
+
+return {
+recipe,
+percentage,
+missing
+};
+
+});
+
+
+matches.sort((a,b) => b.percentage - a.percentage);
+
+
+results.innerHTML = "<h2>🍛 Dishes You Can Make</h2>";
+
+
+matches.forEach(item => {
+
+let missingText =
+item.missing.length === 0
+? "You have all the listed ingredients."
+: "Missing: " + item.missing.join(", ");
+
+
+results.innerHTML += `
+
+<div class="recipe">
+
+<h3>${item.recipe.name}</h3>
+
+<p class="match">
+${item.percentage}% ingredient match
+</p>
+
+<p class="missing">
+${missingText}
+</p>
+
+<p>
+<strong>${item.recipe.type}</strong>
+</p>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+function comingSoon(section) {
 
 alert(section + " will be built next.");
 
