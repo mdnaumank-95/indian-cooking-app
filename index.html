@@ -6,250 +6,275 @@
 <title>Indian Kitchen</title>
 
 <style>
-*{box-sizing:border-box}
-
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#fff8ed;
-color:#2d241f;
+* {
+    box-sizing: border-box;
 }
 
-header{
-background:white;
-padding:25px;
-text-align:center;
-border-bottom:1px solid #eee;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fffaf2;
+    color: #333;
 }
 
-.logo{
-font-size:32px;
-font-weight:bold;
-color:#d35400;
+header {
+    background: #ff7a00;
+    color: white;
+    padding: 18px;
+    text-align: center;
 }
 
-.tagline{
-margin-top:8px;
-color:#777;
+header h1 {
+    margin: 0 0 5px;
 }
 
-.language{
-margin-top:15px;
+header p {
+    margin: 0;
 }
 
-select{
-padding:10px 14px;
-border-radius:10px;
-border:1px solid #ccc;
-background:white;
-font-size:15px;
+.language-box {
+    background: white;
+    padding: 12px;
+    text-align: right;
+    border-bottom: 1px solid #ddd;
 }
 
-main{
-max-width:1000px;
-margin:auto;
-padding:25px;
+.language-box select {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #bbb;
+    font-size: 15px;
 }
 
-.welcome{
-text-align:center;
-margin-bottom:30px;
+.page {
+    display: none;
+    padding: 25px;
+    max-width: 1000px;
+    margin: auto;
 }
 
-.welcome h1{
-font-size:32px;
+.page.active {
+    display: block;
 }
 
-.welcome p{
-color:#666;
-font-size:17px;
-line-height:1.5;
+.hero {
+    text-align: center;
+    margin-bottom: 25px;
 }
 
-.options{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:18px;
+.hero h2 {
+    font-size: 30px;
+    margin-bottom: 8px;
 }
 
-.option{
-background:white;
-border-radius:18px;
-padding:25px;
-border:1px solid #eee;
-cursor:pointer;
-text-align:center;
+.options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px;
 }
 
-.option:hover{
-transform:translateY(-3px);
-box-shadow:0 8px 20px rgba(0,0,0,.08);
+.option {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-.icon{
-font-size:45px;
+.option:hover {
+    transform: translateY(-3px);
 }
 
-.option h2{
-font-size:20px;
+.option .icon {
+    font-size: 45px;
+    margin-bottom: 10px;
 }
 
-.option p{
-color:#777;
-line-height:1.4;
+.option h3 {
+    margin: 8px 0;
 }
 
-.page{
-display:none;
+button {
+    border: none;
+    background: #ff7a00;
+    color: white;
+    padding: 11px 18px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 15px;
 }
 
-.back{
-border:none;
-background:white;
-padding:10px 16px;
-border-radius:10px;
-cursor:pointer;
-margin-bottom:20px;
+button:hover {
+    opacity: 0.9;
 }
 
-.input-box{
-display:flex;
-gap:10px;
-margin-top:20px;
+.secondary {
+    background: #555;
 }
 
-.input-box input{
-flex:1;
-padding:15px;
-border:2px solid #ddd;
-border-radius:12px;
-font-size:16px;
+.back {
+    margin-bottom: 20px;
 }
 
-.add-button{
-padding:15px 20px;
-border:none;
-border-radius:12px;
-background:#d35400;
-color:white;
-font-size:16px;
-cursor:pointer;
+.input-area {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-.ingredients-list{
-margin-top:20px;
-display:flex;
-flex-wrap:wrap;
-gap:10px;
+input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #bbb;
+    border-radius: 9px;
+    font-size: 16px;
+    margin-bottom: 12px;
 }
 
-.ingredient-tag{
-background:white;
-border:1px solid #ddd;
-border-radius:20px;
-padding:10px 14px;
+.quick {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 15px 0;
 }
 
-.remove{
-color:#d35400;
-cursor:pointer;
-font-weight:bold;
-margin-left:7px;
+.quick button {
+    background: #eee;
+    color: #333;
 }
 
-.suggestions{
-margin-top:20px;
+.selected {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 15px 0;
 }
 
-.suggestion{
-display:inline-block;
-background:white;
-border:1px solid #ddd;
-border-radius:20px;
-padding:9px 14px;
-margin:5px;
-cursor:pointer;
+.ingredient-tag {
+    background: #fff0dc;
+    border: 1px solid #ffbd78;
+    padding: 7px 10px;
+    border-radius: 20px;
 }
 
-.analyse-button{
-width:100%;
-margin-top:25px;
-padding:16px;
-border:none;
-border-radius:12px;
-background:#d35400;
-color:white;
-font-size:18px;
-cursor:pointer;
+.results {
+    margin-top: 25px;
 }
 
-.results{
-margin-top:30px;
+.recipe-card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-.recipe-card{
-background:white;
-border-radius:16px;
-padding:20px;
-margin-bottom:15px;
-border:1px solid #eee;
+.recipe-card h3 {
+    margin-top: 0;
 }
 
-.match{
-font-weight:bold;
-color:#16803c;
+.match {
+    font-weight: bold;
+    margin: 8px 0;
 }
 
-.partial{
-font-weight:bold;
-color:#d35400;
+.missing {
+    color: #b44;
 }
 
-.missing{
-color:#777;
+.cooking {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-.cook-button{
-padding:12px 18px;
-border:none;
-border-radius:10px;
-background:#d35400;
-color:white;
-cursor:pointer;
-font-size:15px;
+.cooking h2 {
+    color: #e56700;
 }
 
-.cooking-card{
-background:white;
-border-radius:18px;
-padding:25px;
-margin-top:20px;
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
 }
 
-.step{
-padding:18px 0;
-border-bottom:1px solid #eee;
-line-height:1.6;
+.meta span {
+    background: #fff0dc;
+    padding: 8px 12px;
+    border-radius: 20px;
 }
 
-.step-number{
-font-weight:bold;
-color:#d35400;
+.ingredients-list {
+    padding-left: 22px;
 }
 
-.notice{
-margin-top:30px;
-background:white;
-border-radius:18px;
-padding:20px;
-text-align:center;
-border:1px solid #eee;
+.ingredients-list li {
+    margin-bottom: 8px;
 }
 
-footer{
-text-align:center;
-padding:30px;
-color:#888;
+.steps {
+    counter-reset: step;
+    padding: 0;
+}
+
+.step {
+    list-style: none;
+    margin-bottom: 15px;
+    padding: 15px;
+    background: #fff8ef;
+    border-left: 5px solid #ff7a00;
+    border-radius: 8px;
+}
+
+.step-number {
+    font-weight: bold;
+    color: #e56700;
+}
+
+.empty {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.serving-box {
+    margin: 20px 0;
+    padding: 15px;
+    background: #fff4e5;
+    border-radius: 12px;
+}
+
+.serving-box input {
+    width: 100px;
+    margin: 0 10px;
+}
+
+.notice {
+    background: #fff3cd;
+    padding: 12px;
+    border-radius: 10px;
+    margin: 15px 0;
+}
+
+.rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+@media(max-width:600px) {
+    .page {
+        padding: 15px;
+    }
+
+    .hero h2 {
+        font-size: 24px;
+    }
 }
 </style>
 </head>
@@ -257,989 +282,1676 @@ color:#888;
 <body>
 
 <header>
-
-<div class="logo">🍛 Indian Kitchen</div>
-
-<div class="tagline" id="tagline">
-Discover Indian food. Cook with what you have.
-</div>
-
-<div class="language">
-
-<label for="language">Language: </label>
-
-<select id="language" onchange="changeLanguage()">
-<option value="en">English</option>
-<option value="hi">हिन्दी</option>
-<option value="ur">اردو</option>
-<option value="ta">தமிழ்</option>
-<option value="te">తెలుగు</option>
-</select>
-
-</div>
-
+    <h1 id="appTitle">Indian Kitchen</h1>
+    <p id="appSubtitle">Discover the taste of India</p>
 </header>
 
+<div class="language-box">
+    <select id="language" onchange="changeLanguage()">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="ur">اردو</option>
+        <option value="ta">தமிழ்</option>
+        <option value="te">తెలుగు</option>
+    </select>
+</div>
 
-<main>
+<!-- HOME -->
+<div id="home" class="page active">
 
-<section id="homePage">
+    <div class="hero">
+        <h2 id="welcomeTitle">What would you like to cook?</h2>
+        <p id="welcomeText">
+            Find Indian dishes, discover recipes and cook step by step.
+        </p>
+    </div>
 
-<div class="welcome">
+    <div class="options">
 
-<h1 id="homeTitle">
-What would you like to cook?
-</h1>
+        <!-- FIXED: no extra > and no broken div -->
+        <div class="option" onclick="openIngredients()">
+            <div class="icon">🥕</div>
+            <h3 id="cookWithTitle">Cook With What I Have</h3>
+            <p id="cookWithText">
+                Enter the ingredients you already have.
+            </p>
+        </div>
 
-<p id="homeDescription">
-Discover Indian dishes or tell us what ingredients
-you already have at home.
-</p>
+        <div class="option" onclick="openChooseDish()">
+            <div class="icon">🍛</div>
+            <h3 id="chooseDishTitle">Choose a Dish</h3>
+            <p id="chooseDishText">
+                Browse dishes and choose what you want to cook.
+            </p>
+        </div>
+
+        <div class="option" onclick="showExploreMessage()">
+            <div class="icon">🇮🇳</div>
+            <h3 id="exploreTitle">Explore India</h3>
+            <p id="exploreText">
+                Explore Indian food from different regions.
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<!-- INGREDIENT PAGE -->
+<div id="ingredientsPage" class="page">
+
+    <button class="secondary back" onclick="goHome()" id="backIngredients">
+        ← Back
+    </button>
+
+    <h2 id="ingredientsTitle">Cook With What I Have</h2>
+
+    <div class="input-area">
+
+        <p id="ingredientsInstruction">
+            Enter the ingredients you have and we will find dishes you can cook.
+        </p>
+
+        <input
+            id="ingredientInput"
+            type="text"
+            placeholder="Example: chicken"
+            onkeydown="if(event.key==='Enter') addIngredientFromInput()"
+        >
+
+        <button onclick="addIngredientFromInput()" id="addButton">
+            Add Ingredient
+        </button>
+
+        <h3 id="quickTitle">Quick Add</h3>
+
+        <div class="quick">
+            <button onclick="addIngredient('chicken')"><span id="qChicken">Chicken</span></button>
+            <button onclick="addIngredient('potato')"><span id="qPotato">Potato</span></button>
+            <button onclick="addIngredient('onion')"><span id="qOnion">Onion</span></button>
+            <button onclick="addIngredient('tomato')"><span id="qTomato">Tomato</span></button>
+            <button onclick="addIngredient('rice')"><span id="qRice">Rice</span></button>
+            <button onclick="addIngredient('egg')"><span id="qEgg">Egg</span></button>
+            <button onclick="addIngredient('paneer')"><span id="qPaneer">Paneer</span></button>
+            <button onclick="addIngredient('spinach')"><span id="qSpinach">Spinach</span></button>
+            <button onclick="addIngredient('peas')"><span id="qPeas">Peas</span></button>
+            <button onclick="addIngredient('lentils')"><span id="qLentils">Lentils</span></button>
+        </div>
+
+        <h3 id="selectedTitle">My Ingredients</h3>
+
+        <div id="selectedIngredients" class="selected"></div>
+
+        <button onclick="analyseIngredients()" id="findButton">
+            Find What I Can Cook
+        </button>
+
+    </div>
+
+    <div id="results" class="results"></div>
 
 </div>
 
+<!-- CHOOSE DISH -->
+<div id="chooseDishPage" class="page">
 
-<section class="options">
+    <button class="secondary back" onclick="goHome()" id="backChoose">
+        ← Back
+    </button>
 
-<div class="option" <div class="option" onclick="openIngredients()">>
+    <h2 id="chooseTitle">Choose a Dish</h2>
 
-<div class="icon">🧺</div>
+    <div class="options">
 
-<h2 id="cookWhatTitle">
-Cook With What I Have
-</h2>
+        <div class="option" onclick="showRecipeList('vegetarian')">
+            <div class="icon">🥬</div>
+            <h3 id="vegTitle">Vegetarian</h3>
+        </div>
 
-<p id="cookWhatText">
-Tell us the ingredients you have and we will find
-Indian dishes you can prepare.
-</p>
+        <div class="option" onclick="showRecipeList('non-vegetarian')">
+            <div class="icon">🍗</div>
+            <h3 id="nonVegTitle">Non-Vegetarian</h3>
+        </div>
 
-</div>
+    </div>
 
-
-<div class="option" onclick="comingSoon()">
-
-<div class="icon">🍛</div>
-
-<h2 id="chooseDishTitle">
-Choose a Dish
-</h2>
-
-<p id="chooseDishText">
-Choose an Indian dish and learn how to prepare it.
-</p>
+    <div id="chooseResults" class="results"></div>
 
 </div>
 
+<!-- COOKING PAGE -->
+<div id="cookingPage" class="page">
 
-<div class="option" onclick="comingSoon()">
+    <button class="secondary back" onclick="goBackFromCooking()" id="backCooking">
+        ← Back
+    </button>
 
-<div class="icon">🇮🇳</div>
-
-<h2 id="exploreTitle">
-Explore India
-</h2>
-
-<p id="exploreText">
-Discover dishes from Indian states, cities and regions.
-</p>
+    <div id="cookingContent"></div>
 
 </div>
-
-
-<div class="option" onclick="comingSoon()">
-
-<div class="icon">🥬</div>
-
-<h2 id="vegTitle">
-Vegetarian
-</h2>
-
-<p id="vegText">
-Explore Indian vegetarian dishes.
-</p>
-
-</div>
-
-
-<div class="option" onclick="comingSoon()">
-
-<div class="icon">🍗</div>
-
-<h2 id="nonVegTitle">
-Non-Vegetarian
-</h2>
-
-<p id="nonVegText">
-Explore chicken, meat, fish, seafood and egg dishes.
-</p>
-
-</div>
-
-
-<div class="option" onclick="comingSoon()">
-
-<div class="icon">🔎</div>
-
-<h2 id="searchTitle">
-Search
-</h2>
-
-<p id="searchText">
-Search for dishes, ingredients or regions.
-</p>
-
-</div>
-
-</section>
-
-
-<div class="notice">
-
-<strong id="globalTitle">
-🌍 Made for Indian food lovers worldwide
-</strong>
-
-<p id="globalText">
-Recipes will use generic ingredient names.
-We will not recommend specific brands or supermarkets.
-</p>
-
-</div>
-
-</section>
-
-
-<section id="ingredientsPage" class="page">
-
-<button class="back" onclick="goHome()" id="backHome">
-← Back to Home
-</button>
-
-<h1 id="ingredientsTitle">
-🧺 Cook With What I Have
-</h1>
-
-<p id="ingredientsDescription">
-Tell us what ingredients you have at home.
-You can add as many ingredients as you want.
-</p>
-
-<p id="noPeople">
-<strong>No number of people is needed in this feature.</strong>
-</p>
-
-
-<h2 id="addIngredientsTitle">
-✍️ Add Your Ingredients
-</h2>
-
-<div class="input-box">
-
-<input
-id="ingredientInput"
-type="text"
-placeholder="Example: chicken"
-/>
-
-<button class="add-button"
-onclick="addIngredient()"
-id="addButton">
-+ Add
-</button>
-
-</div>
-
-
-<div class="suggestions">
-
-<strong id="quickAddTitle">
-Quick Add:
-</strong>
-
-<div class="suggestion" onclick="quickAdd('chicken')">
-🍗 Chicken
-</div>
-
-<div class="suggestion" onclick="quickAdd('potato')">
-🥔 Potato
-</div>
-
-<div class="suggestion" onclick="quickAdd('onion')">
-🧅 Onion
-</div>
-
-<div class="suggestion" onclick="quickAdd('tomato')">
-🍅 Tomato
-</div>
-
-<div class="suggestion" onclick="quickAdd('rice')">
-🍚 Rice
-</div>
-
-<div class="suggestion" onclick="quickAdd('yoghurt')">
-🥛 Yoghurt
-</div>
-
-<div class="suggestion" onclick="quickAdd('paneer')">
-🧀 Paneer
-</div>
-
-<div class="suggestion" onclick="quickAdd('egg')">
-🥚 Egg
-</div>
-
-</div>
-
-
-<h2 id="yourIngredientsTitle">
-🧺 Your Ingredients
-</h2>
-
-<div id="ingredientsList" class="ingredients-list">
-
-<p id="emptyMessage">
-No ingredients added yet.
-</p>
-
-</div>
-
-
-<button
-class="analyse-button"
-onclick="analyseIngredients()"
-id="findButton">
-
-🍛 Find What I Can Cook
-
-</button>
-
-
-<div id="results" class="results"></div>
-
-</section>
-
-
-<section id="cookingPage" class="page">
-
-<button class="back"
-onclick="backToResults()"
-id="backDishes">
-← Back to Dishes
-</button>
-
-<div id="cookingContent"></div>
-
-</section>
-
-</main>
-
-
-<footer id="footer">
-Indian Kitchen — Global Indian Cooking
-</footer>
-
 
 <script>
 
-let selectedIngredients=[];
+/* =========================================================
+   LANGUAGE DATA
+========================================================= */
 
-let currentLanguage="en";
+const translations = {
 
+    en: {
+        appTitle: "Indian Kitchen",
+        appSubtitle: "Discover the taste of India",
+        welcomeTitle: "What would you like to cook?",
+        welcomeText: "Find Indian dishes, discover recipes and cook step by step.",
+        cookWithTitle: "Cook With What I Have",
+        cookWithText: "Enter the ingredients you already have.",
+        chooseDishTitle: "Choose a Dish",
+        chooseDishText: "Browse dishes and choose what you want to cook.",
+        exploreTitle: "Explore India",
+        exploreText: "Explore Indian food from different regions.",
+        back: "← Back",
+        ingredientsTitle: "Cook With What I Have",
+        ingredientsInstruction: "Enter the ingredients you have and we will find dishes you can cook.",
+        ingredientPlaceholder: "Example: chicken",
+        add: "Add Ingredient",
+        quickTitle: "Quick Add",
+        selectedTitle: "My Ingredients",
+        find: "Find What I Can Cook",
+        chooseTitle: "Choose a Dish",
+        vegetarian: "Vegetarian",
+        nonVegetarian: "Non-Vegetarian",
+        cookThis: "Cook This Dish",
+        ingredients: "Ingredients",
+        instructions: "Cooking Instructions",
+        servings: "Servings",
+        minutes: "minutes",
+        difficulty: "Difficulty",
+        easy: "Easy",
+        missing: "Missing",
+        match: "Match",
+        noResults: "No matching dishes found. Try adding more ingredients.",
+        exploreMessage: "Regional exploration will be added next.",
+        noIngredient: "Please add at least one ingredient.",
+        step: "Step",
+        servingHelp: "Change the number of servings and ingredient quantities will be adjusted.",
+        adjust: "Adjust servings",
+        cookingTime: "Cooking time",
+        type: "Type",
+        vegetarianType: "Vegetarian",
+        nonVegetarianType: "Non-Vegetarian"
+    },
 
-const translations={
+    hi: {
+        appTitle: "इंडियन किचन",
+        appSubtitle: "भारत के स्वाद की खोज करें",
+        welcomeTitle: "आप क्या पकाना चाहते हैं?",
+        welcomeText: "भारतीय व्यंजन खोजें और चरण-दर-चरण पकाएं।",
+        cookWithTitle: "मेरे पास जो है उससे पकाएं",
+        cookWithText: "आपके पास मौजूद सामग्री दर्ज करें।",
+        chooseDishTitle: "व्यंजन चुनें",
+        chooseDishText: "व्यंजन देखें और चुनें कि आप क्या पकाना चाहते हैं।",
+        exploreTitle: "भारत का अन्वेषण करें",
+        exploreText: "अलग-अलग क्षेत्रों के भारतीय भोजन खोजें।",
+        back: "← वापस",
+        ingredientsTitle: "मेरे पास जो है उससे पकाएं",
+        ingredientsInstruction: "अपनी सामग्री दर्ज करें और हम आपको पकाने योग्य व्यंजन बताएंगे।",
+        ingredientPlaceholder: "उदाहरण: चिकन",
+        add: "सामग्री जोड़ें",
+        quickTitle: "जल्दी जोड़ें",
+        selectedTitle: "मेरी सामग्री",
+        find: "मैं क्या पका सकता हूँ",
+        chooseTitle: "व्यंजन चुनें",
+        vegetarian: "शाकाहारी",
+        nonVegetarian: "मांसाहारी",
+        cookThis: "यह व्यंजन पकाएं",
+        ingredients: "सामग्री",
+        instructions: "पकाने की विधि",
+        servings: "सर्विंग",
+        minutes: "मिनट",
+        difficulty: "कठिनाई",
+        easy: "आसान",
+        missing: "कम सामग्री",
+        match: "मिलान",
+        noResults: "कोई उपयुक्त व्यंजन नहीं मिला। और सामग्री जोड़ें।",
+        exploreMessage: "क्षेत्रीय अन्वेषण अगला जोड़ा जाएगा।",
+        noIngredient: "कृपया कम से कम एक सामग्री जोड़ें।",
+        step: "चरण",
+        servingHelp: "सर्विंग की संख्या बदलें और सामग्री की मात्रा अपने आप बदलेगी।",
+        adjust: "सर्विंग बदलें",
+        cookingTime: "पकाने का समय",
+        type: "प्रकार",
+        vegetarianType: "शाकाहारी",
+        nonVegetarianType: "मांसाहारी"
+    },
 
-en:{
-tagline:"Discover Indian food. Cook with what you have.",
-homeTitle:"What would you like to cook?",
-homeDescription:"Discover Indian dishes or tell us what ingredients you already have at home.",
-cookWhatTitle:"Cook With What I Have",
-cookWhatText:"Tell us the ingredients you have and we will find Indian dishes you can prepare.",
-chooseDishTitle:"Choose a Dish",
-chooseDishText:"Choose an Indian dish and learn how to prepare it.",
-exploreTitle:"Explore India",
-exploreText:"Discover dishes from Indian states, cities and regions.",
-vegTitle:"Vegetarian",
-vegText:"Explore Indian vegetarian dishes.",
-nonVegTitle:"Non-Vegetarian",
-nonVegText:"Explore chicken, meat, fish, seafood and egg dishes.",
-searchTitle:"Search",
-searchText:"Search for dishes, ingredients or regions.",
-globalTitle:"🌍 Made for Indian food lovers worldwide",
-globalText:"Recipes will use generic ingredient names. We will not recommend specific brands or supermarkets.",
-backHome:"← Back to Home",
-ingredientsTitle:"🧺 Cook With What I Have",
-ingredientsDescription:"Tell us what ingredients you have at home. You can add as many ingredients as you want.",
-noPeople:"No number of people is needed in this feature.",
-addIngredientsTitle:"✍️ Add Your Ingredients",
-placeholder:"Example: chicken",
-addButton:"+ Add",
-quickAddTitle:"Quick Add:",
-yourIngredientsTitle:"🧺 Your Ingredients",
-emptyMessage:"No ingredients added yet.",
-findButton:"🍛 Find What I Can Cook",
-backDishes:"← Back to Dishes",
-whatCook:"🍛 What You Can Cook",
-analysis:"We analysed the ingredients you entered. Here are dishes that match your ingredients.",
-missing:"Missing:",
-allIngredients:"✅ You have all the listed recipe ingredients.",
-cookThis:"👨‍🍳 Cook This Dish",
-match:"% ingredient match",
-ingredients:"🧺 Ingredients",
-steps:"👨‍🍳 Step-by-Step Cooking",
-step:"Step",
-footer:"Indian Kitchen — Global Indian Cooking"
-},
+    ur: {
+        appTitle: "انڈین کچن",
+        appSubtitle: "ہندوستان کے ذائقوں کو دریافت کریں",
+        welcomeTitle: "آپ کیا پکانا چاہتے ہیں؟",
+        welcomeText: "ہندوستانی کھانے تلاش کریں اور مرحلہ وار پکائیں۔",
+        cookWithTitle: "میرے پاس موجود چیزوں سے پکائیں",
+        cookWithText: "اپنے پاس موجود اجزاء درج کریں۔",
+        chooseDishTitle: "کھانا منتخب کریں",
+        chooseDishText: "کھانے دیکھیں اور منتخب کریں کہ آپ کیا پکانا چاہتے ہیں۔",
+        exploreTitle: "انڈیا دریافت کریں",
+        exploreText: "مختلف علاقوں کے ہندوستانی کھانے دریافت کریں۔",
+        back: "← واپس",
+        ingredientsTitle: "میرے پاس موجود چیزوں سے پکائیں",
+        ingredientsInstruction: "اپنے اجزاء درج کریں اور ہم آپ کو پکانے والے کھانے بتائیں گے۔",
+        ingredientPlaceholder: "مثال: چکن",
+        add: "جزو شامل کریں",
+        quickTitle: "فوری شامل کریں",
+        selectedTitle: "میرے اجزاء",
+        find: "میں کیا پکا سکتا ہوں",
+        chooseTitle: "کھانا منتخب کریں",
+        vegetarian: "سبزی خور",
+        nonVegetarian: "گوشت خور",
+        cookThis: "یہ کھانا پکائیں",
+        ingredients: "اجزاء",
+        instructions: "ترکیب",
+        servings: "افراد",
+        minutes: "منٹ",
+        difficulty: "مشکل",
+        easy: "آسان",
+        missing: "کم اجزاء",
+        match: "میچ",
+        noResults: "کوئی مناسب کھانا نہیں ملا۔ مزید اجزاء شامل کریں۔",
+        exploreMessage: "علاقائی ایکسپلور فیچر اگلے مرحلے میں شامل کیا جائے گا۔",
+        noIngredient: "براہ کرم کم از کم ایک جزو شامل کریں۔",
+        step: "مرحلہ",
+        servingHelp: "افراد کی تعداد تبدیل کریں اور اجزاء کی مقدار خود تبدیل ہو جائے گی۔",
+        adjust: "افراد تبدیل کریں",
+        cookingTime: "پکانے کا وقت",
+        type: "قسم",
+        vegetarianType: "سبزی خور",
+        nonVegetarianType: "گوشت خور"
+    },
 
-hi:{
-tagline:"भारतीय भोजन खोजें। आपके पास जो है उससे पकाएं।",
-homeTitle:"आप क्या पकाना चाहेंगे?",
-homeDescription:"भारतीय व्यंजन खोजें या बताएं कि आपके पास घर में कौन-कौन सी सामग्री है।",
-cookWhatTitle:"मेरे पास जो है उससे पकाएं",
-cookWhatText:"आपके पास मौजूद सामग्री बताएं और हम आपके लिए भारतीय व्यंजन खोजेंगे।",
-chooseDishTitle:"व्यंजन चुनें",
-chooseDishText:"भारतीय व्यंजन चुनें और उसे बनाने का तरीका सीखें।",
-exploreTitle:"भारत का अन्वेषण करें",
-exploreText:"भारत के राज्यों, शहरों और क्षेत्रों के व्यंजन खोजें।",
-vegTitle:"शाकाहारी",
-vegText:"भारतीय शाकाहारी व्यंजन खोजें।",
-nonVegTitle:"मांसाहारी",
-nonVegText:"चिकन, मांस, मछली, समुद्री भोजन और अंडे के व्यंजन खोजें।",
-searchTitle:"खोजें",
-searchText:"व्यंजन, सामग्री या क्षेत्रों को खोजें।",
-globalTitle:"🌍 दुनिया भर के भारतीय भोजन प्रेमियों के लिए",
-globalText:"व्यंजनों में सामान्य सामग्री के नाम इस्तेमाल किए जाएंगे। हम किसी विशेष ब्रांड या सुपरमार्केट की सिफारिश नहीं करेंगे।",
-backHome:"← होम पर वापस",
-ingredientsTitle:"🧺 मेरे पास जो है उससे पकाएं",
-ingredientsDescription:"बताएं कि आपके पास घर में कौन-कौन सी सामग्री है। आप जितनी चाहें सामग्री जोड़ सकते हैं।",
-noPeople:"इस सुविधा में लोगों की संख्या चुनने की जरूरत नहीं है।",
-addIngredientsTitle:"✍️ अपनी सामग्री जोड़ें",
-placeholder:"उदाहरण: चिकन",
-addButton:"+ जोड़ें",
-quickAddTitle:"जल्दी जोड़ें:",
-yourIngredientsTitle:"🧺 आपकी सामग्री",
-emptyMessage:"अभी कोई सामग्री नहीं जोड़ी गई है।",
-findButton:"🍛 मैं क्या बना सकता हूँ",
-backDishes:"← व्यंजनों पर वापस",
-whatCook:"🍛 आप क्या बना सकते हैं",
-analysis:"हमने आपकी सामग्री का विश्लेषण किया है। यहां आपके लिए मिलते-जुलते व्यंजन हैं।",
-missing:"कमी:",
-allIngredients:"✅ इस रेसिपी की सभी सूचीबद्ध सामग्री आपके पास है।",
-cookThis:"👨‍🍳 यह व्यंजन बनाएं",
-match:"% सामग्री मिलान",
-ingredients:"🧺 सामग्री",
-steps:"👨‍🍳 चरण-दर-चरण खाना बनाना",
-step:"चरण",
-footer:"Indian Kitchen — वैश्विक भारतीय खाना पकाना"
-},
+    ta: {
+        appTitle: "இந்தியன் கிச்சன்",
+        appSubtitle: "இந்தியாவின் சுவையை கண்டறியுங்கள்",
+        welcomeTitle: "நீங்கள் என்ன சமைக்க விரும்புகிறீர்கள்?",
+        welcomeText: "இந்திய உணவுகளை கண்டறிந்து படிப்படியாக சமைக்கவும்.",
+        cookWithTitle: "என்னிடம் உள்ள பொருட்களைக் கொண்டு சமைக்கவும்",
+        cookWithText: "உங்களிடம் உள்ள பொருட்களை உள்ளிடுங்கள்.",
+        chooseDishTitle: "உணவைத் தேர்வு செய்யுங்கள்",
+        chooseDishText: "உணவுகளைப் பார்த்து நீங்கள் சமைக்க விரும்புவதைத் தேர்வு செய்யுங்கள்.",
+        exploreTitle: "இந்தியாவை ஆராயுங்கள்",
+        exploreText: "பல்வேறு பகுதிகளின் இந்திய உணவுகளை கண்டறியுங்கள்.",
+        back: "← பின்செல்",
+        ingredientsTitle: "என்னிடம் உள்ள பொருட்களைக் கொண்டு சமைக்கவும்",
+        ingredientsInstruction: "உங்களிடம் உள்ள பொருட்களை உள்ளிடுங்கள்.",
+        ingredientPlaceholder: "உதாரணம்: சிக்கன்",
+        add: "பொருளைச் சேர்க்கவும்",
+        quickTitle: "விரைவாகச் சேர்க்கவும்",
+        selectedTitle: "என்னிடம் உள்ள பொருட்கள்",
+        find: "நான் என்ன சமைக்கலாம்",
+        chooseTitle: "உணவைத் தேர்வு செய்யுங்கள்",
+        vegetarian: "சைவம்",
+        nonVegetarian: "அசைவம்",
+        cookThis: "இந்த உணவை சமைக்கவும்",
+        ingredients: "தேவையான பொருட்கள்",
+        instructions: "சமைக்கும் முறை",
+        servings: "பரிமாறுதல்",
+        minutes: "நிமிடங்கள்",
+        difficulty: "சிரமம்",
+        easy: "எளிது",
+        missing: "தேவையான பொருள் இல்லை",
+        match: "பொருத்தம்",
+        noResults: "பொருத்தமான உணவு கிடைக்கவில்லை. மேலும் பொருட்களைச் சேர்க்கவும்.",
+        exploreMessage: "பிராந்திய தேடல் அடுத்த கட்டத்தில் சேர்க்கப்படும்.",
+        noIngredient: "குறைந்தது ஒரு பொருளையாவது சேர்க்கவும்.",
+        step: "படி",
+        servingHelp: "பரிமாறும் எண்ணிக்கையை மாற்றினால் பொருட்களின் அளவு மாறும்.",
+        adjust: "பரிமாறும் எண்ணிக்கை",
+        cookingTime: "சமைக்கும் நேரம்",
+        type: "வகை",
+        vegetarianType: "சைவம்",
+        nonVegetarianType: "அசைவம்"
+    },
 
-ur:{
-tagline:"ہندوستانی کھانے دریافت کریں۔ جو چیزیں آپ کے پاس ہیں ان سے پکائیں۔",
-homeTitle:"آپ کیا پکانا چاہتے ہیں؟",
-homeDescription:"ہندوستانی پکوان دریافت کریں یا ہمیں بتائیں کہ آپ کے پاس گھر میں کون سی چیزیں موجود ہیں۔",
-cookWhatTitle:"میرے پاس موجود چیزوں سے پکائیں",
-cookWhatText:"اپنے پاس موجود اجزاء بتائیں اور ہم آپ کے لیے ہندوستانی پکوان تلاش کریں گے۔",
-chooseDishTitle:"پکوان منتخب کریں",
-chooseDishText:"ہندوستانی پکوان منتخب کریں اور اسے بنانے کا طریقہ سیکھیں۔",
-exploreTitle:"بھارت دریافت کریں",
-exploreText:"بھارت کی ریاستوں، شہروں اور علاقوں کے پکوان دریافت کریں۔",
-vegTitle:"سبزی خور",
-vegText:"ہندوستانی سبزی خور پکوان دریافت کریں۔",
-nonVegTitle:"نان ویجیٹیرین",
-nonVegText:"چکن، گوشت، مچھلی، سمندری غذا اور انڈے کے پکوان دریافت کریں۔",
-searchTitle:"تلاش",
-searchText:"پکوان، اجزاء یا علاقوں کو تلاش کریں۔",
-globalTitle:"🌍 دنیا بھر کے ہندوستانی کھانے کے شائقین کے لیے",
-globalText:"ترکیبوں میں عام اجزاء کے نام استعمال کیے جائیں گے۔ ہم کسی مخصوص برانڈ یا سپر مارکیٹ کی سفارش نہیں کریں گے۔",
-backHome:"← ہوم پر واپس",
-ingredientsTitle:"🧺 میرے پاس موجود چیزوں سے پکائیں",
-ingredientsDescription:"بتائیں کہ آپ کے گھر میں کون سے اجزاء موجود ہیں۔ آپ جتنے چاہیں اجزاء شامل کر سکتے ہیں۔",
-noPeople:"اس فیچر میں لوگوں کی تعداد منتخب کرنے کی ضرورت نہیں ہے۔",
-addIngredientsTitle:"✍️ اپنے اجزاء شامل کریں",
-placeholder:"مثال: چکن",
-addButton:"+ شامل کریں",
-quickAddTitle:"فوری اضافہ:",
-yourIngredientsTitle:"🧺 آپ کے اجزاء",
-emptyMessage:"ابھی کوئی اجزاء شامل نہیں کیے گئے۔",
-findButton:"🍛 میں کیا پکا سکتا ہوں",
-backDishes:"← پکوانوں پر واپس",
-whatCook:"🍛 آپ کیا پکا سکتے ہیں",
-analysis:"ہم نے آپ کے درج کردہ اجزاء کا تجزیہ کیا ہے۔ یہ پکوان آپ کے اجزاء سے ملتے ہیں۔",
-missing:"درکار:",
-allIngredients:"✅ اس ترکیب کے تمام درج شدہ اجزاء آپ کے پاس موجود ہیں۔",
-cookThis:"👨‍🍳 یہ پکوان پکائیں",
-match:"% اجزاء کی مطابقت",
-ingredients:"🧺 اجزاء",
-steps:"👨‍🍳 مرحلہ وار کھانا پکانا",
-step:"مرحلہ",
-footer:"Indian Kitchen — عالمی ہندوستانی کھانا"
-},
-
-ta:{
-tagline:"இந்திய உணவுகளை கண்டறியுங்கள். உங்களிடம் உள்ள பொருட்களைக் கொண்டு சமைக்குங்கள்.",
-homeTitle:"நீங்கள் என்ன சமைக்க விரும்புகிறீர்கள்?",
-homeDescription:"இந்திய உணவுகளை கண்டறியுங்கள் அல்லது உங்களிடம் உள்ள பொருட்களைச் சொல்லுங்கள்.",
-cookWhatTitle:"என்னிடம் உள்ளவற்றைக் கொண்டு சமைக்கவும்",
-cookWhatText:"உங்களிடம் உள்ள பொருட்களைச் சொல்லுங்கள். உங்களுக்கான இந்திய உணவுகளை நாங்கள் கண்டறிவோம்.",
-chooseDishTitle:"உணவைத் தேர்ந்தெடுக்கவும்",
-chooseDishText:"ஒரு இந்திய உணவைத் தேர்ந்தெடுத்து அதை எப்படி சமைப்பது என்று கற்றுக்கொள்ளுங்கள்.",
-exploreTitle:"இந்தியாவை ஆராயுங்கள்",
-exploreText:"இந்திய மாநிலங்கள், நகரங்கள் மற்றும் பகுதிகளின் உணவுகளை கண்டறியுங்கள்.",
-vegTitle:"சைவம்",
-vegText:"இந்திய சைவ உணவுகளை கண்டறியுங்கள்.",
-nonVegTitle:"அசைவம்",
-nonVegText:"கோழி, இறைச்சி, மீன், கடல் உணவு மற்றும் முட்டை உணவுகளை கண்டறியுங்கள்.",
-searchTitle:"தேடல்",
-searchText:"உணவுகள், பொருட்கள் அல்லது பகுதிகளைத் தேடுங்கள்.",
-globalTitle:"🌍 உலகம் முழுவதும் உள்ள இந்திய உணவு விரும்பிகளுக்காக",
-globalText:"சமையல் குறிப்புகளில் பொதுவான பொருள் பெயர்கள் பயன்படுத்தப்படும். குறிப்பிட்ட பிராண்டுகள் அல்லது சூப்பர் மார்க்கெட்டுகளை பரிந்துரைக்க மாட்டோம்.",
-backHome:"← முகப்புக்குத் திரும்பு",
-ingredientsTitle:"🧺 என்னிடம் உள்ளவற்றைக் கொண்டு சமைக்கவும்",
-ingredientsDescription:"உங்களிடம் உள்ள பொருட்களைச் சொல்லுங்கள். நீங்கள் விரும்பும் அளவு பொருட்களைச் சேர்க்கலாம்.",
-noPeople:"இந்த வசதியில் நபர்களின் எண்ணிக்கையைத் தேர்ந்தெடுக்க வேண்டியதில்லை.",
-addIngredientsTitle:"✍️ உங்கள் பொருட்களைச் சேர்க்கவும்",
-placeholder:"உதாரணம்: கோழி",
-addButton:"+ சேர்",
-quickAddTitle:"விரைவாகச் சேர்க்கவும்:",
-yourIngredientsTitle:"🧺 உங்கள் பொருட்கள்",
-emptyMessage:"இதுவரை பொருட்கள் சேர்க்கப்படவில்லை.",
-findButton:"🍛 நான் என்ன சமைக்கலாம்",
-backDishes:"← உணவுகளுக்குத் திரும்பு",
-whatCook:"🍛 நீங்கள் என்ன சமைக்கலாம்",
-analysis:"நீங்கள் உள்ளிட்ட பொருட்களை நாங்கள் ஆய்வு செய்துள்ளோம். பொருந்தும் உணவுகள் இங்கே உள்ளன.",
-missing:"தேவை:",
-allIngredients:"✅ இந்த சமையல் குறிப்பிற்குத் தேவையான அனைத்து பொருட்களும் உங்களிடம் உள்ளன.",
-cookThis:"👨‍🍳 இந்த உணவை சமைக்கவும்",
-match:"% பொருள் பொருத்தம்",
-ingredients:"🧺 பொருட்கள்",
-steps:"👨‍🍳 படிப்படியான சமையல்",
-step:"படி",
-footer:"Indian Kitchen — உலகளாவிய இந்திய சமையல்"
-},
-
-te:{
-tagline:"భారతీయ వంటకాలను కనుగొనండి. మీ దగ్గర ఉన్న పదార్థాలతో వండండి.",
-homeTitle:"మీరు ఏమి వండాలనుకుంటున్నారు?",
-homeDescription:"భారతీయ వంటకాలను కనుగొనండి లేదా మీ దగ్గర ఉన్న పదార్థాలను చెప్పండి.",
-cookWhatTitle:"నా దగ్గర ఉన్న వాటితో వండండి",
-cookWhatText:"మీ దగ్గర ఉన్న పదార్థాలను చెప్పండి. మీకు సరిపోయే భారతీయ వంటకాలను మేము కనుగొంటాము.",
-chooseDishTitle:"వంటకాన్ని ఎంచుకోండి",
-chooseDishText:"ఒక భారతీయ వంటకాన్ని ఎంచుకుని ఎలా తయారు చేయాలో నేర్చుకోండి.",
-exploreTitle:"భారతదేశాన్ని అన్వేషించండి",
-exploreText:"భారతదేశంలోని రాష్ట్రాలు, నగరాలు మరియు ప్రాంతాల వంటకాలను కనుగొనండి.",
-vegTitle:"శాకాహారం",
-vegText:"భారతీయ శాకాహార వంటకాలను కనుగొనండి.",
-nonVegTitle:"మాంసాహారం",
-nonVegText:"చికెన్, మాంసం, చేపలు, సముద్ర ఆహారం మరియు గుడ్డు వంటకాలను కనుగొనండి.",
-searchTitle:"వెతకండి",
-searchText:"వంటకాలు, పదార్థాలు లేదా ప్రాంతాలను వెతకండి.",
-globalTitle:"🌍 ప్రపంచవ్యాప్తంగా భారతీయ ఆహార ప్రియుల కోసం",
-globalText:"వంటకాలలో సాధారణ పదార్థాల పేర్లు ఉపయోగిస్తాము. నిర్దిష్ట బ్రాండ్లు లేదా సూపర్ మార్కెట్లను సిఫార్సు చేయము.",
-backHome:"← హోమ్‌కు తిరిగి",
-ingredientsTitle:"🧺 నా దగ్గర ఉన్న వాటితో వండండి",
-ingredientsDescription:"మీ దగ్గర ఉన్న పదార్థాలను చెప్పండి. మీకు కావలసినన్ని పదార్థాలను జోడించవచ్చు.",
-noPeople:"ఈ ఫీచర్‌లో వ్యక్తుల సంఖ్యను ఎంచుకోవాల్సిన అవసరం లేదు.",
-addIngredientsTitle:"✍️ మీ పదార్థాలను జోడించండి",
-placeholder:"ఉదాహరణ: చికెన్",
-addButton:"+ జోడించండి",
-quickAddTitle:"త్వరగా జోడించండి:",
-yourIngredientsTitle:"🧺 మీ పదార్థాలు",
-emptyMessage:"ఇంకా పదార్థాలు జోడించలేదు.",
-findButton:"🍛 నేను ఏమి వండగలను",
-backDishes:"← వంటకాలకు తిరిగి",
-whatCook:"🍛 మీరు ఏమి వండవచ్చు",
-analysis:"మీరు నమోదు చేసిన పదార్థాలను మేము విశ్లేషించాము. సరిపోయే వంటకాలు ఇవి.",
-missing:"కావలసినవి:",
-allIngredients:"✅ ఈ రెసిపీకి అవసరమైన అన్ని పదార్థాలు మీ దగ్గర ఉన్నాయి.",
-cookThis:"👨‍🍳 ఈ వంటకం వండండి",
-match:"% పదార్థాల సరిపోలిక",
-ingredients:"🧺 పదార్థాలు",
-steps:"👨‍🍳 దశలవారీ వంట",
-step:"దశ",
-footer:"Indian Kitchen — గ్లోబల్ ఇండియన్ వంటకాలు"
-}
+    te: {
+        appTitle: "ఇండియన్ కిచెన్",
+        appSubtitle: "భారతదేశ రుచులను కనుగొనండి",
+        welcomeTitle: "మీరు ఏమి వండాలనుకుంటున్నారు?",
+        welcomeText: "భారతీయ వంటకాలను కనుగొని దశలవారీగా వండండి.",
+        cookWithTitle: "నా దగ్గర ఉన్న పదార్థాలతో వండండి",
+        cookWithText: "మీ దగ్గర ఉన్న పదార్థాలను నమోదు చేయండి.",
+        chooseDishTitle: "వంటకాన్ని ఎంచుకోండి",
+        chooseDishText: "వంటకాలను చూసి మీరు వండాలనుకున్నదాన్ని ఎంచుకోండి.",
+        exploreTitle: "భారతదేశాన్ని అన్వేషించండి",
+        exploreText: "వివిధ ప్రాంతాల భారతీయ వంటకాలను కనుగొనండి.",
+        back: "← వెనుకకు",
+        ingredientsTitle: "నా దగ్గర ఉన్న పదార్థాలతో వండండి",
+        ingredientsInstruction: "మీ దగ్గర ఉన్న పదార్థాలను నమోదు చేయండి.",
+        ingredientPlaceholder: "ఉదాహరణ: చికెన్",
+        add: "పదార్థాన్ని జోడించండి",
+        quickTitle: "త్వరగా జోడించండి",
+        selectedTitle: "నా పదార్థాలు",
+        find: "నేను ఏమి వండగలను",
+        chooseTitle: "వంటకాన్ని ఎంచుకోండి",
+        vegetarian: "శాకాహారం",
+        nonVegetarian: "మాంసాహారం",
+        cookThis: "ఈ వంటకం వండండి",
+        ingredients: "పదార్థాలు",
+        instructions: "వంట విధానం",
+        servings: "సర్వింగ్స్",
+        minutes: "నిమిషాలు",
+        difficulty: "కష్టం",
+        easy: "సులభం",
+        missing: "లేని పదార్థాలు",
+        match: "సరిపోలిక",
+        noResults: "సరిపోలే వంటకం కనబడలేదు. మరిన్ని పదార్థాలను జోడించండి.",
+        exploreMessage: "ప్రాంతీయ అన్వేషణను తదుపరి దశలో జోడిస్తాము.",
+        noIngredient: "దయచేసి కనీసం ఒక పదార్థాన్ని జోడించండి.",
+        step: "దశ",
+        servingHelp: "సర్వింగ్స్ సంఖ్యను మార్చితే పదార్థాల పరిమాణం మారుతుంది.",
+        adjust: "సర్వింగ్స్ మార్చండి",
+        cookingTime: "వంట సమయం",
+        type: "రకం",
+        vegetarianType: "శాకాహారం",
+        nonVegetarianType: "మాంసాహారం"
+    }
 
 };
 
 
-const recipes=[
+/* =========================================================
+   INGREDIENT TRANSLATIONS
+========================================================= */
 
-{
-name:"Chicken Curry",
-type:"Non-Vegetarian",
-ingredients:["chicken","onion","tomato","yoghurt"],
-steps:[
-"Cut the chicken into suitable pieces.",
-"Heat oil in a pan over medium heat.",
-"Add onion and cook until lightly golden.",
-"Add tomato and cook until soft.",
-"Add spices and stir well.",
-"Add chicken and cook until the outside changes colour.",
-"Add yoghurt gradually while stirring.",
-"Add water, cover and cook until the chicken is fully cooked.",
-"Check seasoning and serve hot."
-]
-},
+const ingredientLabels = {
 
-{
-name:"Aloo Chicken",
-type:"Non-Vegetarian",
-ingredients:["chicken","potato","onion","tomato"],
-steps:[
-"Cut the chicken and potatoes into suitable pieces.",
-"Heat oil in a pan.",
-"Add onion and cook until golden.",
-"Add tomato and cook until soft.",
-"Add spices and mix well.",
-"Add chicken and potatoes.",
-"Add water, cover and simmer until fully cooked.",
-"Check seasoning and serve hot."
-]
-},
+    chicken: {
+        en: "Chicken",
+        hi: "चिकन",
+        ur: "چکن",
+        ta: "சிக்கன்",
+        te: "చికెన్"
+    },
 
-{
-name:"Egg Curry",
-type:"Non-Vegetarian",
-ingredients:["egg","onion","tomato","yoghurt"],
-steps:[
-"Boil the eggs until cooked and peel them.",
-"Heat oil in a pan.",
-"Add onion and cook until golden.",
-"Add tomato and cook until soft.",
-"Add spices and stir well.",
-"Add yoghurt gradually while stirring.",
-"Add the boiled eggs and simmer gently.",
-"Cook for several minutes and serve hot."
-]
-},
+    potato: {
+        en: "Potato",
+        hi: "आलू",
+        ur: "آلو",
+        ta: "உருளைக்கிழங்கு",
+        te: "బంగాళాదుంప"
+    },
 
-{
-name:"Aloo Tamatar Curry",
-type:"Vegetarian",
-ingredients:["potato","onion","tomato"],
-steps:[
-"Peel and cut the potatoes.",
-"Heat oil in a pan.",
-"Add onion and cook until lightly golden.",
-"Add tomato and cook until soft.",
-"Add spices and mix well.",
-"Add potatoes and stir.",
-"Add water, cover and cook until potatoes are tender.",
-"Check seasoning and serve hot."
-]
-},
+    onion: {
+        en: "Onion",
+        hi: "प्याज",
+        ur: "پیاز",
+        ta: "வெங்காயம்",
+        te: "ఉల్లిపాయ"
+    },
 
-{
-name:"Aloo Matar",
-type:"Vegetarian",
-ingredients:["potato","peas","onion","tomato"],
-steps:[
-"Peel and cut the potatoes.",
-"Heat oil in a pan.",
-"Add onion and cook until golden.",
-"Add tomato and cook until soft.",
-"Add spices and mix well.",
-"Add potatoes and peas.",
-"Add water, cover and cook until vegetables are tender.",
-"Check seasoning and serve hot."
-]
-},
+    tomato: {
+        en: "Tomato",
+        hi: "टमाटर",
+        ur: "ٹماٹر",
+        ta: "தக்காளி",
+        te: "టమాటా"
+    },
 
-{
-name:"Palak Paneer",
-type:"Vegetarian",
-ingredients:["spinach","paneer","onion","tomato"],
-steps:[
-"Wash and prepare the spinach.",
-"Cook the spinach until tender.",
-"Heat oil in a pan.",
-"Add onion and cook until soft.",
-"Add tomato and cook until soft.",
-"Add spinach and spices.",
-"Add paneer pieces.",
-"Simmer gently and serve hot."
-]
-},
+    rice: {
+        en: "Rice",
+        hi: "चावल",
+        ur: "چاول",
+        ta: "அரிசி",
+        te: "బియ్యం"
+    },
 
-{
-name:"Dal Tadka",
-type:"Vegetarian",
-ingredients:["lentils","onion","tomato"],
-steps:[
-"Wash the lentils thoroughly.",
-"Cook the lentils with water until soft.",
-"Heat oil or ghee in a separate pan.",
-"Add onion and cook until golden.",
-"Add tomato and cook until soft.",
-"Add cooked lentils.",
-"Add seasoning and simmer.",
-"Serve hot."
-]
-}
+    egg: {
+        en: "Egg",
+        hi: "अंडा",
+        ur: "انڈا",
+        ta: "முட்டை",
+        te: "గుడ్డు"
+    },
+
+    paneer: {
+        en: "Paneer",
+        hi: "पनीर",
+        ur: "پنیر",
+        ta: "பனீர்",
+        te: "పనీర్"
+    },
+
+    spinach: {
+        en: "Spinach",
+        hi: "पालक",
+        ur: "پالک",
+        ta: "கீரை",
+        te: "పాలకూర"
+    },
+
+    peas: {
+        en: "Peas",
+        hi: "मटर",
+        ur: "مٹر",
+        ta: "பட்டாணி",
+        te: "బఠాణీలు"
+    },
+
+    lentils: {
+        en: "Lentils",
+        hi: "दाल",
+        ur: "دال",
+        ta: "பருப்பு",
+        te: "పప్పు"
+    },
+
+    ginger: {
+        en: "Ginger",
+        hi: "अदरक",
+        ur: "ادرک",
+        ta: "இஞ்சி",
+        te: "అల్లం"
+    },
+
+    garlic: {
+        en: "Garlic",
+        hi: "लहसुन",
+        ur: "لہسن",
+        ta: "பூண்டு",
+        te: "వెల్లుల్లి"
+    },
+
+    yoghurt: {
+        en: "Yoghurt",
+        hi: "दही",
+        ur: "دہی",
+        ta: "தயிர்",
+        te: "పెరుగు"
+    },
+
+    turmeric: {
+        en: "Turmeric",
+        hi: "हल्दी",
+        ur: "ہلدی",
+        ta: "மஞ்சள்",
+        te: "పసుపు"
+    },
+
+    chilli: {
+        en: "Chilli",
+        hi: "मिर्च",
+        ur: "مرچ",
+        ta: "மிளகாய்",
+        te: "మిరపకాయ"
+    },
+
+    oil: {
+        en: "Oil",
+        hi: "तेल",
+        ur: "تیل",
+        ta: "எண்ணெய்",
+        te: "నూనె"
+    },
+
+    salt: {
+        en: "Salt",
+        hi: "नमक",
+        ur: "نمک",
+        ta: "உப்பு",
+        te: "ఉప్పు"
+    },
+
+    tomatoPuree: {
+        en: "Tomato puree",
+        hi: "टमाटर प्यूरी",
+        ur: "ٹماٹر پیوری",
+        ta: "தக்காளி விழுது",
+        te: "టమాటా ప్యూరీ"
+    }
+};
+
+
+/* =========================================================
+   INGREDIENT ALIASES
+========================================================= */
+
+const aliases = {
+
+    chicken: [
+        "chicken","चिकन","मुर्गा","मुर्गी","چکن","مرغ",
+        "சிக்கன்","கோழி","చికెన్","కోడి"
+    ],
+
+    potato: [
+        "potato","potatoes","आलू","آلو",
+        "உருளைக்கிழங்கு","బంగాళాదుంప"
+    ],
+
+    onion: [
+        "onion","onions","प्याज","پیاز",
+        "வெங்காயம்","ఉల్లిపాయ"
+    ],
+
+    tomato: [
+        "tomato","tomatoes","टमाटर","ٹماٹر",
+        "தக்காளி","టమాటా"
+    ],
+
+    rice: [
+        "rice","चावल","چاول","அரிசி","బియ్యం"
+    ],
+
+    egg: [
+        "egg","eggs","अंडा","अंडे","انڈا",
+        "முட்டை","గుడ్డు"
+    ],
+
+    paneer: [
+        "paneer","पनीर","پنیر","பனீர்","పనీర్"
+    ],
+
+    spinach: [
+        "spinach","पालक","پالک","கீரை","పాలకూర"
+    ],
+
+    peas: [
+        "peas","pea","मटर","مٹر","பட்டாணி","బఠాణీలు"
+    ],
+
+    lentils: [
+        "lentils","lentil","दाल","دال","பருப்பு","పప్పు"
+    ],
+
+    ginger: [
+        "ginger","अदरक","ادرک","இஞ்சி","అల్లం"
+    ],
+
+    garlic: [
+        "garlic","लहसुन","لہسن","பூண்டு","వెల్లుల్లి"
+    ],
+
+    yoghurt: [
+        "yoghurt","yogurt","दही","دہی","தயிர்","పెరుగు"
+    ]
+};
+
+
+/* =========================================================
+   RECIPES
+========================================================= */
+
+const recipes = [
+
+    {
+        key: "chickenCurry",
+        type: "non-vegetarian",
+        servings: 2,
+        time: 40,
+
+        names: {
+            en: "Chicken Curry",
+            hi: "चिकन करी",
+            ur: "چکن کری",
+            ta: "சிக்கன் கறி",
+            te: "చికెన్ కర్రీ"
+        },
+
+        ingredients: {
+            chicken: 300,
+            onion: 1,
+            tomato: 2,
+            ginger: 1,
+            garlic: 1,
+            yoghurt: 100,
+            turmeric: 0.5,
+            chilli: 1,
+            oil: 2,
+            salt: 1
+        },
+
+        steps: {
+            en: [
+                "Heat oil in a pan over medium heat.",
+                "Add chopped onion and cook until lightly golden.",
+                "Add ginger and garlic and cook for about one minute.",
+                "Add tomato and cook until soft.",
+                "Add turmeric, chilli and salt. Stir well.",
+                "Add chicken and cook until the outside changes colour.",
+                "Add yoghurt and mix well.",
+                "Cover and cook on low heat until the chicken is fully cooked.",
+                "Check seasoning and serve hot."
+            ],
+
+            hi: [
+                "एक पैन में मध्यम आंच पर तेल गर्म करें।",
+                "कटा हुआ प्याज डालें और हल्का सुनहरा होने तक पकाएं।",
+                "अदरक और लहसुन डालकर लगभग एक मिनट पकाएं।",
+                "टमाटर डालें और नरम होने तक पकाएं।",
+                "हल्दी, मिर्च और नमक डालें और अच्छी तरह मिलाएं।",
+                "चिकन डालें और तब तक पकाएं जब तक उसका रंग बदल न जाए।",
+                "दही डालकर अच्छी तरह मिलाएं।",
+                "ढककर धीमी आंच पर चिकन पूरी तरह पकने तक पकाएं।",
+                "स्वाद जांचें और गरम परोसें।"
+            ],
+
+            ur: [
+                "ایک پین میں درمیانی آنچ پر تیل گرم کریں۔",
+                "کٹی ہوئی پیاز شامل کریں اور ہلکی سنہری ہونے تک پکائیں۔",
+                "ادرک اور لہسن شامل کرکے تقریباً ایک منٹ پکائیں۔",
+                "ٹماٹر شامل کریں اور نرم ہونے تک پکائیں۔",
+                "ہلدی، مرچ اور نمک شامل کرکے اچھی طرح ملائیں۔",
+                "چکن شامل کریں اور اس وقت تک پکائیں جب تک اس کا رنگ بدل نہ جائے۔",
+                "دہی شامل کرکے اچھی طرح ملائیں۔",
+                "ڈھانپ کر ہلکی آنچ پر چکن مکمل پکنے تک پکائیں۔",
+                "ذائقہ چیک کریں اور گرم پیش کریں۔"
+            ],
+
+            ta: [
+                "ஒரு கடாயில் மிதமான தீயில் எண்ணெயை சூடாக்கவும்.",
+                "நறுக்கிய வெங்காயத்தை சேர்த்து லேசாக பொன்னிறமாகும் வரை வதக்கவும்.",
+                "இஞ்சி மற்றும் பூண்டு சேர்த்து சுமார் ஒரு நிமிடம் வதக்கவும்.",
+                "தக்காளியை சேர்த்து மென்மையாகும் வரை சமைக்கவும்.",
+                "மஞ்சள், மிளகாய் மற்றும் உப்பு சேர்த்து நன்றாக கலக்கவும்.",
+                "சிக்கனை சேர்த்து அதன் நிறம் மாறும் வரை சமைக்கவும்.",
+                "தயிரை சேர்த்து நன்றாக கலக்கவும்.",
+                "மூடி வைத்து குறைந்த தீயில் சிக்கன் முழுமையாக வேகும் வரை சமைக்கவும்.",
+                "சுவையை சரிபார்த்து சூடாக பரிமாறவும்."
+            ],
+
+            te: [
+                "ఒక పాన్‌లో మధ్యస్థ మంటపై నూనె వేడి చేయండి.",
+                "తరిగిన ఉల్లిపాయ వేసి లేత బంగారు రంగు వచ్చే వరకు వేయించండి.",
+                "అల్లం మరియు వెల్లుల్లి వేసి సుమారు ఒక నిమిషం వేయించండి.",
+                "టమాటా వేసి మెత్తగా అయ్యే వరకు ఉడికించండి.",
+                "పసుపు, మిరపకాయ మరియు ఉప్పు వేసి బాగా కలపండి.",
+                "చికెన్ వేసి దాని రంగు మారే వరకు ఉడికించండి.",
+                "పెరుగు వేసి బాగా కలపండి.",
+                "మూత పెట్టి తక్కువ మంటపై చికెన్ పూర్తిగా ఉడికే వరకు ఉడికించండి.",
+                "రుచిని చూసి వేడిగా వడ్డించండి."
+            ]
+        }
+    },
+
+
+    {
+        key: "alooChicken",
+        type: "non-vegetarian",
+        servings: 2,
+        time: 35,
+
+        names: {
+            en: "Aloo Chicken",
+            hi: "आलू चिकन",
+            ur: "آلو چکن",
+            ta: "உருளைக்கிழங்கு சிக்கன்",
+            te: "ఆలూ చికెన్"
+        },
+
+        ingredients: {
+            chicken: 300,
+            potato: 2,
+            onion: 1,
+            tomato: 2,
+            ginger: 1,
+            garlic: 1,
+            turmeric: 0.5,
+            chilli: 1,
+            oil: 2,
+            salt: 1
+        },
+
+        steps: {
+            en: [
+                "Heat oil in a pan.",
+                "Add onion and cook until lightly golden.",
+                "Add ginger and garlic and cook briefly.",
+                "Add tomato, turmeric, chilli and salt.",
+                "Cook until the tomatoes become soft.",
+                "Add chicken and mix well.",
+                "Add chopped potatoes and enough water to help them cook.",
+                "Cover and cook until the chicken and potatoes are tender.",
+                "Serve hot."
+            ],
+
+            hi: [
+                "एक पैन में तेल गर्म करें।",
+                "प्याज डालकर हल्का सुनहरा होने तक पकाएं।",
+                "अदरक और लहसुन डालकर थोड़ी देर पकाएं।",
+                "टमाटर, हल्दी, मिर्च और नमक डालें।",
+                "टमाटर नरम होने तक पकाएं।",
+                "चिकन डालकर अच्छी तरह मिलाएं।",
+                "कटे हुए आलू और उन्हें पकाने के लिए पर्याप्त पानी डालें।",
+                "ढककर चिकन और आलू नरम होने तक पकाएं।",
+                "गरम परोसें।"
+            ],
+
+            ur: [
+                "ایک پین میں تیل گرم کریں۔",
+                "پیاز شامل کرکے ہلکی سنہری ہونے تک پکائیں۔",
+                "ادرک اور لہسن شامل کرکے تھوڑی دیر پکائیں۔",
+                "ٹماٹر، ہلدی، مرچ اور نمک شامل کریں۔",
+                "ٹماٹر نرم ہونے تک پکائیں۔",
+                "چکن شامل کرکے اچھی طرح ملائیں۔",
+                "کٹے ہوئے آلو اور پکانے کے لیے مناسب مقدار میں پانی شامل کریں۔",
+                "ڈھانپ کر چکن اور آلو نرم ہونے تک پکائیں۔",
+                "گرم پیش کریں۔"
+            ],
+
+            ta: [
+                "ஒரு கடாயில் எண்ணெயை சூடாக்கவும்.",
+                "வெங்காயத்தை சேர்த்து லேசாக பொன்னிறமாகும் வரை வதக்கவும்.",
+                "இஞ்சி மற்றும் பூண்டு சேர்த்து சிறிது நேரம் வதக்கவும்.",
+                "தக்காளி, மஞ்சள், மிளகாய் மற்றும் உப்பு சேர்க்கவும்.",
+                "தக்காளி மென்மையாகும் வரை சமைக்கவும்.",
+                "சிக்கனை சேர்த்து நன்றாக கலக்கவும்.",
+                "நறுக்கிய உருளைக்கிழங்கு மற்றும் தேவையான அளவு தண்ணீர் சேர்க்கவும்.",
+                "மூடி வைத்து சிக்கன் மற்றும் உருளைக்கிழங்கு மென்மையாகும் வரை சமைக்கவும்.",
+                "சூடாக பரிமாறவும்."
+            ],
+
+            te: [
+                "ఒక పాన్‌లో నూనె వేడి చేయండి.",
+                "ఉల్లిపాయ వేసి లేత బంగారు రంగు వచ్చే వరకు వేయించండి.",
+                "అల్లం మరియు వెల్లుల్లి వేసి కొద్దిసేపు వేయించండి.",
+                "టమాటా, పసుపు, మిరపకాయ మరియు ఉప్పు వేయండి.",
+                "టమాటా మెత్తగా అయ్యే వరకు ఉడికించండి.",
+                "చికెన్ వేసి బాగా కలపండి.",
+                "తరిగిన బంగాళాదుంపలు మరియు ఉడికించడానికి సరిపడా నీరు వేయండి.",
+                "మూత పెట్టి చికెన్ మరియు బంగాళాదుంపలు మెత్తగా అయ్యే వరకు ఉడికించండి.",
+                "వేడిగా వడ్డించండి."
+            ]
+        }
+    },
+
+
+    {
+        key: "eggCurry",
+        type: "non-vegetarian",
+        servings: 2,
+        time: 25,
+
+        names: {
+            en: "Egg Curry",
+            hi: "अंडा करी",
+            ur: "انڈا کری",
+            ta: "முட்டை கறி",
+            te: "గుడ్డు కర్రీ"
+        },
+
+        ingredients: {
+            egg: 4,
+            onion: 1,
+            tomato: 2,
+            ginger: 1,
+            garlic: 1,
+            turmeric: 0.5,
+            chilli: 1,
+            oil: 2,
+            salt: 1
+        },
+
+        steps: {
+            en: [
+                "Boil the eggs and remove their shells.",
+                "Heat oil in a pan.",
+                "Cook the onion until lightly golden.",
+                "Add ginger, garlic and tomato.",
+                "Add turmeric, chilli and salt.",
+                "Cook until the tomato becomes soft.",
+                "Add the boiled eggs and gently coat them with the sauce.",
+                "Simmer for a few minutes and serve."
+            ],
+
+            hi: [
+                "अंडों को उबालकर उनके छिलके निकालें।",
+                "एक पैन में तेल गर्म करें।",
+                "प्याज को हल्का सुनहरा होने तक पकाएं।",
+                "अदरक, लहसुन और टमाटर डालें।",
+                "हल्दी, मिर्च और नमक डालें।",
+                "टमाटर नरम होने तक पकाएं।",
+                "उबले हुए अंडे डालें और उन्हें ग्रेवी में धीरे से मिलाएं।",
+                "कुछ मिनट धीमी आंच पर पकाएं और परोसें।"
+            ],
+
+            ur: [
+                "انڈے ابال کر ان کے چھلکے اتار لیں۔",
+                "ایک پین میں تیل گرم کریں۔",
+                "پیاز کو ہلکی سنہری ہونے تک پکائیں۔",
+                "ادرک، لہسن اور ٹماٹر شامل کریں۔",
+                "ہلدی، مرچ اور نمک شامل کریں۔",
+                "ٹماٹر نرم ہونے تک پکائیں۔",
+                "ابلے ہوئے انڈے شامل کریں اور انہیں گریوی میں آہستہ سے ملائیں۔",
+                "چند منٹ ہلکی آنچ پر پکائیں اور پیش کریں۔"
+            ],
+
+            ta: [
+                "முட்டைகளை வேகவைத்து ஓட்டை நீக்கவும்.",
+                "ஒரு கடாயில் எண்ணெயை சூடாக்கவும்.",
+                "வெங்காயத்தை லேசாக பொன்னிறமாகும் வரை வதக்கவும்.",
+                "இஞ்சி, பூண்டு மற்றும் தக்காளி சேர்க்கவும்.",
+                "மஞ்சள், மிளகாய் மற்றும் உப்பு சேர்க்கவும்.",
+                "தக்காளி மென்மையாகும் வரை சமைக்கவும்.",
+                "வேகவைத்த முட்டைகளை சேர்த்து குழம்புடன் மெதுவாக கலக்கவும்.",
+                "சில நிமிடங்கள் குறைந்த தீயில் சமைத்து பரிமாறவும்."
+            ],
+
+            te: [
+                "గుడ్లను ఉడికించి పొట్టు తీసేయండి.",
+                "ఒక పాన్‌లో నూనె వేడి చేయండి.",
+                "ఉల్లిపాయను లేత బంగారు రంగు వచ్చే వరకు వేయించండి.",
+                "అల్లం, వెల్లుల్లి మరియు టమాటా వేయండి.",
+                "పసుపు, మిరపకాయ మరియు ఉప్పు వేయండి.",
+                "టమాటా మెత్తగా అయ్యే వరకు ఉడికించండి.",
+                "ఉడికించిన గుడ్లు వేసి గ్రేవీలో మెల్లగా కలపండి.",
+                "కొన్ని నిమిషాలు తక్కువ మంటపై ఉడికించి వడ్డించండి."
+            ]
+        }
+    },
+
+
+    {
+        key: "alooMatar",
+        type: "vegetarian",
+        servings: 2,
+        time: 30,
+
+        names: {
+            en: "Aloo Matar",
+            hi: "आलू मटर",
+            ur: "آلو مٹر",
+            ta: "உருளைக்கிழங்கு பட்டாணி",
+            te: "ఆలూ మటర్"
+        },
+
+        ingredients: {
+            potato: 2,
+            peas: 1,
+            onion: 1,
+            tomato: 2,
+            ginger: 1,
+            garlic: 1,
+            turmeric: 0.5,
+            chilli: 1,
+            oil: 2,
+            salt: 1
+        },
+
+        steps: {
+            en: [
+                "Heat oil in a pan.",
+                "Cook onion until lightly golden.",
+                "Add ginger and garlic.",
+                "Add tomato, turmeric, chilli and salt.",
+                "Cook until the tomato softens.",
+                "Add potatoes and peas.",
+                "Add a little water, cover and cook until the potatoes are tender.",
+                "Serve hot."
+            ],
+
+            hi: [
+                "एक पैन में तेल गर्म करें।",
+                "प्याज को हल्का सुनहरा होने तक पकाएं।",
+                "अदरक और लहसुन डालें।",
+                "टमाटर, हल्दी, मिर्च और नमक डालें।",
+                "टमाटर नरम होने तक पकाएं।",
+                "आलू और मटर डालें।",
+                "थोड़ा पानी डालकर ढकें और आलू नरम होने तक पकाएं।",
+                "गरम परोसें।"
+            ],
+
+            ur: [
+                "ایک پین میں تیل گرم کریں۔",
+                "پیاز کو ہلکی سنہری ہونے تک پکائیں۔",
+                "ادرک اور لہسن شامل کریں۔",
+                "ٹماٹر، ہلدی، مرچ اور نمک شامل کریں۔",
+                "ٹماٹر نرم ہونے تک پکائیں۔",
+                "آلو اور مٹر شامل کریں۔",
+                "تھوڑا پانی شامل کرکے ڈھانپیں اور آلو نرم ہونے تک پکائیں۔",
+                "گرم پیش کریں۔"
+            ],
+
+            ta: [
+                "ஒரு கடாயில் எண்ணெயை சூடாக்கவும்.",
+                "வெங்காயத்தை லேசாக பொன்னிறமாகும் வரை வதக்கவும்.",
+                "இஞ்சி மற்றும் பூண்டு சேர்க்கவும்.",
+                "தக்காளி, மஞ்சள், மிளகாய் மற்றும் உப்பு சேர்க்கவும்.",
+                "தக்காளி மென்மையாகும் வரை சமைக்கவும்.",
+                "உருளைக்கிழங்கு மற்றும் பட்டாணி சேர்க்கவும்.",
+                "சிறிது தண்ணீர் சேர்த்து மூடி வைத்து உருளைக்கிழங்கு மென்மையாகும் வரை சமைக்கவும்.",
+                "சூடாக பரிமாறவும்."
+            ],
+
+            te: [
+                "ఒక పాన్‌లో నూనె వేడి చేయండి.",
+                "ఉల్లిపాయను లేత బంగారు రంగు వచ్చే వరకు వేయించండి.",
+                "అల్లం మరియు వెల్లుల్లి వేయండి.",
+                "టమాటా, పసుపు, మిరపకాయ మరియు ఉప్పు వేయండి.",
+                "టమాటా మెత్తగా అయ్యే వరకు ఉడికించండి.",
+                "బంగాళాదుంపలు మరియు బఠాణీలు వేయండి.",
+                "కొద్దిగా నీరు వేసి మూత పెట్టి బంగాళాదుంపలు మెత్తగా అయ్యే వరకు ఉడికించండి.",
+                "వేడిగా వడ్డించండి."
+            ]
+        }
+    },
+
+
+    {
+        key: "palakPaneer",
+        type: "vegetarian",
+        servings: 2,
+        time: 30,
+
+        names: {
+            en: "Palak Paneer",
+            hi: "पालक पनीर",
+            ur: "پالک پنیر",
+            ta: "பாலக் பனீர்",
+            te: "పాలక్ పనీర్"
+        },
+
+        ingredients: {
+            spinach: 250,
+            paneer: 200,
+            onion: 1,
+            tomato: 1,
+            ginger: 1,
+            garlic: 1,
+            turmeric: 0.5,
+            chilli: 1,
+            oil: 2,
+            salt: 1
+        },
+
+        steps: {
+            en: [
+                "Wash the spinach thoroughly.",
+                "Cook the spinach briefly and blend it into a smooth puree.",
+                "Heat oil in a pan and cook the onion.",
+                "Add ginger, garlic and tomato.",
+                "Add turmeric, chilli and salt.",
+                "Add the spinach puree and cook gently.",
+                "Add paneer cubes and simmer for a few minutes.",
+                "Serve hot."
+            ],
+
+            hi: [
+                "पालक को अच्छी तरह धोएं।",
+                "पालक को थोड़ी देर पकाकर उसका मुलायम पेस्ट बनाएं।",
+                "एक पैन में तेल गर्म करके प्याज पकाएं।",
+                "अदरक, लहसुन और टमाटर डालें।",
+                "हल्दी, मिर्च और नमक डालें।",
+                "पालक का पेस्ट डालकर धीमी आंच पर पकाएं।",
+                "पनीर के टुकड़े डालकर कुछ मिनट पकाएं।",
+                "गरम परोसें।"
+            ],
+
+            ur: [
+                "پالک کو اچھی طرح دھوئیں۔",
+                "پالک کو تھوڑی دیر پکا کر ہموار پیوری بنائیں۔",
+                "ایک پین میں تیل گرم کرکے پیاز پکائیں۔",
+                "ادرک، لہسن اور ٹماٹر شامل کریں۔",
+                "ہلدی، مرچ اور نمک شامل کریں۔",
+                "پالک کی پیوری شامل کرکے ہلکی آنچ پر پکائیں۔",
+                "پنیر کے ٹکڑے شامل کرکے چند منٹ پکائیں۔",
+                "گرم پیش کریں۔"
+            ],
+
+            ta: [
+                "பாலக்கீரையை நன்றாக கழுவவும்.",
+                "பாலக்கீரையை சிறிது நேரம் சமைத்து மென்மையான விழுதாக அரைக்கவும்.",
+                "ஒரு கடாயில் எண்ணெயை சூடாக்கி வெங்காயத்தை வதக்கவும்.",
+                "இஞ்சி, பூண்டு மற்றும் தக்காளி சேர்க்கவும்.",
+                "மஞ்சள், மிளகாய் மற்றும் உப்பு சேர்க்கவும்.",
+                "பாலக் விழுதை சேர்த்து மெதுவாக சமைக்கவும்.",
+                "பனீர் துண்டுகளை சேர்த்து சில நிமிடங்கள் சமைக்கவும்.",
+                "சூடாக பரிமாறவும்."
+            ],
+
+            te: [
+                "పాలకూరను బాగా కడగండి.",
+                "పాలకూరను కొద్దిసేపు ఉడికించి మెత్తని ప్యూరీగా చేయండి.",
+                "ఒక పాన్‌లో నూనె వేడి చేసి ఉల్లిపాయను వేయించండి.",
+                "అల్లం, వెల్లుల్లి మరియు టమాటా వేయండి.",
+                "పసుపు, మిరపకాయ మరియు ఉప్పు వేయండి.",
+                "పాలకూర ప్యూరీ వేసి మెల్లగా ఉడికించండి.",
+                "పనీర్ ముక్కలు వేసి కొన్ని నిమిషాలు ఉడికించండి.",
+                "వేడిగా వడ్డించండి."
+            ]
+        }
+    }
 
 ];
 
 
-function changeLanguage(){
+/* =========================================================
+   APP STATE
+========================================================= */
 
-currentLanguage=
-document.getElementById("language").value;
+let currentLanguage = "en";
+let selectedIngredients = [];
+let currentRecipeKey = null;
+let previousPage = "home";
 
-const t=translations[currentLanguage];
 
-document.getElementById("tagline").innerText=t.tagline;
-document.getElementById("homeTitle").innerText=t.homeTitle;
-document.getElementById("homeDescription").innerText=t.homeDescription;
+/* =========================================================
+   HELPER FUNCTIONS
+========================================================= */
 
-document.getElementById("cookWhatTitle").innerText=t.cookWhatTitle;
-document.getElementById("cookWhatText").innerText=t.cookWhatText;
+function t(key) {
+    return translations[currentLanguage][key] || translations.en[key] || key;
+}
 
-document.getElementById("chooseDishTitle").innerText=t.chooseDishTitle;
-document.getElementById("chooseDishText").innerText=t.chooseDishText;
+function ingredientName(key) {
+    return ingredientLabels[key]?.[currentLanguage] ||
+           ingredientLabels[key]?.en ||
+           key;
+}
 
-document.getElementById("exploreTitle").innerText=t.exploreTitle;
-document.getElementById("exploreText").innerText=t.exploreText;
+function getRecipe(key) {
+    return recipes.find(r => r.key === key);
+}
 
-document.getElementById("vegTitle").innerText=t.vegTitle;
-document.getElementById("vegText").innerText=t.vegText;
+function normalizeIngredient(value) {
 
-document.getElementById("nonVegTitle").innerText=t.nonVegTitle;
-document.getElementById("nonVegText").innerText=t.nonVegText;
+    const text = value.trim().toLowerCase();
 
-document.getElementById("searchTitle").innerText=t.searchTitle;
-document.getElementById("searchText").innerText=t.searchText;
+    if (!text) return null;
 
-document.getElementById("globalTitle").innerText=t.globalTitle;
-document.getElementById("globalText").innerText=t.globalText;
+    for (const key in aliases) {
 
-document.getElementById("backHome").innerText=t.backHome;
-document.getElementById("ingredientsTitle").innerText=t.ingredientsTitle;
-document.getElementById("ingredientsDescription").innerText=t.ingredientsDescription;
+        const found = aliases[key].some(alias =>
+            alias.toLowerCase() === text
+        );
 
-document.getElementById("noPeople").innerText=t.noPeople;
+        if (found) {
+            return key;
+        }
+    }
 
-document.getElementById("addIngredientsTitle").innerText=t.addIngredientsTitle;
-
-document.getElementById("ingredientInput").placeholder=t.placeholder;
-
-document.getElementById("addButton").innerText=t.addButton;
-
-document.getElementById("quickAddTitle").innerText=t.quickAddTitle;
-
-document.getElementById("yourIngredientsTitle").innerText=t.yourIngredientsTitle;
-
-document.getElementById("findButton").innerText=t.findButton;
-
-document.getElementById("backDishes").innerText=t.backDishes;
-
-document.getElementById("footer").innerText=t.footer;
-
-document.documentElement.lang=currentLanguage;
-
+    return null;
 }
 
 
-function openIngredients(){
+/* =========================================================
+   LANGUAGE CHANGE
+========================================================= */
 
-document.getElementById("homePage").style.display="none";
+function changeLanguage() {
 
-document.getElementById("ingredientsPage").style.display="block";
+    currentLanguage = document.getElementById("language").value;
 
-window.scrollTo(0,0);
+    document.documentElement.lang = currentLanguage;
 
+    if (currentLanguage === "ur") {
+        document.body.classList.add("rtl");
+    } else {
+        document.body.classList.remove("rtl");
+    }
+
+    updateInterface();
+
+    /* If user is already looking at ingredient results,
+       refresh them in the new language. */
+
+    const ingredientPage = document.getElementById("ingredientsPage");
+
+    if (ingredientPage.classList.contains("active")) {
+
+        if (selectedIngredients.length > 0) {
+            analyseIngredients();
+        }
+
+    }
+
+    /* If user is already cooking a recipe,
+       refresh the complete cooking screen. */
+
+    const cookingPage = document.getElementById("cookingPage");
+
+    if (cookingPage.classList.contains("active") && currentRecipeKey) {
+        renderCooking(currentRecipeKey);
+    }
 }
 
 
-function goHome(){
+/* =========================================================
+   UPDATE INTERFACE
+========================================================= */
 
-document.getElementById("ingredientsPage").style.display="none";
+function updateInterface() {
 
-document.getElementById("cookingPage").style.display="none";
+    document.getElementById("appTitle").textContent = t("appTitle");
+    document.getElementById("appSubtitle").textContent = t("appSubtitle");
 
-document.getElementById("homePage").style.display="block";
+    document.getElementById("welcomeTitle").textContent = t("welcomeTitle");
+    document.getElementById("welcomeText").textContent = t("welcomeText");
 
-window.scrollTo(0,0);
+    document.getElementById("cookWithTitle").textContent = t("cookWithTitle");
+    document.getElementById("cookWithText").textContent = t("cookWithText");
 
+    document.getElementById("chooseDishTitle").textContent = t("chooseDishTitle");
+    document.getElementById("chooseDishText").textContent = t("chooseDishText");
+
+    document.getElementById("exploreTitle").textContent = t("exploreTitle");
+    document.getElementById("exploreText").textContent = t("exploreText");
+
+    document.getElementById("backIngredients").textContent = t("back");
+    document.getElementById("backChoose").textContent = t("back");
+    document.getElementById("backCooking").textContent = t("back");
+
+    document.getElementById("ingredientsTitle").textContent = t("ingredientsTitle");
+    document.getElementById("ingredientsInstruction").textContent = t("ingredientsInstruction");
+
+    document.getElementById("ingredientInput").placeholder = t("ingredientPlaceholder");
+
+    document.getElementById("addButton").textContent = t("add");
+    document.getElementById("quickTitle").textContent = t("quickTitle");
+    document.getElementById("selectedTitle").textContent = t("selectedTitle");
+    document.getElementById("findButton").textContent = t("find");
+
+    document.getElementById("chooseTitle").textContent = t("chooseTitle");
+    document.getElementById("vegTitle").textContent = t("vegetarian");
+    document.getElementById("nonVegTitle").textContent = t("nonVegetarian");
+
+    document.getElementById("qChicken").textContent = ingredientName("chicken");
+    document.getElementById("qPotato").textContent = ingredientName("potato");
+    document.getElementById("qOnion").textContent = ingredientName("onion");
+    document.getElementById("qTomato").textContent = ingredientName("tomato");
+    document.getElementById("qRice").textContent = ingredientName("rice");
+    document.getElementById("qEgg").textContent = ingredientName("egg");
+    document.getElementById("qPaneer").textContent = ingredientName("paneer");
+    document.getElementById("qSpinach").textContent = ingredientName("spinach");
+    document.getElementById("qPeas").textContent = ingredientName("peas");
+    document.getElementById("qLentils").textContent = ingredientName("lentils");
+
+    renderSelectedIngredients();
 }
 
 
-function addIngredient(){
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
 
-const input=document.getElementById("ingredientInput");
+function hideAllPages() {
 
-const value=input.value.trim().toLowerCase();
-
-if(value==="") return;
-
-if(!selectedIngredients.includes(value)){
-selectedIngredients.push(value);
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
 }
 
-input.value="";
+function goHome() {
 
-displayIngredients();
+    hideAllPages();
 
+    document.getElementById("home").classList.add("active");
+
+    previousPage = "home";
 }
 
+function openIngredients() {
 
-function quickAdd(ingredient){
+    hideAllPages();
 
-if(!selectedIngredients.includes(ingredient)){
-selectedIngredients.push(ingredient);
+    document.getElementById("ingredientsPage").classList.add("active");
+
+    previousPage = "home";
+
+    renderSelectedIngredients();
 }
 
-displayIngredients();
+function openChooseDish() {
 
+    hideAllPages();
+
+    document.getElementById("chooseDishPage").classList.add("active");
+
+    previousPage = "home";
+
+    document.getElementById("chooseResults").innerHTML = "";
 }
 
+function showExploreMessage() {
 
-function removeIngredient(ingredient){
-
-selectedIngredients=
-selectedIngredients.filter(item=>item!==ingredient);
-
-displayIngredients();
-
-}
-
-
-function displayIngredients(){
-
-const list=document.getElementById("ingredientsList");
-
-if(selectedIngredients.length===0){
-
-list.innerHTML=
-"<p>"+translations[currentLanguage].emptyMessage+"</p>";
-
-return;
-
-}
-
-list.innerHTML="";
-
-selectedIngredients.forEach(ingredient=>{
-
-const tag=document.createElement("div");
-
-tag.className="ingredient-tag";
-
-tag.innerHTML=
-ingredient+
-" <span class='remove' onclick=\"removeIngredient('"+
-ingredient+
-"')\">×</span>";
-
-list.appendChild(tag);
-
-});
-
+    alert(t("exploreMessage"));
 }
 
 
-document.getElementById("ingredientInput")
-.addEventListener("keydown",function(event){
+/* =========================================================
+   INGREDIENT SYSTEM
+========================================================= */
 
-if(event.key==="Enter"){
-addIngredient();
+function addIngredientFromInput() {
+
+    const input = document.getElementById("ingredientInput");
+
+    const canonical = normalizeIngredient(input.value);
+
+    if (!canonical) {
+
+        alert(
+            currentLanguage === "en"
+            ? "Please enter a supported ingredient such as chicken, potato, onion, tomato or rice."
+            : "Please enter a supported ingredient."
+        );
+
+        return;
+    }
+
+    addIngredient(canonical);
+
+    input.value = "";
 }
 
-});
+function addIngredient(key) {
 
+    if (!selectedIngredients.includes(key)) {
+        selectedIngredients.push(key);
+    }
 
-function analyseIngredients(){
-
-const t=translations[currentLanguage];
-
-const results=document.getElementById("results");
-
-if(selectedIngredients.length===0){
-
-results.innerHTML=`
-<div class="recipe-card">
-<h3>${t.emptyMessage}</h3>
-</div>`;
-
-return;
-
+    renderSelectedIngredients();
 }
 
+function removeIngredient(key) {
 
-let matches=recipes.map(recipe=>{
+    selectedIngredients =
+        selectedIngredients.filter(item => item !== key);
 
-const matched=recipe.ingredients.filter(
-ingredient=>selectedIngredients.includes(ingredient)
-);
+    renderSelectedIngredients();
+}
 
-const missing=recipe.ingredients.filter(
-ingredient=>!selectedIngredients.includes(ingredient)
-);
+function renderSelectedIngredients() {
 
-const percentage=Math.round(
-(matched.length/recipe.ingredients.length)*100
-);
+    const box = document.getElementById("selectedIngredients");
 
-return{
-recipe,
-missing,
-percentage
-};
+    if (!box) return;
 
-});
+    box.innerHTML = "";
 
+    selectedIngredients.forEach(key => {
 
-matches=
-matches
-.filter(item=>item.percentage>0)
-.sort((a,b)=>b.percentage-a.percentage);
+        const tag = document.createElement("div");
 
+        tag.className = "ingredient-tag";
 
-results.innerHTML=
-"<h2>"+t.whatCook+"</h2>"+
-"<p>"+t.analysis+"</p>";
+        tag.innerHTML =
+            `${ingredientName(key)}
+             <button
+                onclick="removeIngredient('${key}')"
+                style="background:none;color:#333;padding:2px 5px;font-size:13px;"
+             >×</button>`;
 
-
-matches.forEach(item=>{
-
-const missingText=
-item.missing.length===0
-?t.allIngredients
-:t.missing+" "+item.missing.join(", ");
-
-results.innerHTML+=`
-
-<div class="recipe-card">
-
-<h3>${item.recipe.name}</h3>
-
-<p class="${
-item.percentage===100
-?"match"
-:"partial"
-}">
-${item.percentage}${t.match}
-</p>
-
-<p class="missing">
-${missingText}
-</p>
-
-<p>
-<strong>${item.recipe.type}</strong>
-</p>
-
-<button
-class="cook-button"
-onclick="startCooking('${item.recipe.name}')">
-
-${t.cookThis}
-
-</button>
-
-</div>
-
-`;
-
-});
-
+        box.appendChild(tag);
+    });
 }
 
 
-function startCooking(recipeName){
+/* =========================================================
+   INGREDIENT ANALYSIS
+========================================================= */
 
-const recipe=
-recipes.find(item=>item.name===recipeName);
+function analyseIngredients() {
 
-if(!recipe)return;
+    const resultsBox = document.getElementById("results");
 
-const t=translations[currentLanguage];
+    if (selectedIngredients.length === 0) {
 
-document.getElementById("ingredientsPage").style.display="none";
+        resultsBox.innerHTML =
+            `<div class="empty">${t("noIngredient")}</div>`;
 
-document.getElementById("cookingPage").style.display="block";
+        return;
+    }
 
+    const scored = recipes.map(recipe => {
 
-let html=`
+        const recipeIngredients =
+            Object.keys(recipe.ingredients);
 
-<div class="cooking-card">
+        let matched = 0;
+        let missing = [];
 
-<h1>🍛 ${recipe.name}</h1>
+        recipeIngredients.forEach(key => {
 
-<p><strong>${recipe.type}</strong></p>
+            if (selectedIngredients.includes(key)) {
+                matched++;
+            } else {
+                missing.push(key);
+            }
 
-<h2>${t.ingredients}</h2>
+        });
 
-<ul>
-`;
+        const percentage =
+            Math.round((matched / recipeIngredients.length) * 100);
 
-recipe.ingredients.forEach(ingredient=>{
-html+=`<li>${ingredient}</li>`;
-});
+        return {
+            recipe,
+            matched,
+            missing,
+            percentage
+        };
 
+    });
 
-html+=`
+    scored.sort((a,b) => b.percentage - a.percentage);
 
-</ul>
+    const useful = scored.filter(item => item.matched > 0);
 
-<h2>${t.steps}</h2>
+    if (useful.length === 0) {
 
-`;
+        resultsBox.innerHTML =
+            `<div class="empty">${t("noResults")}</div>`;
 
+        return;
+    }
 
-recipe.steps.forEach((step,index)=>{
+    resultsBox.innerHTML = `<h3>${t("find")}</h3>`;
 
-html+=`
+    useful.forEach(item => {
 
-<div class="step">
+        const recipe = item.recipe;
 
-<div class="step-number">
-${t.step} ${index+1}
-</div>
+        const typeText =
+            recipe.type === "vegetarian"
+            ? t("vegetarianType")
+            : t("nonVegetarianType");
 
-<p>${step}</p>
+        let missingText = "";
 
-</div>
+        if (item.missing.length > 0) {
 
-`;
+            missingText =
+                `<div class="missing">
+                    ${t("missing")}: 
+                    ${item.missing.map(k => ingredientName(k)).join(", ")}
+                </div>`;
+        }
 
-});
+        resultsBox.innerHTML += `
 
+            <div class="recipe-card">
 
-html+=`</div>`;
+                <h3>${recipe.names[currentLanguage]}</h3>
 
-document.getElementById("cookingContent").innerHTML=html;
+                <div class="meta">
+                    <span>${typeText}</span>
+                    <span>${t("match")}: ${item.percentage}%</span>
+                    <span>${recipe.time} ${t("minutes")}</span>
+                </div>
 
-window.scrollTo(0,0);
+                ${missingText}
 
+                <button onclick="startCooking('${recipe.key}')">
+                    ${t("cookThis")}
+                </button>
+
+            </div>
+
+        `;
+    });
 }
 
 
-function backToResults(){
+/* =========================================================
+   CHOOSE DISH
+========================================================= */
 
-document.getElementById("cookingPage").style.display="none";
+function showRecipeList(type) {
 
-document.getElementById("ingredientsPage").style.display="block";
+    const box = document.getElementById("chooseResults");
 
-window.scrollTo(0,0);
+    const filtered =
+        recipes.filter(recipe => recipe.type === type);
 
+    box.innerHTML = "";
+
+    filtered.forEach(recipe => {
+
+        const typeText =
+            recipe.type === "vegetarian"
+            ? t("vegetarianType")
+            : t("nonVegetarianType");
+
+        box.innerHTML += `
+
+            <div class="recipe-card">
+
+                <h3>${recipe.names[currentLanguage]}</h3>
+
+                <div class="meta">
+                    <span>${typeText}</span>
+                    <span>${recipe.time} ${t("minutes")}</span>
+                </div>
+
+                <button onclick="startCooking('${recipe.key}')">
+                    ${t("cookThis")}
+                </button>
+
+            </div>
+
+        `;
+    });
 }
 
 
-function comingSoon(){
+/* =========================================================
+   COOKING
+========================================================= */
 
-alert(
-currentLanguage==="hi"
-?"यह सुविधा जल्द ही उपलब्ध होगी।":
-currentLanguage==="ur"
-?"یہ سہولت جلد دستیاب ہوگی۔":
-currentLanguage==="ta"
-?"இந்த வசதி விரைவில் கிடைக்கும்.":
-currentLanguage==="te"
-?"ఈ ఫీచర్ త్వరలో అందుబాటులోకి వస్తుంది.":
-"This feature will be built next."
-);
+function startCooking(recipeKey) {
 
+    currentRecipeKey = recipeKey;
+
+    previousPage =
+        document.getElementById("ingredientsPage").classList.contains("active")
+        ? "ingredientsPage"
+        : "chooseDishPage";
+
+    hideAllPages();
+
+    document.getElementById("cookingPage").classList.add("active");
+
+    renderCooking(recipeKey);
 }
+
+
+function renderCooking(recipeKey) {
+
+    const recipe = getRecipe(recipeKey);
+
+    if (!recipe) return;
+
+    const content =
+        document.getElementById("cookingContent");
+
+    const typeText =
+        recipe.type === "vegetarian"
+        ? t("vegetarianType")
+        : t("nonVegetarianType");
+
+    let ingredientsHTML = "";
+
+    Object.entries(recipe.ingredients).forEach(
+        ([key, quantity]) => {
+
+            let displayQuantity = quantity;
+
+            if (key === "onion" ||
+                key === "potato" ||
+                key === "tomato" ||
+                key === "egg") {
+
+                displayQuantity =
+                    `${quantity} ${currentLanguage === "en" ? "pieces" : ""}`;
+            }
+
+            ingredientsHTML +=
+                `<li>
+                    <strong>${displayQuantity}</strong>
+                    ${ingredientName(key)}
+                </li>`;
+        }
+    );
+
+    const steps =
+        recipe.steps[currentLanguage] ||
+        recipe.steps.en;
+
+    let stepsHTML = "";
+
+    steps.forEach((stepText, index) => {
+
+        stepsHTML += `
+            <li class="step">
+                <span class="step-number">
+                    ${t("step")} ${index + 1}
+                </span>
+                <br>
+                ${stepText}
+            </li>
+        `;
+    });
+
+    content.innerHTML = `
+
+        <div class="cooking">
+
+            <h2>${recipe.names[currentLanguage]}</h2>
+
+            <div class="meta">
+
+                <span>
+                    ${t("type")}: ${typeText}
+                </span>
+
+                <span>
+                    ${t("cookingTime")}: 
+                    ${recipe.time} ${t("minutes")}
+                </span>
+
+                <span>
+                    ${t("difficulty")}: ${t("easy")}
+                </span>
+
+            </div>
+
+            <div class="serving-box">
+
+                <strong>${t("adjust")}:</strong>
+
+                <input
+                    type="number"
+                    min="1"
+                    max="20"
+                    value="${recipe.servings}"
+                    onchange="changeServings('${recipe.key}', this.value)"
+                >
+
+                <p>${t("servingHelp")}</p>
+
+            </div>
+
+            <h3>${t("ingredients")}</h3>
+
+            <ul class="ingredients-list" id="recipeIngredients">
+                ${ingredientsHTML}
+            </ul>
+
+            <h3>${t("instructions")}</h3>
+
+            <ol class="steps">
+                ${stepsHTML}
+            </ol>
+
+        </div>
+    `;
+}
+
+
+/* =========================================================
+   SERVING CALCULATOR
+========================================================= */
+
+function changeServings(recipeKey, newServings) {
+
+    const recipe = getRecipe(recipeKey);
+
+    if (!recipe) return;
+
+    const servings =
+        Math.max(1, Number(newServings));
+
+    const multiplier =
+        servings / recipe.servings;
+
+    const content =
+        document.getElementById("cookingContent");
+
+    const ingredientsList =
+        content.querySelector("#recipeIngredients");
+
+    if (!ingredientsList) return;
+
+    let html = "";
+
+    Object.entries(recipe.ingredients).forEach(
+        ([key, quantity]) => {
+
+            let adjusted =
+                quantity * multiplier;
+
+            if (Number.isInteger(adjusted)) {
+                adjusted = adjusted;
+            } else {
+                adjusted = adjusted.toFixed(1);
+            }
+
+            let displayQuantity = adjusted;
+
+            if (
+                key === "onion" ||
+                key === "potato" ||
+                key === "tomato" ||
+                key === "egg"
+            ) {
+                displayQuantity =
+                    `${adjusted} ${currentLanguage === "en" ? "pieces" : ""}`;
+            }
+
+            html +=
+                `<li>
+                    <strong>${displayQuantity}</strong>
+                    ${ingredientName(key)}
+                </li>`;
+        }
+    );
+
+    ingredientsList.innerHTML = html;
+}
+
+
+/* =========================================================
+   BACK FROM COOKING
+========================================================= */
+
+function goBackFromCooking() {
+
+    hideAllPages();
+
+    if (previousPage === "ingredientsPage") {
+
+        document
+            .getElementById("ingredientsPage")
+            .classList.add("active");
+
+    } else {
+
+        document
+            .getElementById("chooseDishPage")
+            .classList.add("active");
+    }
+}
+
+
+/* =========================================================
+   START APP
+========================================================= */
+
+updateInterface();
 
 </script>
 
