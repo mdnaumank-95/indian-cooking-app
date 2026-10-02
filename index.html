@@ -2,93 +2,203 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Indian Kitchen</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f6f6f6;color:#222}
-header{background:#ff6b35;color:white;text-align:center;padding:18px}main{max-width:950px;margin:auto;padding:20px}
-.page{display:none}.active{display:block}.hero,.card,.step{background:white;border-radius:16px;padding:22px;margin-bottom:16px;box-shadow:0 2px 10px #0001}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.card{cursor:pointer}.icon{font-size:40px}
-button{border:0;border-radius:10px;padding:12px 18px;background:#ff6b35;color:white;font-size:16px;cursor:pointer;margin:4px}
-.secondary{background:#555}select,input{padding:12px;border:1px solid #ccc;border-radius:9px;font-size:16px}
-input{width:70%}.chip{display:inline-block;background:#ffe2d6;padding:8px 12px;border-radius:20px;margin:5px}
-.badge{display:inline-block;background:#eee;padding:7px 10px;border-radius:20px;margin:3px}.warning{background:#fff1c7;padding:12px;border-radius:10px;margin:12px 0}.success{background:#e5f7e5;padding:12px;border-radius:10px}.timer{font-size:34px;font-weight:bold;margin:12px 0}.rtl{direction:rtl;text-align:right}
+:root{--bg:#fff8f1;--card:#ffffff;--text:#2c211b;--muted:#725f54;--accent:#b6461f;--accent2:#e67b2f;--line:#eadbd0;--soft:#fff0e6;--ok:#176b45}
+*{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
+header{background:#fff;position:sticky;top:0;z-index:10;border-bottom:1px solid var(--line)}
+.top{max-width:1200px;margin:auto;padding:18px 20px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.brand{font-size:28px;font-weight:800;color:var(--accent);cursor:pointer}.tag{color:var(--muted);font-size:13px}
+select,input,button{font:inherit} select,input{padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:white;color:var(--text)}
+button{border:0;border-radius:11px;padding:12px 16px;cursor:pointer;font-weight:700}.primary{background:var(--accent);color:#fff}.secondary{background:var(--soft);color:var(--accent)}.ghost{background:#fff;border:1px solid var(--line)}
+main{max-width:1200px;margin:auto;padding:28px 20px 60px}.screen{display:none}.screen.active{display:block}
+.hero{background:linear-gradient(135deg,#fff1e5,#ffe4d0);border:1px solid var(--line);border-radius:22px;padding:30px;margin-bottom:24px}
+.hero h1{margin:0 0 8px;font-size:38px}.hero p{max-width:800px;line-height:1.6;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 4px 16px #8d5b3210}.card h3{margin:0 0 6px}.card p{color:var(--muted);font-size:14px;line-height:1.45}
+.pill{display:inline-block;padding:5px 9px;border-radius:999px;background:var(--soft);color:var(--accent);font-size:12px;font-weight:700;margin:3px 4px 0 0}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.results{margin-top:18px}
+.recipe-head{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:18px}
+.recipe-head h2{margin-top:0}.meta{display:flex;gap:8px;flex-wrap:wrap}.meta span{padding:7px 10px;background:#faf0e9;border-radius:9px;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1.35fr;gap:18px}.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}.panel h3{margin-top:0}
+.steps{display:grid;gap:12px}.step{border-left:5px solid var(--accent2);background:#fff8f5;padding:14px;border-radius:10px}.step strong{display:block;margin-bottom:6px}
+.notice{background:#fff4cf;border:1px solid #ecd58a;border-radius:12px;padding:12px;margin:14px 0;font-size:14px;line-height:1.5}
+footer{max-width:1200px;margin:auto;padding:0 20px 30px;color:var(--muted);font-size:13px}
+.rtl{direction:rtl}.rtl input,.rtl select{direction:rtl}
+@media(max-width:800px){.two{grid-template-columns:1fr}.hero h1{font-size:30px}.top{align-items:flex-start}}
 </style>
 </head>
 <body>
-<header><h1>Indian Kitchen</h1>
-<select id="lang" onchange="setLang(this.value)">
-<option value="en">English</option><option value="hi">हिन्दी</option><option value="ur">اردو</option><option value="ta">தமிழ்</option><option value="te">తెలుగు</option>
-</select></header>
+<header>
+  <div class="top">
+    <div onclick="goHome()"><div class="brand">🍛 Indian Kitchen</div><div class="tag" data-i18n="tagline">Learn Indian cooking step by step</div></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <select id="language" onchange="changeLanguage()">
+        <option value="en">English</option><option value="hi">हिन्दी</option><option value="ur">اردو</option><option value="ta">தமிழ்</option><option value="te">తెలుగు</option>
+      </select>
+      <button class="ghost" onclick="goHome()" data-i18n="home">Home</button>
+    </div>
+  </div>
+</header>
+
 <main>
-<section id="home" class="page active"><div class="hero"><h2 id="welcome">Cook Indian Food Step by Step</h2><p id="intro">Beginner-friendly cooking with detailed instructions.</p></div>
-<div class="grid"><div class="card" onclick="openIngredients()"><div class="icon">🥕</div><h3 id="cw">Cook With What I Have</h3></div>
-<div class="card" onclick="chooseDish()"><div class="icon">🍛</div><h3 id="cd">Choose a Dish</h3></div>
-<div class="card" onclick="explore()"><div class="icon">🇮🇳</div><h3 id="ex">Explore India</h3></div></div></section>
+<section id="home" class="screen active">
+  <div class="hero">
+    <h1 data-i18n="title">Cook Indian food with confidence</h1>
+    <p data-i18n="intro">Explore dishes by state, search the full recipe library, or tell us what ingredients you already have.</p>
+    <div class="toolbar">
+      <button class="primary" onclick="openIngredients()" data-i18n="cookWhat">Cook With What I Have</button>
+      <button class="secondary" onclick="openExplore()" data-i18n="explore">Explore India</button>
+      <button class="ghost" onclick="openSearch()" data-i18n="search">Search Dishes</button>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>🇮🇳 28 states</h3><p>Browse vegetarian and non-vegetarian dishes by state.</p></div>
+    <div class="card"><h3>🍽️ 1,120 recipes</h3><p>20 vegetarian + 20 non-vegetarian recipe entries per state.</p></div>
+    <div class="card"><h3>👨‍🍳 Beginner Cooking Mode</h3><p>Timing, flame guidance, readiness cues and troubleshooting.</p></div>
+    <div class="card"><h3>🌐 5 languages</h3><p>English, Hindi, Urdu, Tamil and Telugu interface and recipe text.</p></div>
+  </div>
+</section>
 
-<section id="ingredients" class="page"><button class="secondary" onclick="home()">← Back</button><div class="hero"><h2>Cook With What I Have</h2><input id="ingredient" placeholder="e.g. onion, chicken, potato"><button onclick="add()">Add</button><div id="chips"></div><button onclick="findRecipes()">Find What I Can Cook</button></div><div id="matches"></div></section>
+<section id="explore" class="screen">
+  <div class="hero"><h1 data-i18n="exploreIndia">Explore India</h1><p>Select a state, then choose vegetarian or non-vegetarian.</p></div>
+  <div id="stateGrid" class="grid"></div>
+</section>
 
-<section id="choose" class="page"><button class="secondary" onclick="home()">← Back</button><div class="hero"><h2>Choose a Dish</h2></div><div id="dishList"></div></section>
+<section id="state" class="screen">
+  <div class="toolbar"><button class="ghost" onclick="openExplore()">← <span data-i18n="back">Back</span></button></div>
+  <div class="hero"><h1 id="stateTitle"></h1><p id="stateSubtitle"></p></div>
+  <div class="toolbar">
+    <button class="primary" onclick="showType('Vegetarian')" data-i18n="vegetarian">Vegetarian</button>
+    <button class="secondary" onclick="showType('Non-Vegetarian')" data-i18n="nonVeg">Non-Vegetarian</button>
+  </div>
+  <div id="stateResults" class="results grid"></div>
+</section>
 
-<section id="explore" class="page"><button class="secondary" onclick="home()">← Back</button><div class="hero"><h2>Explore India</h2><p>Choose a state.</p></div><div id="states" class="grid"></div></section>
+<section id="search" class="screen">
+  <div class="hero"><h1 data-i18n="searchDishes">Search Dishes</h1><p>Search by dish, state, region or ingredient.</p></div>
+  <div class="toolbar">
+    <input id="searchInput" style="min-width:280px;flex:1" placeholder="e.g. chicken, Kerala, biryani" oninput="runSearch()">
+  </div>
+  <div id="searchResults" class="results grid"></div>
+</section>
 
-<section id="state" class="page"><button class="secondary" onclick="explore()">← Back</button><div class="hero"><h2 id="stateName"></h2><p>Choose food type.</p></div><div class="grid"><div class="card" onclick="alert('State recipe database will be added next.')">🥬 Vegetarian</div><div class="card" onclick="alert('State recipe database will be added next.')">🍗 Non-Vegetarian</div></div></section>
+<section id="ingredients" class="screen">
+  <div class="hero"><h1 data-i18n="cookWhatTitle">Cook With What I Have</h1><p>Enter ingredients you already have. No serving-size question is asked in this mode.</p></div>
+  <div class="toolbar">
+    <input id="ingredientInput" style="min-width:280px;flex:1" placeholder="e.g. onion, potato, chicken" onkeydown="if(event.key==='Enter')addIngredient()">
+    <button class="primary" onclick="addIngredient()">Add</button>
+    <button class="ghost" onclick="findMatches()">Find What I Can Cook</button>
+  </div>
+  <div id="chips"></div>
+  <div id="ingredientResults" class="results grid"></div>
+</section>
 
-<section id="cook" class="page"><button class="secondary" onclick="backFromCook()">← Back</button><div class="hero"><h2 id="cookTitle">Cooking Mode</h2><p id="recipeMeta"></p><label>Servings</label><select id="servings" onchange="renderCook()"><option>1</option><option>2</option><option selected>4</option><option>6</option><option>8</option></select></div><div id="cookContent"></div></section>
+<section id="recipe" class="screen">
+  <div class="toolbar"><button class="ghost" onclick="goBack()">← <span data-i18n="back">Back</span></button></div>
+  <div id="recipeContent"></div>
+</section>
 </main>
 
-<script>
-let lang='en',have=[],stateSelected='',recipe=0,step=0,timer=null,seconds=0;
-const states=["Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat","Haryana","Himachal Pradesh","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal"];
+<footer>Indian Kitchen • Working app prototype using the current 1,120-recipe database.</footer>
 
-const text={
-en:{welcome:"Cook Indian Food Step by Step",intro:"Beginner-friendly cooking with detailed instructions.",cw:"Cook With What I Have",cd:"Choose a Dish",ex:"Explore India",next:"Next Step",prev:"Previous Step",timer:"Start Timer",see:"What you should see",smell:"What you should smell",ready:"Move to the next step when",warn:"Important"},
-hi:{welcome:"भारतीय खाना चरण-दर-चरण बनाएं",intro:"शुरुआती लोगों के लिए आसान और विस्तृत निर्देश।",cw:"मेरे पास जो है उससे पकाएं",cd:"एक व्यंजन चुनें",ex:"भारत को एक्सप्लोर करें",next:"अगला चरण",prev:"पिछला चरण",timer:"टाइमर शुरू करें",see:"आपको क्या दिखाई देना चाहिए",smell:"आपको कैसी खुशबू आनी चाहिए",ready:"अगले चरण पर तब जाएं जब",warn:"महत्वपूर्ण"},
-ur:{welcome:"ہندوستانی کھانا مرحلہ وار پکائیں",intro:"ابتدائی افراد کے لیے آسان اور تفصیلی ہدایات۔",cw:"میرے پاس موجود چیزوں سے پکائیں",cd:"ایک ڈش منتخب کریں",ex:"انڈیا دریافت کریں",next:"اگلا مرحلہ",prev:"پچھلا مرحلہ",timer:"ٹائمر شروع کریں",see:"آپ کو کیا نظر آنا چاہیے",smell:"آپ کو کیسی خوشبو آنی چاہیے",ready:"اگلے مرحلے پر اس وقت جائیں جب",warn:"اہم"},
-ta:{welcome:"இந்திய உணவை படிப்படியாக சமைக்கவும்",intro:"ஆரம்பநிலையினருக்கான விரிவான வழிமுறைகள்.",cw:"என்னிடம் உள்ளவற்றை வைத்து சமைக்கவும்",cd:"ஒரு உணவைத் தேர்ந்தெடுக்கவும்",ex:"இந்தியாவை ஆராயுங்கள்",next:"அடுத்த படி",prev:"முந்தைய படி",timer:"டைமரை தொடங்கு",see:"நீங்கள் பார்க்க வேண்டியது",smell:"நீங்கள் உணர வேண்டிய மணம்",ready:"அடுத்த படிக்கு செல்லும் நேரம்",warn:"முக்கியம்"},
-te:{welcome:"భారతీయ వంటకాలను దశలవారీగా వండండి",intro:"ప్రారంభకులకు సులభమైన, వివరమైన సూచనలు.",cw:"నా దగ్గర ఉన్న వాటితో వండండి",cd:"ఒక వంటకాన్ని ఎంచుకోండి",ex:"భారతదేశాన్ని అన్వేషించండి",next:"తదుపరి దశ",prev:"మునుపటి దశ",timer:"టైమర్ ప్రారంభించు",see:"మీరు చూడాల్సింది",smell:"మీరు గమనించాల్సిన వాసన",ready:"తదుపరి దశకు వెళ్లే సమయం",warn:"ముఖ్యం"}
+<script>
+let recipes=[], currentLanguage='en', selectedState='', selectedRecipe=null, previousScreen='home', ingredients=[];
+
+const i18n={
+en:{tagline:'Learn Indian cooking step by step',home:'Home',title:'Cook Indian food with confidence',intro:'Explore dishes by state, search the full recipe library, or tell us what ingredients you already have.',cookWhat:'Cook With What I Have',explore:'Explore India',search:'Search Dishes',exploreIndia:'Explore India',back:'Back',vegetarian:'Vegetarian',nonVeg:'Non-Vegetarian',searchDishes:'Search Dishes',cookWhatTitle:'Cook With What I Have'},
+hi:{tagline:'चरण-दर-चरण भारतीय खाना बनाना सीखें',home:'होम',title:'आत्मविश्वास के साथ भारतीय खाना बनाएं',intro:'राज्य के अनुसार व्यंजन देखें, पूरी रेसिपी खोजें या अपने पास मौजूद सामग्री डालें।',cookWhat:'मेरे पास जो है उससे पकाएँ',explore:'भारत देखें',search:'व्यंजन खोजें',exploreIndia:'भारत के व्यंजन',back:'वापस',vegetarian:'शाकाहारी',nonVeg:'मांसाहारी',searchDishes:'व्यंजन खोजें',cookWhatTitle:'मेरे पास जो है उससे पकाएँ'},
+ur:{tagline:'مرحلہ وار ہندوستانی کھانا پکانا سیکھیں',home:'ہوم',title:'اعتماد کے ساتھ ہندوستانی کھانا پکائیں',intro:'ریاست کے حساب سے کھانے دیکھیں، پوری ترکیب تلاش کریں، یا اپنے موجود اجزاء شامل کریں۔',cookWhat:'میرے پاس موجود اجزاء سے پکائیں',explore:'بھارت دیکھیں',search:'کھانے تلاش کریں',exploreIndia:'بھارت کے کھانے',back:'واپس',vegetarian:'سبزی',nonVeg:'گوشت',searchDishes:'کھانے تلاش کریں',cookWhatTitle:'میرے پاس موجود اجزاء سے پکائیں'},
+ta:{tagline:'படிப்படியாக இந்திய சமையலை கற்றுக்கொள்ளுங்கள்',home:'முகப்பு',title:'நம்பிக்கையுடன் இந்திய உணவை சமைக்கவும்',intro:'மாநில வாரியாக உணவுகளைப் பாருங்கள், முழு செய்முறையைத் தேடுங்கள் அல்லது உங்களிடம் உள்ள பொருட்களை உள்ளிடுங்கள்.',cookWhat:'என்னிடம் உள்ள பொருட்களால் சமைக்கவும்',explore:'இந்தியாவை ஆராய்க',search:'உணவுகளை தேடுக',exploreIndia:'இந்திய உணவுகள்',back:'பின்செல்',vegetarian:'சைவம்',nonVeg:'அசைவம்',searchDishes:'உணவுகளை தேடுக',cookWhatTitle:'என்னிடம் உள்ள பொருட்களால் சமைக்கவும்'},
+te:{tagline:'దశలవారీగా భారతీయ వంట నేర్చుకోండి',home:'హోమ్',title:'నమ్మకంగా భారతీయ వంటలు చేయండి',intro:'రాష్ట్రం ప్రకారం వంటకాలను చూడండి, పూర్తి రెసిపీని శోధించండి లేదా మీ దగ్గర ఉన్న పదార్థాలను నమోదు చేయండి.',cookWhat:'నా దగ్గర ఉన్న పదార్థాలతో వండండి',explore:'భారతదేశాన్ని అన్వేషించండి',search:'వంటకాలు శోధించండి',exploreIndia:'భారతదేశ వంటకాలు',back:'వెనుకకు',vegetarian:'శాకాహారం',nonVeg:'మాంసాహారం',searchDishes:'వంటకాలు శోధించండి',cookWhatTitle:'నా దగ్గర ఉన్న పదార్థాలతో వండండి'}
 };
 
-const recipe={
-name:{en:"Beginner Chicken Curry",hi:"शुरुआती चिकन करी",ur:"ابتدائی چکن کری",ta:"ஆரம்பநிலை சிக்கன் கறி",te:"బిగినర్ చికెన్ కర్రీ"},
-ingredients:[["oil","2 tbsp"],["onion","1 large"],["garlic","5 cloves"],["ginger","1 tbsp"],["tomato","2 medium"],["turmeric","1/2 tsp"],["red chilli powder","1 tsp"],["cumin","1 tsp"],["plain yogurt","100 g"],["chicken","700 g"],["salt","1 1/4 tsp"],["water","250 ml"]],
-steps:[
-{flame:"Medium",time:1,a:{en:"Place the pan on the hob. Turn the heat to MEDIUM. Add 2 tablespoons of oil. Wait about 45–60 seconds.",hi:"पैन को रखें। आंच MEDIUM करें। 2 बड़े चम्मच तेल डालें। लगभग 45–60 सेकंड प्रतीक्षा करें।",ur:"پین رکھیں۔ آنچ درمیانی کریں۔ 2 کھانے کے چمچ تیل ڈالیں اور تقریباً 45–60 سیکنڈ انتظار کریں۔",ta:"பாத்திரத்தை வைத்து மிதமான தீயில் 2 மேசைக்கரண்டி எண்ணெய் சேர்க்கவும். 45–60 விநாடிகள் காத்திருக்கவும்.",te:"పాన్ పెట్టి మధ్య మంటపై 2 టేబుల్‌స్పూన్ల నూనె వేయండి. 45–60 సెకన్లు వేచి ఉండండి."},see:{en:"Oil should look slightly shimmery. It must NOT smoke.",hi:"तेल हल्का चमकदार दिखे। धुआं नहीं निकलना चाहिए।",ur:"تیل ہلکا چمکدار ہو۔ دھواں نہیں نکلنا چاہیے۔",ta:"எண்ணெய் லேசாக மின்ன வேண்டும். புகை வரக்கூடாது.",te:"నూనె స్వల్పంగా మెరుస్తూ ఉండాలి. పొగ రావద్దు."},smell:{en:"No burnt smell.",hi:"जलने की गंध नहीं।",ur:"جلنے کی بو نہیں۔",ta:"எரிந்த மணம் இருக்கக்கூடாது.",te:"కాలిన వాసన ఉండకూడదు."},ready:{en:"Oil is hot but not smoking.",hi:"तेल गर्म है लेकिन धुआं नहीं है।",ur:"تیل گرم ہے لیکن دھواں نہیں دے رہا۔",ta:"எண்ணெய் சூடாக உள்ளது ஆனால் புகை இல்லை.",te:"నూనె వేడిగా ఉంది కానీ పొగ లేదు."},warn:{en:"If oil smokes, reduce the heat before continuing.",hi:"अगर तेल से धुआं निकले तो आंच कम करें।",ur:"اگر تیل سے دھواں نکلے تو آنچ کم کریں۔",ta:"எண்ணெய் புகைத்தால் தீயை குறைக்கவும்.",te:"నూనె పొగ వస్తే మంట తగ్గించండి."}},
-{flame:"Medium",time:7,a:{en:"Add the chopped onion. Stir immediately. Cook 6–8 minutes, stirring every 30–45 seconds.",hi:"कटा प्याज़ डालें। तुरंत चलाएं। 6–8 मिनट पकाएं और हर 30–45 सेकंड में चलाएं।",ur:"کٹی پیاز ڈالیں اور فوراً ہلائیں۔ 6–8 منٹ پکائیں اور ہر 30–45 سیکنڈ بعد ہلائیں۔",ta:"நறுக்கிய வெங்காயம் சேர்த்து உடனே கிளறவும். 6–8 நிமிடங்கள் சமைத்து 30–45 விநாடிகளுக்கு ஒருமுறை கிளறவும்.",te:"తరిగిన ఉల్లిపాయ వేసి వెంటనే కలపండి. 6–8 నిమిషాలు ఉడికిస్తూ ప్రతి 30–45 సెకన్లకు కలపండి."},see:{en:"Soft, lightly golden onion. Not dark brown or black.",hi:"प्याज़ नरम और हल्का सुनहरा हो। गहरा भूरा या काला नहीं।",ur:"پیاز نرم اور ہلکی سنہری ہو۔ گہری بھوری یا کالی نہ ہو۔",ta:"வெங்காயம் மென்மையாகவும் லேசாக பொன்னிறமாகவும் இருக்க வேண்டும்.",te:"ఉల్లిపాయ మెత్తగా, లేత బంగారు రంగులో ఉండాలి."},smell:{en:"Strong raw onion smell has reduced.",hi:"कच्चे प्याज़ की तेज़ गंध कम हो गई हो।",ur:"کچی پیاز کی تیز بو کم ہو گئی ہو۔",ta:"பச்சை வெங்காய மணம் குறைந்திருக்க வேண்டும்.",te:"పచ్చి ఉల్లిపాయ వాసన తగ్గాలి."},ready:{en:"Soft and lightly golden. If crunchy, cook 1–2 minutes more.",hi:"नरम और हल्का सुनहरा। अगर कुरकुरा है तो 1–2 मिनट और पकाएं।",ur:"نرم اور ہلکی سنہری۔ اگر سخت ہے تو مزید 1–2 منٹ پکائیں۔",ta:"மென்மையாகவும் லேசாக பொன்னிறமாகவும் இருக்க வேண்டும். கடினமாக இருந்தால் 1–2 நிமிடம் கூடுதலாக சமைக்கவும்.",te:"మెత్తగా, లేత బంగారు రంగులో ఉండాలి. గట్టిగా ఉంటే మరో 1–2 నిమిషాలు ఉడికించండి."},warn:{en:"Do not use high heat to speed this up; onions can burn before softening.",hi:"जल्दी करने के लिए तेज़ आंच न करें; प्याज़ जल सकता है।",ur:"جلدی کے لیے تیز آنچ نہ کریں؛ پیاز جل سکتی ہے۔",ta:"வேகமாக்க அதிக தீ பயன்படுத்த வேண்டாம்; வெங்காயம் கருகலாம்.",te:"త్వరగా చేయడానికి ఎక్కువ మంట వాడవద్దు; ఉల్లిపాయ కాలిపోవచ్చు."}},
-{flame:"Low-medium",time:1,a:{en:"Add ginger and garlic. Stir continuously for about 30–45 seconds. Do not let the garlic become dark brown.",hi:"अदरक और लहसुन डालें। 30–45 सेकंड लगातार चलाएं। लहसुन को गहरा भूरा न होने दें।",ur:"ادرک اور لہسن ڈالیں۔ 30–45 سیکنڈ مسلسل ہلائیں۔ لہسن کو گہرا بھورا نہ ہونے دیں۔",ta:"இஞ்சி மற்றும் பூண்டு சேர்த்து 30–45 விநாடிகள் தொடர்ந்து கிளறவும். பூண்டு கருமையாக விடாதீர்கள்.",te:"అల్లం, వెల్లుల్లి వేసి 30–45 సెకన్లు నిరంతరం కలపండి. వెల్లుల్లి ముదురు గోధుమగా మారనివ్వవద్దు."},see:{en:"Garlic softens slightly; no dark brown or black pieces.",hi:"लहसुन थोड़ा नरम हो; गहरे भूरे या काले टुकड़े न हों।",ur:"لہسن ہلکا نرم ہو؛ گہرے بھورے یا کالے ٹکڑے نہ ہوں۔",ta:"பூண்டு லேசாக மென்மையாக வேண்டும்; கருமையான துண்டுகள் இருக்கக்கூடாது.",te:"వెల్లుల్లి కొద్దిగా మెత్తగా ఉండాలి; ముదురు ముక్కలు ఉండకూడదు."},smell:{en:"Raw garlic smell becomes milder.",hi:"कच्चे लहसुन की गंध कम हो।",ur:"کچے لہسن کی بو کم ہو۔",ta:"பச்சை பூண்டு மணம் குறைய வேண்டும்.",te:"పచ్చి వెల్లుల్లి వాసన తగ్గాలి."},ready:{en:"After 30–45 seconds, before browning.",hi:"30–45 सेकंड बाद, भूरा होने से पहले।",ur:"30–45 سیکنڈ بعد، بھورا ہونے سے پہلے۔",ta:"30–45 விநாடிகளுக்குப் பிறகு, பழுப்பாகும் முன்.",te:"30–45 సెకన్ల తర్వాత, గోధుమగా మారకముందు."},warn:{en:"Garlic burns quickly. Reduce heat if it browns too fast.",hi:"लहसुन जल्दी जलता है। जल्दी भूरा हो तो आंच कम करें।",ur:"لہسن جلدی جلتا ہے۔ جلدی بھورا ہو تو آنچ کم کریں۔",ta:"பூண்டு விரைவாக கருகும். வேகமாக பழுப்பானால் தீயை குறைக்கவும்.",te:"వెల్లుల్లి త్వరగా కాలిపోతుంది. త్వరగా గోధుమగా అయితే మంట తగ్గించండి."}},
-{flame:"Medium",time:10,a:{en:"Add tomatoes and spices. Cook uncovered 8–12 minutes. Stir every 1–2 minutes.",hi:"टमाटर और मसाले डालें। बिना ढके 8–12 मिनट पकाएं। हर 1–2 मिनट में चलाएं।",ur:"ٹماٹر اور مصالحے ڈالیں۔ بغیر ڈھکے 8–12 منٹ پکائیں اور ہر 1–2 منٹ بعد ہلائیں۔",ta:"தக்காளி மற்றும் மசாலா சேர்த்து மூடி இல்லாமல் 8–12 நிமிடங்கள் சமைக்கவும். 1–2 நிமிடங்களுக்கு ஒருமுறை கிளறவும்.",te:"టమాటా, మసాలాలు వేసి మూత లేకుండా 8–12 నిమిషాలు ఉడికించండి. ప్రతి 1–2 నిమిషాలకు కలపండి."},see:{en:"Tomatoes break down into a thick mixture. A little oil may appear around the edges.",hi:"टमाटर टूटकर गाढ़े मिश्रण में बदलें। किनारों पर थोड़ा तेल दिख सकता है।",ur:"ٹماٹر گل کر گاڑھا مکسچر بن جائیں۔ کناروں پر تھوڑا تیل نظر آ سکتا ہے۔",ta:"தக்காளி கெட்டியான கலவையாக கரைய வேண்டும். ஓரங்களில் சிறிது எண்ணெய் தெரியலாம்.",te:"టమాటాలు కరిగి చిక్కటి మిశ్రమంగా మారాలి. అంచుల్లో కొద్దిగా నూనె కనిపించవచ్చు."},smell:{en:"Raw tomato smell reduces; cooked spice aroma develops.",hi:"कच्चे टमाटर की गंध कम हो और मसालों की पकी खुशबू आए।",ur:"کچے ٹماٹر کی بو کم ہو اور پکے مصالحوں کی خوشبو آئے۔",ta:"பச்சை தக்காளி மணம் குறைந்து மசாலா மணம் வர வேண்டும்.",te:"పచ్చి టమాటా వాసన తగ్గి మసాలా వాసన రావాలి."},ready:{en:"Mixture is thick and tomatoes are mostly broken down. If watery, cook 1–2 minutes more.",hi:"मिश्रण गाढ़ा हो और टमाटर लगभग टूट गए हों। पतला हो तो 1–2 मिनट और पकाएं।",ur:"مکسچر گاڑھا ہو اور ٹماٹر زیادہ تر گل جائیں۔ پتلا ہو تو 1–2 منٹ اور پکائیں۔",ta:"கலவை கெட்டியாகி தக்காளி பெரும்பாலும் கரைந்திருக்க வேண்டும். நீராக இருந்தால் 1–2 நிமிடம் கூடுதலாக சமைக்கவும்.",te:"మిశ్రమం చిక్కగా ఉండి టమాటాలు ఎక్కువగా కరిగి ఉండాలి. పల్చగా ఉంటే 1–2 నిమిషాలు అదనంగా ఉడికించండి."},warn:{en:"If it sticks or darkens rapidly, reduce to low-medium and stir more often.",hi:"अगर चिपकने या जल्दी गहरा होने लगे तो आंच कम करें और अधिक चलाएं।",ur:"اگر چپکنے یا جلدی گہرا ہونے لگے تو آنچ کم کریں اور زیادہ ہلائیں۔",ta:"ஒட்டினால் அல்லது வேகமாக கருமையானால் தீயை குறைத்து அடிக்கடி கிளறவும்.",te:"అంటుకుంటే లేదా త్వరగా ముదురితే మంట తగ్గించి తరచుగా కలపండి."}},
-{flame:"Low",time:3,a:{en:"Lower the heat. Add yogurt gradually while stirring continuously. This prevents the yogurt from separating.",hi:"आंच धीमी करें। लगातार चलाते हुए दही थोड़ा-थोड़ा डालें। इससे दही अलग नहीं होगा।",ur:"آنچ ہلکی کریں۔ مسلسل ہلاتے ہوئے دہی تھوڑا تھوڑا شامل کریں۔",ta:"தீயை குறைத்து தொடர்ந்து கிளறிக்கொண்டே தயிரை சிறிது சிறிதாக சேர்க்கவும்.",te:"మంట తగ్గించి నిరంతరం కలుపుతూ పెరుగును కొద్దికొద్దిగా వేయండి."},see:{en:"Yogurt blends smoothly into the masala; no large white lumps.",hi:"दही मसाले में अच्छी तरह मिल जाए; बड़े सफेद टुकड़े न हों।",ur:"دہی مصالحے میں اچھی طرح مل جائے؛ بڑے سفید ٹکڑے نہ ہوں۔",ta:"தயிர் மசாலாவில் நன்றாக கலந்து பெரிய வெள்ளை கட்டிகள் இல்லாமல் இருக்க வேண்டும்.",te:"పెరుగు మసాలాలో సాఫీగా కలవాలి; పెద్ద తెల్లటి ముద్దలు ఉండకూడదు."},smell:{en:"Creamy cooked-spice aroma.",hi:"दही और मसालों की पकी खुशबू।",ur:"دہی اور مصالحوں کی پکی خوشبو۔",ta:"தயிர் மற்றும் மசாலாவின் மணம்.",te:"పెరుగు, మసాలాల వాసన."},ready:{en:"Yogurt is fully incorporated and the masala looks smooth.",hi:"दही पूरी तरह मिल जाए और मसाला चिकना दिखे।",ur:"دہی مکمل شامل ہو جائے اور مصالحہ ہموار نظر آئے۔",ta:"தயிர் முழுமையாக கலந்து மசாலா மென்மையாகத் தெரியும்.",te:"పెరుగు పూర్తిగా కలసి మసాలా సాఫీగా కనిపించాలి."},warn:{en:"Keep the heat low while adding yogurt.",hi:"दही डालते समय आंच धीमी रखें।",ur:"دہی شامل کرتے وقت آنچ ہلکی رکھیں۔",ta:"தயிர் சேர்க்கும் போது தீயை குறைக்கவும்.",te:"పెరుగు వేసేటప్పుడు మంట తక్కువగా ఉంచండి."}},
-{flame:"Medium",time:5,a:{en:"Add chicken and salt. Cook 3–5 minutes, stirring so every piece is coated.",hi:"चिकन और नमक डालें। 3–5 मिनट पकाएं और चलाएं ताकि हर टुकड़े पर मसाला लगे।",ur:"چکن اور نمک ڈالیں۔ 3–5 منٹ پکائیں اور ہلائیں تاکہ ہر ٹکڑے پر مصالحہ لگے۔",ta:"சிக்கன் மற்றும் உப்பு சேர்த்து 3–5 நிமிடங்கள் கிளறி சமைக்கவும்.",te:"చికెన్, ఉప్పు వేసి 3–5 నిమిషాలు కలుపుతూ ఉడికించండి."},see:{en:"Chicken is coated and the outside changes from raw pink to opaque.",hi:"चिकन पर मसाला लगा हो और बाहर का कच्चा गुलाबी रंग बदलने लगे।",ur:"چکن پر مصالحہ لگا ہو اور باہر کا کچا گلابی رنگ بدلنے لگے۔",ta:"சிக்கனில் மசாலா ஒட்டியிருந்து வெளிப்புறம் பச்சை நிறத்திலிருந்து மாற வேண்டும்.",te:"చికెన్‌పై మసాలా ఉండి బయట ముడి గులాబీ రంగు తగ్గాలి."},smell:{en:"Raw chicken smell reduces.",hi:"कच्चे चिकन की गंध कम हो।",ur:"کچے چکن کی بو کم ہو۔",ta:"பச்சை சிக்கன் மணம் குறைய வேண்டும்.",te:"ముడి చికెన్ వాసన తగ్గాలి."},ready:{en:"Chicken is evenly coated; it is NOT fully cooked yet.",hi:"चिकन पर मसाला समान रूप से लगा है; यह अभी पूरी तरह नहीं पका है।",ur:"چکن پر مصالحہ یکساں ہے؛ یہ ابھی مکمل پکا نہیں۔",ta:"சிக்கனில் மசாலா சமமாக உள்ளது; இன்னும் முழுமையாக வேகவில்லை.",te:"చికెన్‌పై మసాలా సమంగా ఉంది; ఇది ఇంకా పూర్తిగా ఉడకలేదు."},warn:{en:"Do not stop here. Chicken must continue cooking.",hi:"यहां न रुकें। चिकन को आगे पकाना जरूरी है।",ur:"یہاں نہ رکیں۔ چکن کو مزید پکانا ضروری ہے۔",ta:"இங்கே நிறுத்த வேண்டாம். சிக்கன் தொடர்ந்து சமைக்க வேண்டும்.",te:"ఇక్కడ ఆపవద్దు. చికెన్ ఇంకా ఉడకాలి."}},
-{flame:"Low-medium",time:20,a:{en:"Add 250 ml water. Bring to a gentle simmer. Then cover and cook 15–20 minutes, stirring every 5 minutes.",hi:"250 मिलीलीटर पानी डालें। हल्के उबाल तक लाएं। फिर ढककर 15–20 मिनट पकाएं और हर 5 मिनट में चलाएं।",ur:"250 ملی لیٹر پانی ڈالیں۔ ہلکے ابال تک لائیں۔ پھر ڈھک کر 15–20 منٹ پکائیں اور ہر 5 منٹ بعد ہلائیں۔",ta:"250 மில்லி தண்ணீர் சேர்த்து மெதுவாக கொதிக்க விடவும். மூடி 15–20 நிமிடங்கள் சமைத்து 5 நிமிடங்களுக்கு ஒருமுறை கிளறவும்.",te:"250 మి.లీ నీరు వేసి మెల్లగా మరిగించండి. మూతపెట్టి 15–20 నిమిషాలు ఉడికిస్తూ ప్రతి 5 నిమిషాలకు కలపండి."},see:{en:"Small gentle bubbles. Not a violent boil. Curry gradually thickens.",hi:"छोटे हल्के बुलबुले हों। तेज उबाल नहीं। करी धीरे-धीरे गाढ़ी हो।",ur:"چھوٹے ہلکے بلبلے ہوں۔ تیز ابال نہیں۔ سالن آہستہ گاڑھا ہو۔",ta:"சிறிய மெதுவான குமிழ்கள்; வேகமான கொதிப்பு வேண்டாம். குழம்பு கெட்டியாகும்.",te:"చిన్న మెల్లని బుడగలు ఉండాలి; బలమైన మరిగింపు కాదు. కూర చిక్కబడుతుంది."},smell:{en:"Cooked curry aroma develops and raw spice smell reduces.",hi:"पकी करी की खुशबू आए और कच्चे मसालों की गंध कम हो।",ur:"پکی سالن کی خوشبو آئے اور کچے مصالحے کی بو کم ہو۔",ta:"சமைந்த குழம்பின் மணம் வர வேண்டும்; பச்சை மசாலா மணம் குறைய வேண்டும்.",te:"వండిన కూర వాసన రావాలి; ముడి మసాలా వాసన తగ్గాలి."},ready:{en:"Check the thickest chicken piece. It must be fully cooked, not raw inside. A food thermometer is the safest way to verify poultry doneness; follow your local food-safety guidance.",hi:"सबसे मोटे चिकन टुकड़े को जांचें। अंदर कच्चा नहीं होना चाहिए। थर्मामीटर उपलब्ध हो तो स्थानीय खाद्य-सुरक्षा निर्देश के अनुसार उपयोग करें।",ur:"سب سے موٹے چکن کے ٹکڑے کو چیک کریں۔ اندر سے کچا نہ ہو۔ تھرمامیٹر ہو تو مقامی فوڈ سیفٹی ہدایات کے مطابق استعمال کریں۔",ta:"தடிமனான சிக்கன் துண்டை சரிபார்க்கவும். உள்ளே பச்சையாக இருக்கக்கூடாது. தெர்மோமீட்டர் இருந்தால் உள்ளூர் உணவு பாதுகாப்பு வழிகாட்டுதலைப் பின்பற்றவும்.",te:"మందమైన చికెన్ ముక్కను తనిఖీ చేయండి. లోపల ముడిగా ఉండకూడదు. థర్మామీటర్ ఉంటే స్థానిక ఆహార భద్రత మార్గదర్శకాలను అనుసరించండి."},warn:{en:"SIMMER = gentle bubbling. If boiling aggressively, lower the heat. If completely still, increase slightly.",hi:"SIMMER = हल्के बुलबुले। तेज उबाल हो तो आंच कम करें। बिल्कुल बुलबुले न हों तो थोड़ा बढ़ाएं।",ur:"SIMMER = ہلکے بلبلے۔ تیز ابال ہو تو آنچ کم کریں۔ بالکل بلبلے نہ ہوں تو تھوڑی بڑھائیں۔",ta:"SIMMER = மெதுவான குமிழ்கள். வேகமாக கொதித்தால் தீயை குறைக்கவும்; குமிழ்கள் இல்லையெனில் சிறிது அதிகரிக்கவும்.",te:"SIMMER = మెల్లని బుడగలు. బలంగా మరిగితే మంట తగ్గించండి; బుడగలు లేకపోతే కొద్దిగా పెంచండి."}},
-{flame:"Low",time:5,a:{en:"Turn to low. Check the gravy. Simmer uncovered for 3–5 minutes until it reaches the consistency you want.",hi:"आंच धीमी करें। ग्रेवी जांचें। 3–5 मिनट बिना ढके पकाएं जब तक मनचाही गाढ़ी न हो जाए।",ur:"آنچ ہلکی کریں۔ گریوی چیک کریں۔ 3–5 منٹ بغیر ڈھکے پکائیں تاکہ مطلوبہ گاڑھا پن آ جائے۔",ta:"தீயை குறைத்து குழம்பை சரிபார்க்கவும். விரும்பிய கெட்டித்தன்மை வரும் வரை 3–5 நிமிடங்கள் மூடி இல்லாமல் சமைக்கவும்.",te:"మంట తక్కువకు తగ్గించి గ్రేవీని తనిఖీ చేయండి. కావలసిన చిక్కదనం వచ్చే వరకు 3–5 నిమిషాలు మూత లేకుండా ఉడికించండి."},see:{en:"Gravy coats the chicken and looks glossy, not watery.",hi:"ग्रेवी चिकन पर अच्छी तरह चिपकी और चमकदार हो, पानी जैसी नहीं।",ur:"گریوی چکن پر اچھی طرح لپٹی اور چمکدار ہو، پانی جیسی نہ ہو۔",ta:"குழம்பு சிக்கனை நன்றாக பூசி பளபளப்பாக இருக்க வேண்டும்; நீராக இருக்கக்கூடாது.",te:"గ్రేవీ చికెన్‌ను బాగా పూతలా పట్టి మెరుస్తూ ఉండాలి; నీరుగా కాకూడదు."},smell:{en:"Balanced cooked spice aroma.",hi:"मसालों की संतुलित पकी खुशबू।",ur:"متوازن پکے مصالحوں کی خوشبو۔",ta:"சமநிலையான சமைந்த மசாலா மணம்.",te:"సమతుల్యమైన వండిన మసాలా వాసన."},ready:{en:"Chicken is fully cooked and gravy has the desired consistency.",hi:"चिकन पूरी तरह पक गया और ग्रेवी मनचाही गाढ़ी है।",ur:"چکن مکمل پکا ہے اور گریوی مطلوبہ گاڑھی ہے۔",ta:"சிக்கன் முழுமையாக வெந்து குழம்பு விரும்பிய கெட்டித்தன்மையில் உள்ளது.",te:"చికెన్ పూర్తిగా ఉడికి గ్రేవీ కావలసిన చిక్కదనంలో ఉంది."},warn:{en:"Never taste with a spoon that touched raw chicken. Use a clean spoon.",hi:"कच्चे चिकन को छू चुके चम्मच से स्वाद न चखें। साफ चम्मच लें।",ur:"کچے چکن کو چھوئے ہوئے چمچ سے نہ چکھیں۔ صاف چمچ استعمال کریں۔",ta:"பச்சை சிக்கனை தொட்ட கரண்டியால் சுவைக்க வேண்டாம். சுத்தமான கரண்டி பயன்படுத்தவும்.",te:"ముడి చికెన్ తాకిన చెంచాతో రుచి చూడవద్దు. శుభ్రమైన చెంచా వాడండి."}}
-]};
-
-function show(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active')}
-function home(){show('home')}
-function openIngredients(){show('ingredients');renderChips()}
-function chooseDish(){show('choose');document.getElementById('dishList').innerHTML='<div class="card"><h3>'+recipe.name[lang]+'</h3><p>Non-Vegetarian · Beginner</p><button onclick="startCook()">Cook This Dish</button></div>'}
-function explore(){show('explore');document.getElementById('states').innerHTML=states.map((s,i)=>'<div class="card" onclick="selectState('+JSON.stringify(s)+')"><b>'+(i+1)+'</b><h3>'+s+'</h3></div>').join('')}
-function selectState(s){stateSelected=s;document.getElementById('stateName').textContent=s;show('state')}
-function add(){let x=document.getElementById('ingredient').value.trim().toLowerCase();if(x&&!have.includes(x))have.push(x);document.getElementById('ingredient').value='';renderChips()}
-function renderChips(){document.getElementById('chips').innerHTML=have.map(x=>'<span class="chip">'+x+'</span>').join('')}
-function findRecipes(){let list=recipe.ingredients.map(x=>x[0]);let matches=have.filter(x=>list.some(y=>y.includes(x)||x.includes(y)));document.getElementById('matches').innerHTML=matches.length?'<div class="card"><h3>'+recipe.name[lang]+'</h3><p>'+matches.length+' matching ingredient(s).</p><button onclick="startCook()">Cook This Dish</button></div>':'<div class="card">No matching recipe yet. Try adding onion, chicken, tomato or potato.</div>'}
-function startCook(){step=0;show('cook');renderCook()}
-function renderCook(){
-let n=Number(document.getElementById('servings').value),factor=n/4;
-document.getElementById('cookTitle').textContent=lang==='en'?'Cooking Mode':text[lang].cd;
-document.getElementById('recipeMeta').textContent=recipe.name[lang]+' · '+n+' servings';
-if(step===0){document.getElementById('cookContent').innerHTML='<div class="step"><h2>'+recipe.name[lang]+'</h2><h3>Ingredients</h3><ul>'+recipe.ingredients.map(x=>'<li><b>'+((parseFloat(x[1])||1)*factor).toFixed(2).replace('.00','')+'</b> '+x[1].replace(/[0-9.\/]+/,'').trim()+' '+x[0]+'</li>').join('')+'</ul><div class="warning">Cooking times are approximate. Your hob, pan, ingredient size and quantity can change the timing. Use the visual checks as well as the timer.</div><button onclick="nextStep()">'+text[lang].next+'</button></div>';return}
-if(step>recipe.steps.length){document.getElementById('cookContent').innerHTML='<div class="step"><h2>✅ Recipe complete!</h2><div class="success">You have finished this recipe.</div></div>';return}
-let s=recipe.steps[step-1],a=s.a[lang],p=s;
-document.getElementById('cookContent').innerHTML='<div class="step"><span class="badge">'+text[lang].next.replace(/.*/,'Step')+' '+step+' / '+recipe.steps.length+'</span><span class="badge">🔥 '+s.flame+'</span><span class="badge">⏱️ '+s.time+' min</span><h2>'+a+'</h2><button onclick="startTimer('+s.time*60+')">'+text[lang].timer+'</button><div id="timerBox"></div><h3>👀 '+text[lang].see+'</h3><p>'+p.see[lang]+'</p><h3>👃 '+text[lang].smell+'</h3><p>'+p.smell[lang]+'</p><h3>✅ '+text[lang].ready+'</h3><p>'+p.ready[lang]+'</p><div class="warning"><b>⚠️ '+text[lang].warn+'</b><p>'+p.warn[lang]+'</p></div><button class="secondary" onclick="prevStep()">'+text[lang].prev+'</button><button onclick="nextStep()">'+text[lang].next+'</button></div>'
+async function loadRecipes(){
+  try{
+    const res=await fetch('recipes.json',{cache:'no-store'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    recipes=await res.json();
+    renderStates();
+  }catch(e){
+    document.getElementById('home').insertAdjacentHTML('beforeend','<div class="notice">Could not load <b>recipes.json</b>. Make sure <b>index.html</b> and <b>recipes.json</b> are in the same GitHub Pages folder.</div>');
+  }
 }
-function nextStep(){clearTimer();step++;renderCook()}
-function prevStep(){clearTimer();if(step>1)step--;renderCook()}
-function backFromCook(){clearTimer();chooseDish()}
-function startTimer(s){clearTimer();seconds=s;updateTimer();timer=setInterval(()=>{seconds--;updateTimer();if(seconds<=0){clearTimer();document.getElementById('timerBox').innerHTML='<div class="success">⏰ Timer finished. Check the food before continuing.</div>'}},1000)}
-function updateTimer(){let b=document.getElementById('timerBox');if(!b)return;b.innerHTML='<div class="timer">'+String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0')+'</div><button class="secondary" onclick="clearTimer()">Stop Timer</button>'}
-function clearTimer(){if(timer){clearInterval(timer);timer=null}}
-function setLang(x){lang=x;document.body.classList.toggle('rtl',x==='ur');document.getElementById('welcome').textContent=text[x].welcome;document.getElementById('intro').textContent=text[x].intro;document.getElementById('cw').textContent=text[x].cw;document.getElementById('cd').textContent=text[x].cd;document.getElementById('ex').textContent=text[x].ex;if(document.getElementById('cook').classList.contains('active'))renderCook();if(document.getElementById('choose').classList.contains('active'))chooseDish()}
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+function goHome(){previousScreen='home';show('home')}
+function goBack(){show(previousScreen)}
+function openExplore(){previousScreen='explore';show('explore');renderStates()}
+function openSearch(){previousScreen='search';show('search');document.getElementById('searchInput').focus()}
+function openIngredients(){previousScreen='ingredients';show('ingredients');renderChips()}
+function changeLanguage(){
+  currentLanguage=document.getElementById('language').value;
+  document.documentElement.lang=currentLanguage;
+  document.body.classList.toggle('rtl',currentLanguage==='ur');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(i18n[currentLanguage][k])el.textContent=i18n[currentLanguage][k]});
+  if(selectedRecipe) renderRecipe(selectedRecipe);
+  if(document.getElementById('state').classList.contains('active')) renderStateResults();
+  if(document.getElementById('search').classList.contains('active')) runSearch();
+}
+function renderStates(){
+  const states=[...new Set(recipes.map(r=>r.state))];
+  document.getElementById('stateGrid').innerHTML=states.map(s=>`<div class="card" style="cursor:pointer" onclick="openState(${JSON.stringify(s)})"><h3>${escapeHtml(s)}</h3><p>40 recipe entries</p></div>`).join('');
+}
+function openState(state){selectedState=state;document.getElementById('stateTitle').textContent=state;document.getElementById('stateSubtitle').textContent='Choose a category to see the dishes.';previousScreen='state';show('state');renderStateResults()}
+function showType(type){document.getElementById('stateSubtitle').textContent=type;renderStateResults(type)}
+function renderStateResults(type){
+  type=type || document.getElementById('stateSubtitle').textContent;
+  if(type!=='Vegetarian' && type!=='Non-Vegetarian') return;
+  const list=recipes.filter(r=>r.state===selectedState&&r.type===type);
+  document.getElementById('stateResults').innerHTML=list.map(recipeCard).join('');
+}
+function runSearch(){
+  const q=document.getElementById('searchInput').value.trim().toLowerCase();
+  if(!q){document.getElementById('searchResults').innerHTML='';return}
+  const list=recipes.filter(r=>(r.name+' '+r.state+' '+r.region+' '+r.ingredients).toLowerCase().includes(q)).slice(0,80);
+  document.getElementById('searchResults').innerHTML=list.map(recipeCard).join('');
+}
+function recipeCard(r){
+  return `<div class="card"><h3>${escapeHtml(r.name)}</h3><div><span class="pill">${escapeHtml(r.state)}</span><span class="pill">${escapeHtml(r.type)}</span></div><p>${escapeHtml(r.region)}</p><button class="primary" onclick="openRecipe(${r.id})">Cook This Dish</button></div>`;
+}
+function addIngredient(){const v=document.getElementById('ingredientInput').value.trim();if(!v)return;ingredients.push(v);document.getElementById('ingredientInput').value='';renderChips()}
+function renderChips(){document.getElementById('chips').innerHTML=ingredients.map((x,i)=>`<span class="pill">${escapeHtml(x)} <button class="ghost" style="padding:2px 6px" onclick="removeIngredient(${i})">×</button></span>`).join('')}
+function removeIngredient(i){ingredients.splice(i,1);renderChips()}
+function normalise(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,' ').trim()}
+function findMatches(){
+  if(!ingredients.length){document.getElementById('ingredientResults').innerHTML='<div class="notice">Add at least one ingredient first.</div>';return}
+  const have=ingredients.map(normalise);
+  const scored=recipes.map(r=>{
+    const text=normalise(r.ingredients+' '+r.name);
+    const hits=have.filter(x=>x && text.includes(x)).length;
+    return {...r,score:hits,missing:have.filter(x=>x&&!text.includes(x))};
+  }).filter(r=>r.score>0).sort((a,b)=>b.score-a.score||a.missing.length-b.missing.length).slice(0,40);
+  document.getElementById('ingredientResults').innerHTML=scored.map(r=>`<div class="card"><h3>${escapeHtml(r.name)}</h3><div><span class="pill">${r.score}/${have.length} ingredient matches</span><span class="pill">${escapeHtml(r.type)}</span></div><p>${escapeHtml(r.state)}</p><p>${r.missing.length?'Missing from ingredient text: '+escapeHtml(r.missing.join(', ')):'All entered ingredients appear in the recipe text.'}</p><button class="primary" onclick="openRecipe(${r.id})">Cook This Dish</button></div>`).join('');
+}
+function openRecipe(id){
+  selectedRecipe=recipes.find(r=>r.id===id);
+  previousScreen=document.querySelector('.screen.active').id;
+  show('recipe');renderRecipe(selectedRecipe);
+}
+function renderRecipe(r){
+  if(!r)return;
+  const langText=r.languages[currentLanguage]||r.languages.en||'';
+  const steps=(r.procedure||'').split(/\s*\d+\)\s*/).filter(Boolean);
+  const ingredientsText=r.ingredients||'';
+  document.getElementById('recipeContent').innerHTML=`
+    <div class="recipe-head">
+      <h2>${escapeHtml(r.name)}</h2>
+      <div class="meta"><span>${escapeHtml(r.state)}</span><span>${escapeHtml(r.region)}</span><span>${escapeHtml(r.type)}</span><span>${escapeHtml(r.servings)} servings</span><span>${escapeHtml(r.totalTime)}</span></div>
+      <div class="notice"><b>Language:</b> ${escapeHtml(currentLanguage.toUpperCase())}<br>${escapeHtml(langText)}</div>
+      <div class="toolbar"><label>Servings <input id="servingInput" type="number" min="1" max="50" value="${escapeHtml(r.servings)}" onchange="scaleNote()"></label></div>
+    </div>
+    <div class="two">
+      <div class="panel"><h3>Ingredients</h3><p>${escapeHtml(ingredientsText)}</p><h3>Ready When</h3><p>${escapeHtml(r.readyWhen)}</p><h3>Common Beginner Mistakes</h3><p>${escapeHtml(r.mistakes)}</p><h3>Food Safety / Allergens</h3><p>${escapeHtml(r.safety)}</p></div>
+      <div class="panel"><h3>Beginner Cooking Mode</h3><div class="steps">${steps.map((s,i)=>`<div class="step"><strong>Step ${i+1}</strong>${escapeHtml(s)}</div>`).join('')}</div></div>
+    </div>
+    <div class="notice" style="margin-top:18px"><b>Database status:</b> ${escapeHtml(r.verification)}</div>`;
+}
+function scaleNote(){const base=Number(selectedRecipe.servings)||1;const target=Number(document.getElementById('servingInput').value)||base;document.getElementById('servingInput').title=`Base recipe: ${base} servings. Target: ${target}. A later database layer can scale numeric ingredient quantities exactly.`}
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+loadRecipes();
 </script>
 </body>
 </html>
