@@ -103,7 +103,7 @@ footer{max-width:1200px;margin:auto;padding:0 20px 30px;color:var(--muted);font-
 <footer>Indian Kitchen • Working app prototype using the current 1,120-recipe database.</footer>
 
 <script>
-let recipes=[], currentLanguage='en', selectedState='', selectedRecipe=null, previousScreen='home', ingredients=[];
+let recipes=[], currentLanguage='en', selectedState='', selectedRecipe=null, previousScreen='home', ingredients=[], selectedTargetServings=null;
 
 const i18n={
 en:{tagline:'Learn Indian cooking step by step',home:'Home',title:'Cook Indian food with confidence',intro:'Explore dishes by state, search the full recipe library, or tell us what ingredients you already have.',cookWhat:'Cook With What I Have',explore:'Explore India',search:'Search Dishes',exploreIndia:'Explore India',back:'Back',vegetarian:'Vegetarian',nonVeg:'Non-Vegetarian',searchDishes:'Search Dishes',cookWhatTitle:'Cook With What I Have'},
@@ -140,7 +140,7 @@ function changeLanguage(){
 }
 function renderStates(){
   const states=[...new Set(recipes.map(r=>r.state))];
-  document.getElementById('stateGrid').innerHTML=states.map(s=>`<div class="card" style="cursor:pointer" onclick="openState(${JSON.stringify(s)})"><h3>${escapeHtml(s)}</h3><p>40 recipe entries</p></div>`).join('');
+  document.getElementById('stateGrid').innerHTML=states.map(s=>`<div class="card" style="cursor:pointer" onclick='openState(${JSON.stringify(s)})'><h3>${escapeHtml(s)}</h3><p>40 recipe entries</p></div>`).join('');
 }
 function openState(state){selectedState=state;document.getElementById('stateTitle').textContent=state;document.getElementById('stateSubtitle').textContent='Choose a category to see the dishes.';previousScreen='state';show('state');renderStateResults()}
 function showType(type){document.getElementById('stateSubtitle').textContent=type;renderStateResults(type)}
@@ -175,28 +175,101 @@ function findMatches(){
 }
 function openRecipe(id){
   selectedRecipe=recipes.find(r=>r.id===id);
+  selectedTargetServings=Number(selectedRecipe?.servings)||4;
   previousScreen=document.querySelector('.screen.active').id;
   show('recipe');renderRecipe(selectedRecipe);
 }
+function parseQuantityToken(token){
+  token=token.trim();
+  if(!token) return null;
+  const mixed=token.match(/^(\d+)\s+(\d+)\/(\d+)$/);
+  if(mixed) return Number(mixed[1]) + Number(mixed[2])/Number(mixed[3]);
+  const frac=token.match(/^(\d+)\/(\d+)$/);
+  if(frac) return Number(frac[1])/Number(frac[2]);
+  const num=Number(token);
+  return Number.isFinite(num)?num:null;
+}
+function formatScaledNumber(n){
+  if(!Number.isFinite(n)) return '';
+  const whole=Math.floor(n);
+  const frac=n-whole;
+  const common=[
+    [0.25,'1/4'],[0.3333333333,'1/3'],[0.5,'1/2'],
+    [0.6666666667,'2/3'],[0.75,'3/4']
+  ];
+  for(const [v,label] of common){
+    if(Math.abs(frac-v)<0.03) return whole>0 ? `${whole} ${label}` : label;
+  }
+  if(Math.abs(frac)<0.03) return String(whole);
+  return (Math.round(n*100)/100).toString();
+}
+function scaleRangeOrNumber(token,factor){
+  token=token.trim();
+  const range=token.match(/^(\d+(?:\s+\d+\/\d+|\s*\/\s*\d+|\.\d+)?)\s*(?:to|–|-)\s*(\d+(?:\s+\d+\/\d+|\s*\/\s*\d+|\.\d+)?)$/);
+  if(range){
+    const a=parseQuantityToken(range[1]), b=parseQuantityToken(range[2]);
+    if(a!==null&&b!==null) return `${formatScaledNumber(a*factor)} to ${formatScaledNumber(b*factor)}`;
+  }
+  const q=parseQuantityToken(token);
+  return q===null ? token : formatScaledNumber(q*factor);
+}
+function scaleIngredientText(text,factor){
+  if(!text) return '';
+  return text.split(/;\s*/).map(item=>{
+    // Match a quantity immediately before a recognised kitchen unit or count phrase.
+    const unitPattern="(?:kg|g|l|ml|cups?|tbsp|tsp|handfuls?|pieces?|piece|cloves?|slices?|sprigs?|small|medium|large)";
+    const re=new RegExp("(about\\s+)?((?:\\d+\\s+\\d+\\/\\d+|\\d+\\/\\d+|\\d+(?:\\.\\d+)?)(?:\\s*(?:to|–|-)\\s*(?:\\d+\\s+\\d+\\/\\d+|\\d+\\/\\d+|\\d+(?:\\.\\d+)?))?)\\s*("+unitPattern+")","i");
+    return item.replace(re,(m,about,q,unit)=>`${about||''}${scaleRangeOrNumber(q,factor)} ${unit}`);
+  }).join('; ');
+}
+function scaleProcedureText(text,factor){
+  if(!text) return '';
+  // Only scale quantities attached to kitchen units; cooking times and step numbers are not changed.
+  const unitPattern="(?:kg|g|l|ml|cups?|tbsp|tsp|handfuls?|pieces?|piece|cloves?|slices?|sprigs?)";
+  const re=new RegExp("((?:\\d+\\s+\\d+\\/\\d+|\\d+\\/\\d+|\\d+(?:\\.\\d+)?)(?:\\s*(?:to|–|-)\\s*(?:\\d+\\s+\\d+\\/\\d+|\\d+\\/\\d+|\\d+(?:\\.\\d+)?))?)\\s*("+unitPattern+")","gi");
+  return text.replace(re,(m,q,unit)=>`${scaleRangeOrNumber(q,factor)} ${unit}`);
+}
+function getServingFactor(r){
+  const base=Number(r.servings)||1;
+  const target=Number(selectedTargetServings)||base;
+  return {base,target,factor:target/base};
+}
 function renderRecipe(r){
   if(!r)return;
+  const sf=getServingFactor(r);
   const langText=r.languages[currentLanguage]||r.languages.en||'';
-  const steps=(r.procedure||'').split(/\s*\d+\)\s*/).filter(Boolean);
-  const ingredientsText=r.ingredients||'';
+  const scaledIngredients=scaleIngredientText(r.ingredients,sf.factor);
+  const scaledProcedure=scaleProcedureText(r.procedure,sf.factor);
+  const steps=(scaledProcedure||'').split(/\s*\d+\)\s*/).filter(Boolean);
+  const scaledLabel=sf.target===sf.base ? `Base recipe: ${sf.base} servings` : `Scaled for ${sf.target} servings (base recipe: ${sf.base})`;
   document.getElementById('recipeContent').innerHTML=`
     <div class="recipe-head">
       <h2>${escapeHtml(r.name)}</h2>
-      <div class="meta"><span>${escapeHtml(r.state)}</span><span>${escapeHtml(r.region)}</span><span>${escapeHtml(r.type)}</span><span>${escapeHtml(r.servings)} servings</span><span>${escapeHtml(r.totalTime)}</span></div>
-      <div class="notice"><b>Language:</b> ${escapeHtml(currentLanguage.toUpperCase())}<br>${escapeHtml(langText)}</div>
-      <div class="toolbar"><label>Servings <input id="servingInput" type="number" min="1" max="50" value="${escapeHtml(r.servings)}" onchange="scaleNote()"></label></div>
+      <div class="meta"><span>${escapeHtml(r.state)}</span><span>${escapeHtml(r.region)}</span><span>${escapeHtml(r.type)}</span><span>${escapeHtml(r.servings)} base servings</span><span>${escapeHtml(r.totalTime)}</span></div>
+      <div class="notice"><b>${escapeHtml(scaledLabel)}</b><br>Ingredient quantities are recalculated from the base serving size. Cooking times are kept as guidance and are not multiplied automatically.</div>
+      <div class="toolbar"><label>Servings <input id="servingInput" type="number" min="1" max="50" value="${escapeHtml(String(sf.target))}" onchange="updateServings(this.value)"></label></div>
+      <div class="notice"><b>Recipe text:</b><br>${escapeHtml(langText)}</div>
     </div>
     <div class="two">
-      <div class="panel"><h3>Ingredients</h3><p>${escapeHtml(ingredientsText)}</p><h3>Ready When</h3><p>${escapeHtml(r.readyWhen)}</p><h3>Common Beginner Mistakes</h3><p>${escapeHtml(r.mistakes)}</p><h3>Food Safety / Allergens</h3><p>${escapeHtml(r.safety)}</p></div>
-      <div class="panel"><h3>Beginner Cooking Mode</h3><div class="steps">${steps.map((s,i)=>`<div class="step"><strong>Step ${i+1}</strong>${escapeHtml(s)}</div>`).join('')}</div></div>
+      <div class="panel">
+        <h3>Ingredients — ${escapeHtml(String(sf.target))} servings</h3>
+        <p>${escapeHtml(scaledIngredients)}</p>
+        <h3>Ready When</h3><p>${escapeHtml(r.readyWhen)}</p>
+        <h3>Common Beginner Mistakes</h3><p>${escapeHtml(r.mistakes)}</p>
+        <h3>Food Safety / Allergens</h3><p>${escapeHtml(r.safety)}</p>
+      </div>
+      <div class="panel"><h3>Beginner Cooking Mode — ${escapeHtml(String(sf.target))} servings</h3><div class="steps">${steps.map((s,i)=>`<div class="step"><strong>Step ${i+1}</strong>${escapeHtml(s)}</div>`).join('')}</div></div>
     </div>
     <div class="notice" style="margin-top:18px"><b>Database status:</b> ${escapeHtml(r.verification)}</div>`;
 }
-function scaleNote(){const base=Number(selectedRecipe.servings)||1;const target=Number(document.getElementById('servingInput').value)||base;document.getElementById('servingInput').title=`Base recipe: ${base} servings. Target: ${target}. A later database layer can scale numeric ingredient quantities exactly.`}
+function updateServings(value){
+  let target=Math.round(Number(value));
+  if(!Number.isFinite(target)) target=Number(selectedRecipe?.servings)||4;
+  target=Math.min(50,Math.max(1,target));
+  selectedTargetServings=target;
+  renderRecipe(selectedRecipe);
+  setTimeout(()=>{const el=document.getElementById('servingInput');if(el){el.focus();el.select();}},0);
+}
 function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
 loadRecipes();
 </script>
