@@ -106,11 +106,26 @@ footer{max-width:1200px;margin:auto;padding:0 20px 30px;color:var(--muted);font-
 let recipes=[], currentLanguage='en', selectedState='', selectedRecipe=null, previousScreen='home', ingredients=[], selectedTargetServings=null;
 
 const i18n={
-en:{tagline:'Learn Indian cooking step by step',home:'Home',title:'Cook Indian food with confidence',intro:'Explore dishes by state, search the full recipe library, or tell us what ingredients you already have.',cookWhat:'Cook With What I Have',explore:'Explore India',search:'Search Dishes',exploreIndia:'Explore India',back:'Back',vegetarian:'Vegetarian',nonVeg:'Non-Vegetarian',searchDishes:'Search Dishes',cookWhatTitle:'Cook With What I Have'},
-hi:{tagline:'चरण-दर-चरण भारतीय खाना बनाना सीखें',home:'होम',title:'आत्मविश्वास के साथ भारतीय खाना बनाएं',intro:'राज्य के अनुसार व्यंजन देखें, पूरी रेसिपी खोजें या अपने पास मौजूद सामग्री डालें।',cookWhat:'मेरे पास जो है उससे पकाएँ',explore:'भारत देखें',search:'व्यंजन खोजें',exploreIndia:'भारत के व्यंजन',back:'वापस',vegetarian:'शाकाहारी',nonVeg:'मांसाहारी',searchDishes:'व्यंजन खोजें',cookWhatTitle:'मेरे पास जो है उससे पकाएँ'},
-ur:{tagline:'مرحلہ وار ہندوستانی کھانا پکانا سیکھیں',home:'ہوم',title:'اعتماد کے ساتھ ہندوستانی کھانا پکائیں',intro:'ریاست کے حساب سے کھانے دیکھیں، پوری ترکیب تلاش کریں، یا اپنے موجود اجزاء شامل کریں۔',cookWhat:'میرے پاس موجود اجزاء سے پکائیں',explore:'بھارت دیکھیں',search:'کھانے تلاش کریں',exploreIndia:'بھارت کے کھانے',back:'واپس',vegetarian:'سبزی',nonVeg:'گوشت',searchDishes:'کھانے تلاش کریں',cookWhatTitle:'میرے پاس موجود اجزاء سے پکائیں'},
-ta:{tagline:'படிப்படியாக இந்திய சமையலை கற்றுக்கொள்ளுங்கள்',home:'முகப்பு',title:'நம்பிக்கையுடன் இந்திய உணவை சமைக்கவும்',intro:'மாநில வாரியாக உணவுகளைப் பாருங்கள், முழு செய்முறையைத் தேடுங்கள் அல்லது உங்களிடம் உள்ள பொருட்களை உள்ளிடுங்கள்.',cookWhat:'என்னிடம் உள்ள பொருட்களால் சமைக்கவும்',explore:'இந்தியாவை ஆராய்க',search:'உணவுகளை தேடுக',exploreIndia:'இந்திய உணவுகள்',back:'பின்செல்',vegetarian:'சைவம்',nonVeg:'அசைவம்',searchDishes:'உணவுகளை தேடுக',cookWhatTitle:'என்னிடம் உள்ள பொருட்களால் சமைக்கவும்'},
-te:{tagline:'దశలవారీగా భారతీయ వంట నేర్చుకోండి',home:'హోమ్',title:'నమ్మకంగా భారతీయ వంటలు చేయండి',intro:'రాష్ట్రం ప్రకారం వంటకాలను చూడండి, పూర్తి రెసిపీని శోధించండి లేదా మీ దగ్గర ఉన్న పదార్థాలను నమోదు చేయండి.',cookWhat:'నా దగ్గర ఉన్న పదార్థాలతో వండండి',explore:'భారతదేశాన్ని అన్వేషించండి',search:'వంటకాలు శోధించండి',exploreIndia:'భారతదేశ వంటకాలు',back:'వెనుకకు',vegetarian:'శాకాహారం',nonVeg:'మాంసాహారం',searchDishes:'వంటకాలు శోధించండి',cookWhatTitle:'నా దగ్గర ఉన్న పదార్థాలతో వండండి'}
+en:{
+tagline:'Learn Indian cooking step by step',home:'Home',title:'Cook Indian food with confidence',intro:'Explore dishes by state, search the full recipe library, or tell us what ingredients you already have.',cookWhat:'Cook With What I Have',explore:'Explore India',search:'Search Dishes',exploreIndia:'Explore India',back:'Back',vegetarian:'Vegetarian',nonVeg:'Non-Vegetarian',searchDishes:'Search Dishes',cookWhatTitle:'Cook With What I Have',
+chooseCategory:'Choose a category',cookDish:'Cook This Dish',ingredients:'Ingredients',readyWhen:'Ready When',mistakes:'Common Beginner Mistakes',safety:'Food Safety / Allergens',cookingMode:'Beginner Cooking Mode',databaseStatus:'Database status',servings:'Servings',baseServings:'Base servings',scaledFor:'Scaled for',language:'Language',instructions:'Cooking instructions',region:'Region',time:'Time',totalTime:'Total time',add:'Add',find:'Find What I Can Cook',missing:'Missing from ingredient text',allPresent:'All entered ingredients appear in the recipe text.',noIngredient:'Add at least one ingredient first.',recipeEntries:'recipe entries'
+},
+hi:{
+tagline:'चरण-दर-चरण भारतीय खाना बनाना सीखें',home:'होम',title:'आत्मविश्वास के साथ भारतीय खाना बनाएं',intro:'राज्य के अनुसार व्यंजन देखें, पूरी रेसिपी खोजें या अपने पास मौजूद सामग्री डालें।',cookWhat:'मेरे पास जो है उससे पकाएँ',explore:'भारत देखें',search:'व्यंजन खोजें',exploreIndia:'भारत के व्यंजन',back:'वापस',vegetarian:'शाकाहारी',nonVeg:'मांसाहारी',searchDishes:'व्यंजन खोजें',cookWhatTitle:'मेरे पास जो है उससे पकाएँ',
+chooseCategory:'श्रेणी चुनें',cookDish:'यह व्यंजन पकाएँ',ingredients:'सामग्री',readyWhen:'तैयार होने का संकेत',mistakes:'शुरुआती लोगों की सामान्य गलतियाँ',safety:'खाद्य सुरक्षा / एलर्जी',cookingMode:'शुरुआती कुकिंग मोड',databaseStatus:'डेटाबेस स्थिति',servings:'सर्विंग',baseServings:'मूल सर्विंग',scaledFor:'इसके लिए मात्रा',language:'भाषा',instructions:'पकाने की विधि',region:'क्षेत्र',time:'समय',totalTime:'कुल समय',add:'जोड़ें',find:'मैं क्या पका सकता हूँ',missing:'सामग्री में नहीं मिला',allPresent:'डाली गई सभी सामग्री रेसिपी में मौजूद हैं।',noIngredient:'पहले कम से कम एक सामग्री जोड़ें।',recipeEntries:'रेसिपी प्रविष्टियाँ'
+},
+ur:{
+tagline:'مرحلہ وار ہندوستانی کھانا پکانا سیکھیں',home:'ہوم',title:'اعتماد کے ساتھ ہندوستانی کھانا پکائیں',intro:'ریاست کے حساب سے کھانے دیکھیں، پوری ترکیب تلاش کریں، یا اپنے موجود اجزاء شامل کریں۔',cookWhat:'میرے پاس موجود اجزاء سے پکائیں',explore:'بھارت دیکھیں',search:'کھانے تلاش کریں',exploreIndia:'بھارت کے کھانے',back:'واپس',vegetarian:'سبزی',nonVeg:'گوشت',searchDishes:'کھانے تلاش کریں',cookWhatTitle:'میرے پاس موجود اجزاء سے پکائیں',
+chooseCategory:'زمرہ منتخب کریں',cookDish:'یہ ڈش پکائیں',ingredients:'اجزاء',readyWhen:'تیار ہونے کی علامت',mistakes:'ابتدائی باورچی کی عام غلطیاں',safety:'خوراک کی حفاظت / الرجی',cookingMode:'ابتدائی کُکنگ موڈ',databaseStatus:'ڈیٹا بیس کی حالت',servings:'افراد',baseServings:'اصل مقدار',scaledFor:'اس مقدار کے لیے',language:'زبان',instructions:'پکانے کی ہدایات',region:'علاقہ',time:'وقت',totalTime:'کل وقت',add:'شامل کریں',find:'میں کیا پکا سکتا ہوں',missing:'اجزاء میں موجود نہیں',allPresent:'درج کیے گئے تمام اجزاء ریسپی میں موجود ہیں۔',noIngredient:'پہلے کم از کم ایک جزو شامل کریں۔',recipeEntries:'ریسپی اندراجات'
+},
+ta:{
+tagline:'படிப்படியாக இந்திய சமையலை கற்றுக்கொள்ளுங்கள்',home:'முகப்பு',title:'நம்பிக்கையுடன் இந்திய உணவை சமைக்கவும்',intro:'மாநில வாரியாக உணவுகளைப் பாருங்கள், முழு செய்முறையைத் தேடுங்கள் அல்லது உங்களிடம் உள்ள பொருட்களை உள்ளிடுங்கள்.',cookWhat:'என்னிடம் உள்ள பொருட்களால் சமைக்கவும்',explore:'இந்தியாவை ஆராய்க',search:'உணவுகளை தேடுக',exploreIndia:'இந்திய உணவுகள்',back:'பின்செல்',vegetarian:'சைவம்',nonVeg:'அசைவம்',searchDishes:'உணவுகளை தேடுக',cookWhatTitle:'என்னிடம் உள்ள பொருட்களால் சமைக்கவும்',
+chooseCategory:'வகையைத் தேர்வு செய்யவும்',cookDish:'இந்த உணவை சமைக்கவும்',ingredients:'தேவையான பொருட்கள்',readyWhen:'தயாரானதற்கான அறிகுறி',mistakes:'ஆரம்பநிலை சமையலர்களின் பொதுவான தவறுகள்',safety:'உணவு பாதுகாப்பு / அலர்ஜிகள்',cookingMode:'ஆரம்பநிலை சமையல் முறை',databaseStatus:'தரவுத்தள நிலை',servings:'பரிமாறல்கள்',baseServings:'அடிப்படை பரிமாறல்கள்',scaledFor:'இதற்கான அளவு',language:'மொழி',instructions:'சமையல் வழிமுறைகள்',region:'பகுதி',time:'நேரம்',totalTime:'மொத்த நேரம்',add:'சேர்க்க',find:'என்னிடம் உள்ளவற்றால் என்ன சமைக்கலாம்',missing:'பொருட்களில் காணப்படவில்லை',allPresent:'நீங்கள் உள்ளிட்ட அனைத்து பொருட்களும் இந்த உணவில் உள்ளன.',noIngredient:'முதலில் குறைந்தது ஒரு பொருளைச் சேர்க்கவும்.',recipeEntries:'செய்முறை பதிவுகள்'
+},
+te:{
+tagline:'దశలవారీగా భారతీయ వంట నేర్చుకోండి',home:'హోమ్',title:'నమ్మకంగా భారతీయ వంటలు చేయండి',intro:'రాష్ట్రం ప్రకారం వంటకాలను చూడండి, పూర్తి రెసిపీని శోధించండి లేదా మీ దగ్గర ఉన్న పదార్థాలను నమోదు చేయండి.',cookWhat:'నా దగ్గర ఉన్న పదార్థాలతో వండండి',explore:'భారతదేశాన్ని అన్వేషించండి',search:'వంటకాలు శోధించండి',exploreIndia:'భారతదేశ వంటకాలు',back:'వెనుకకు',vegetarian:'శాకాహారం',nonVeg:'మాంసాహారం',searchDishes:'వంటకాలు శోధించండి',cookWhatTitle:'నా దగ్గర ఉన్న పదార్థాలతో వండండి',
+chooseCategory:'వర్గాన్ని ఎంచుకోండి',cookDish:'ఈ వంటకాన్ని వండండి',ingredients:'పదార్థాలు',readyWhen:'సిద్ధమైన సూచన',mistakes:'ప్రారంభ వంటకారుల సాధారణ తప్పులు',safety:'ఆహార భద్రత / అలర్జీలు',cookingMode:'ప్రారంభ వంట విధానం',databaseStatus:'డేటాబేస్ స్థితి',servings:'సర్వింగ్స్',baseServings:'ప్రాథమిక సర్వింగ్స్',scaledFor:'ఈ పరిమాణానికి',language:'భాష',instructions:'వంట సూచనలు',region:'ప్రాంతం',time:'సమయం',totalTime:'మొత్తం సమయం',add:'జోడించండి',find:'నా దగ్గర ఉన్న పదార్థాలతో ఏమి వండాలి',missing:'పదార్థాల్లో లేదు',allPresent:'మీరు ఇచ్చిన అన్ని పదార్థాలు రెసిపీలో ఉన్నాయి.',noIngredient:'ముందుగా కనీసం ఒక పదార్థాన్ని జోడించండి.',recipeEntries:'రెసిపీ ఎంట్రీలు'
+}
 };
 
 async function loadRecipes(){
@@ -126,6 +141,44 @@ async function loadRecipes(){
 function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
 function goHome(){previousScreen='home';show('home')}
 function goBack(){show(previousScreen)}
+
+function t(key){
+  return (i18n[currentLanguage]&&i18n[currentLanguage][key]) || i18n.en[key] || key;
+}
+const ingredientWordMap={
+hi:{
+'rice':'चावल','water':'पानी','oil':'तेल','ghee':'घी','salt':'नमक','onion':'प्याज़','tomato':'टमाटर','ginger-garlic':'अदरक-लहसुन',
+'turmeric':'हल्दी','chilli powder':'लाल मिर्च पाउडर','coriander powder':'धनिया पाउडर','mustard seeds':'राई','cumin seeds':'जीरा',
+'peanuts':'मूंगफली','tamarind':'इमली','jaggery':'गुड़','chana dal':'चना दाल','urad dal':'उड़द दाल','green chillies':'हरी मिर्च',
+'dry red chillies':'सूखी लाल मिर्च','curry leaves':'कड़ी पत्ता','sesame-seed powder':'तिल का पाउडर','salt':'नमक','chicken':'चिकन','mutton':'मटन','fish':'मछली','prawn':'झींगा','egg':'अंडा'
+},
+ta:{
+'rice':'அரிசி','water':'தண்ணீர்','oil':'எண்ணெய்','ghee':'நெய்','salt':'உப்பு','onion':'வெங்காயம்','tomato':'தக்காளி','ginger-garlic':'இஞ்சி-பூண்டு',
+'turmeric':'மஞ்சள்','chilli powder':'மிளகாய் தூள்','coriander powder':'தனியா தூள்','mustard seeds':'கடுகு','cumin seeds':'சீரகம்',
+'peanuts':'வேர்க்கடலை','tamarind':'புளி','jaggery':'வெல்லம்','chana dal':'கடலைப்பருப்பு','urad dal':'உளுத்தம்பருப்பு','green chillies':'பச்சை மிளகாய்',
+'dry red chillies':'காய்ந்த மிளகாய்','curry leaves':'கறிவேப்பிலை','sesame-seed powder':'எள் பொடி','chicken':'கோழி','mutton':'ஆட்டிறைச்சி','fish':'மீன்','prawn':'இறால்','egg':'முட்டை'
+},
+te:{
+'rice':'బియ్యం','water':'నీరు','oil':'నూనె','ghee':'నెయ్యి','salt':'ఉప్పు','onion':'ఉల్లిపాయ','tomato':'టమాటా','ginger-garlic':'అల్లం-వెల్లుల్లి',
+'turmeric':'పసుపు','chilli powder':'కారం పొడి','coriander powder':'ధనియాల పొడి','mustard seeds':'ఆవాలు','cumin seeds':'జీలకర్ర',
+'peanuts':'వేరుశెనగలు','tamarind':'చింతపండు','jaggery':'బెల్లం','chana dal':'శనగపప్పు','urad dal':'మినప్పప్పు','green chillies':'పచ్చిమిరపకాయలు',
+'dry red chillies':'ఎండు మిరపకాయలు','curry leaves':'కరివేపాకు','sesame-seed powder':'నువ్వుల పొడి','chicken':'చికెన్','mutton':'మటన్','fish':'చేప','prawn':'రొయ్యలు','egg':'గుడ్డు'
+},
+ur:{
+'rice':'چاول','water':'پانی','oil':'تیل','ghee':'گھی','salt':'نمک','onion':'پیاز','tomato':'ٹماٹر','ginger-garlic':'ادرک لہسن',
+'turmeric':'ہلدی','chilli powder':'لال مرچ پاؤڈر','coriander powder':'دھنیا پاؤڈر','mustard seeds':'رائی','cumin seeds':'زیرہ',
+'peanuts':'مونگ پھلی','tamarind':'املی','jaggery':'گڑ','chana dal':'چنا دال','urad dal':'اڑد دال','green chillies':'ہری مرچ',
+'dry red chillies':'خشک لال مرچ','curry leaves':'کڑی پتے','sesame-seed powder':'تل پاؤڈر','chicken':'چکن','mutton':'مٹن','fish':'مچھلی','prawn':'جھینگا','egg':'انڈا'
+}};
+function translateIngredientText(text){
+  if(currentLanguage==='en'||!text)return text;
+  let s=text;
+  const map=ingredientWordMap[currentLanguage]||{};
+  Object.keys(map).sort((a,b)=>b.length-a.length).forEach(k=>{
+    s=s.replace(new RegExp('(^|[;,.]\\s*|—\\s*)'+k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(?=\\s*(?:—|,|;|$|\\d))','gi'),(m,p)=>p+map[k]);
+  });
+  return s;
+}
 function openExplore(){previousScreen='explore';show('explore');renderStates()}
 function openSearch(){previousScreen='search';show('search');document.getElementById('searchInput').focus()}
 function openIngredients(){previousScreen='ingredients';show('ingredients');renderChips()}
@@ -133,17 +186,32 @@ function changeLanguage(){
   currentLanguage=document.getElementById('language').value;
   document.documentElement.lang=currentLanguage;
   document.body.classList.toggle('rtl',currentLanguage==='ur');
-  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(i18n[currentLanguage][k])el.textContent=i18n[currentLanguage][k]});
-  if(selectedRecipe) renderRecipe(selectedRecipe);
-  if(document.getElementById('state').classList.contains('active')) renderStateResults();
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.dataset.i18n;
+    if(i18n[currentLanguage][k]) el.textContent=i18n[currentLanguage][k];
+  });
+  renderStates();
+  if(document.getElementById('state').classList.contains('active')){
+    document.getElementById('stateTitle').textContent=localizeStateName(selectedState);
+    const currentType=document.getElementById('stateSubtitle').dataset.type;
+    document.getElementById('stateSubtitle').textContent=currentType ? localizeType(currentType) : t('chooseCategory');
+    if(currentType) renderStateResults(currentType);
+  }
   if(document.getElementById('search').classList.contains('active')) runSearch();
+  if(document.getElementById('ingredients').classList.contains('active')) renderChips();
+  if(selectedRecipe && document.getElementById('recipe').classList.contains('active')) renderRecipe(selectedRecipe);
 }
+function localizeStateName(name){
+  // State names are proper names; keep them in their standard English form unless a native-script label is available.
+  return name;
+}
+function localizeType(type){ return type==='Vegetarian' ? t('vegetarian') : t('nonVeg'); }
 function renderStates(){
   const states=[...new Set(recipes.map(r=>r.state))];
-  document.getElementById('stateGrid').innerHTML=states.map(s=>`<div class="card" style="cursor:pointer" onclick='openState(${JSON.stringify(s)})'><h3>${escapeHtml(s)}</h3><p>40 recipe entries</p></div>`).join('');
+  document.getElementById('stateGrid').innerHTML=states.map(s=>`<div class="card" style="cursor:pointer" onclick='openState(${JSON.stringify(s)})'><h3>${escapeHtml(s)}</h3><p>40 ${escapeHtml(t('recipeEntries'))}</p></div>`).join('');
 }
-function openState(state){selectedState=state;document.getElementById('stateTitle').textContent=state;document.getElementById('stateSubtitle').textContent='Choose a category to see the dishes.';previousScreen='state';show('state');renderStateResults()}
-function showType(type){document.getElementById('stateSubtitle').textContent=type;renderStateResults(type)}
+function openState(state){selectedState=state;document.getElementById('stateTitle').textContent=localizeStateName(state);document.getElementById('stateSubtitle').textContent=t('chooseCategory');document.getElementById('stateSubtitle').dataset.type='';previousScreen='state';show('state')}
+function showType(type){document.getElementById('stateSubtitle').dataset.type=type;document.getElementById('stateSubtitle').textContent=localizeType(type);renderStateResults(type)}
 function renderStateResults(type){
   type=type || document.getElementById('stateSubtitle').textContent;
   if(type!=='Vegetarian' && type!=='Non-Vegetarian') return;
@@ -157,21 +225,21 @@ function runSearch(){
   document.getElementById('searchResults').innerHTML=list.map(recipeCard).join('');
 }
 function recipeCard(r){
-  return `<div class="card"><h3>${escapeHtml(r.name)}</h3><div><span class="pill">${escapeHtml(r.state)}</span><span class="pill">${escapeHtml(r.type)}</span></div><p>${escapeHtml(r.region)}</p><button class="primary" onclick="openRecipe(${r.id})">Cook This Dish</button></div>`;
+  return `<div class="card"><h3>${escapeHtml(r.name)}</h3><div><span class="pill">${escapeHtml(r.state)}</span><span class="pill">${escapeHtml(localizeType(r.type))}</span></div><p>${escapeHtml(r.region)}</p><button class="primary" onclick="openRecipe(${r.id})">${escapeHtml(t('cookDish'))}</button></div>`;
 }
 function addIngredient(){const v=document.getElementById('ingredientInput').value.trim();if(!v)return;ingredients.push(v);document.getElementById('ingredientInput').value='';renderChips()}
 function renderChips(){document.getElementById('chips').innerHTML=ingredients.map((x,i)=>`<span class="pill">${escapeHtml(x)} <button class="ghost" style="padding:2px 6px" onclick="removeIngredient(${i})">×</button></span>`).join('')}
 function removeIngredient(i){ingredients.splice(i,1);renderChips()}
 function normalise(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,' ').trim()}
 function findMatches(){
-  if(!ingredients.length){document.getElementById('ingredientResults').innerHTML='<div class="notice">Add at least one ingredient first.</div>';return}
+  if(!ingredients.length){document.getElementById('ingredientResults').innerHTML=`<div class="notice">${escapeHtml(t('noIngredient'))}</div>`;return}
   const have=ingredients.map(normalise);
   const scored=recipes.map(r=>{
     const text=normalise(r.ingredients+' '+r.name);
     const hits=have.filter(x=>x && text.includes(x)).length;
     return {...r,score:hits,missing:have.filter(x=>x&&!text.includes(x))};
   }).filter(r=>r.score>0).sort((a,b)=>b.score-a.score||a.missing.length-b.missing.length).slice(0,40);
-  document.getElementById('ingredientResults').innerHTML=scored.map(r=>`<div class="card"><h3>${escapeHtml(r.name)}</h3><div><span class="pill">${r.score}/${have.length} ingredient matches</span><span class="pill">${escapeHtml(r.type)}</span></div><p>${escapeHtml(r.state)}</p><p>${r.missing.length?'Missing from ingredient text: '+escapeHtml(r.missing.join(', ')):'All entered ingredients appear in the recipe text.'}</p><button class="primary" onclick="openRecipe(${r.id})">Cook This Dish</button></div>`).join('');
+  document.getElementById('ingredientResults').innerHTML=scored.map(r=>`<div class="card"><h3>${escapeHtml(r.name)}</h3><div><span class="pill">${r.score}/${have.length} ingredient matches</span><span class="pill">${escapeHtml(r.type)}</span></div><p>${escapeHtml(r.state)}</p><p>${r.missing.length?escapeHtml(t('missing'))+': '+escapeHtml(r.missing.join(', ')):escapeHtml(t('allPresent'))}</p><button class="primary" onclick="openRecipe(${r.id})">${escapeHtml(t('cookDish'))}</button></div>`).join('');
 }
 function openRecipe(id){
   selectedRecipe=recipes.find(r=>r.id===id);
@@ -238,29 +306,33 @@ function renderRecipe(r){
   if(!r)return;
   const sf=getServingFactor(r);
   const langText=r.languages[currentLanguage]||r.languages.en||'';
-  const scaledIngredients=scaleIngredientText(r.ingredients,sf.factor);
-  const scaledProcedure=scaleProcedureText(r.procedure,sf.factor);
-  const steps=(scaledProcedure||'').split(/\s*\d+\)\s*/).filter(Boolean);
-  const scaledLabel=sf.target===sf.base ? `Base recipe: ${sf.base} servings` : `Scaled for ${sf.target} servings (base recipe: ${sf.base})`;
+  const scaledIngredients=translateIngredientText(scaleIngredientText(r.ingredients,sf.factor));
+  const sourceProcedure=scaleProcedureText(r.procedure,sf.factor);
+  const procedureForDisplay=(currentLanguage==='en' ? sourceProcedure : (langText || sourceProcedure));
+  const steps=(procedureForDisplay||'').split(/\s*\d+\)\s*/).filter(Boolean);
+  const scaledLabel=sf.target===sf.base ? `${t('baseServings')}: ${sf.base}` : `${t('scaledFor')} ${sf.target} (${t('baseServings')}: ${sf.base})`;
   document.getElementById('recipeContent').innerHTML=`
     <div class="recipe-head">
       <h2>${escapeHtml(r.name)}</h2>
-      <div class="meta"><span>${escapeHtml(r.state)}</span><span>${escapeHtml(r.region)}</span><span>${escapeHtml(r.type)}</span><span>${escapeHtml(r.servings)} base servings</span><span>${escapeHtml(r.totalTime)}</span></div>
-      <div class="notice"><b>${escapeHtml(scaledLabel)}</b><br>Ingredient quantities are recalculated from the base serving size. Cooking times are kept as guidance and are not multiplied automatically.</div>
-      <div class="toolbar"><label>Servings <input id="servingInput" type="number" min="1" max="50" value="${escapeHtml(String(sf.target))}" onchange="updateServings(this.value)"></label></div>
-      <div class="notice"><b>Recipe text:</b><br>${escapeHtml(langText)}</div>
+      <div class="meta"><span>${escapeHtml(r.state)}</span><span>${escapeHtml(r.region)}</span><span>${escapeHtml(localizeType(r.type))}</span><span>${escapeHtml(String(r.servings))} ${escapeHtml(t('baseServings'))}</span><span>${escapeHtml(r.totalTime)}</span></div>
+      <div class="notice"><b>${escapeHtml(scaledLabel)}</b><br>${escapeHtml(t('instructions'))}: ${escapeHtml(currentLanguage.toUpperCase())}</div>
+      <div class="toolbar"><label>${escapeHtml(t('servings'))} <input id="servingInput" type="number" min="1" max="50" value="${escapeHtml(String(sf.target))}" onchange="updateServings(this.value)"></label></div>
     </div>
     <div class="two">
       <div class="panel">
-        <h3>Ingredients — ${escapeHtml(String(sf.target))} servings</h3>
+        <h3>${escapeHtml(t('ingredients'))} — ${escapeHtml(String(sf.target))}</h3>
         <p>${escapeHtml(scaledIngredients)}</p>
-        <h3>Ready When</h3><p>${escapeHtml(r.readyWhen)}</p>
-        <h3>Common Beginner Mistakes</h3><p>${escapeHtml(r.mistakes)}</p>
-        <h3>Food Safety / Allergens</h3><p>${escapeHtml(r.safety)}</p>
+        <h3>${escapeHtml(t('readyWhen'))}</h3><p>${escapeHtml(r.readyWhen)}</p>
+        <h3>${escapeHtml(t('mistakes'))}</h3><p>${escapeHtml(r.mistakes)}</p>
+        <h3>${escapeHtml(t('safety'))}</h3><p>${escapeHtml(r.safety)}</p>
       </div>
-      <div class="panel"><h3>Beginner Cooking Mode — ${escapeHtml(String(sf.target))} servings</h3><div class="steps">${steps.map((s,i)=>`<div class="step"><strong>Step ${i+1}</strong>${escapeHtml(s)}</div>`).join('')}</div></div>
+      <div class="panel">
+        <h3>${escapeHtml(t('cookingMode'))} — ${escapeHtml(String(sf.target))}</h3>
+        <div class="notice"><b>${escapeHtml(t('language'))}:</b> ${escapeHtml(currentLanguage.toUpperCase())}</div>
+        <div class="steps">${steps.map((s,i)=>`<div class="step"><strong>${escapeHtml(t('instructions'))} ${i+1}</strong>${escapeHtml(s)}</div>`).join('')}</div>
+      </div>
     </div>
-    <div class="notice" style="margin-top:18px"><b>Database status:</b> ${escapeHtml(r.verification)}</div>`;
+    <div class="notice" style="margin-top:18px"><b>${escapeHtml(t('databaseStatus'))}:</b> ${escapeHtml(r.verification)}</div>`;
 }
 function updateServings(value){
   let target=Math.round(Number(value));
